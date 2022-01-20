@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1354ef1-07c0-473c-ab29-c78fa487eba8" name="Changes" comment="add Dserver.port = $PORT" />
+    <list default="true" id="c1354ef1-07c0-473c-ab29-c78fa487eba8" name="Changes" comment="add Dserver.port = $PORT">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,6 +255,7 @@
       <workItem from="1642585465343" duration="42147000" />
       <workItem from="1642674587893" duration="7492000" />
       <workItem from="1642712414914" duration="1028000" />
+      <workItem from="1642715280169" duration="684000" />
     </task>
     <task id="LOCAL-00001" summary="initcommit">
       <created>1641292800477</created>
