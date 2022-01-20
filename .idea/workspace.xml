@@ -209,11 +209,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DitsApplicationTests" />
         <item itemvalue="JUnit.SecurityControllerTest" />
         <item itemvalue="JUnit.QuestionServiceImplTest" />
-        <item itemvalue="Application.DitsApplication" />
+        <item itemvalue="JUnit.DitsApplicationTests" />
         <item itemvalue="JUnit.SecurityControllerTestForAdmin" />
+        <item itemvalue="Application.DitsApplication" />
       </list>
     </recent_temporary>
   </component>
