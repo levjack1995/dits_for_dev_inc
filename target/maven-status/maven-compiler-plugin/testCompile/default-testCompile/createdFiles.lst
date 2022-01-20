@@ -1,0 +1,12 @@
+com\example\dits\service\impl\QuestionServiceImplTest.class
+com\example\dits\controllers\SecurityControllerTestForAdmin.class
+com\example\dits\service\impl\StatisticServiceImplTest.class
+com\example\dits\service\impl\TestServiceImplTest.class
+com\example\dits\service\impl\AnswerServiceImplTest.class
+com\example\dits\service\impl\RoleServiceImplTest.class
+com\example\dits\service\impl\TopicServiceImplTest.class
+com\example\dits\service\impl\UserServiceImplTest.class
+com\example\dits\controllers\SecurityControllerTestForUser.class
+com\example\dits\DitsApplicationTests.class
+com\example\dits\service\TestSpringBootConfiguration.class
+com\example\dits\controllers\SecurityControllerTest.class

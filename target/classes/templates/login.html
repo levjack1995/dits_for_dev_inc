@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <title>Dev-inc</title>
+  </head>
+  <body style="background: #0a2b3e">
+    <header style="background-color: #012438">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <img src="img/icon.png" alt="dev-incubator-icon"/>
+          </div>
+          <div class="col-6 authentication-text">Authentication required</div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container egg-form-cont">
+        <div class="row">
+          <div class="col-6 img-cont">
+            <img src="img/egg.png" alt="dev-incubator-icon" class="img-egg" />
+          </div>
+
+          <div class="col-6 log-cont">
+            <form class="log-form" th:action="@{/login}" method="post">
+              <div class="sign-in">Sign in</div>
+              <div class="mb-3">
+                <label for="loginHelp" class="form-label login-margin">Login</label>
+                <input type="text" class="form-control form-input login-margin input-area" id = "login-input" name="login">
+                <div id="loginHelp" class="form-text login-margin text-danger">*Login is too short</div>
+              </div>
+              <div class="mb-3">
+                <label for="password-input" class="form-label login-margin pass-text">Password</label>
+                
+                <input type="password" class="form-control form-input login-margin input-area" name="password" id="password-input" autocomplete="on">
+                <i class="far fa-eye" id="togglePassword"></i>
+                <div id = "passHelp" class="form-text login-margin warning-pass text-danger" th:if="${param.error!= null}">*Password is wrong</div>
+              </div>
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" autocomplete="on"/>
+              <button type="submit" class="btn btn-primary login-margin submit-button" id ="submit">Submit</button>
+            </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="dev-copyrate">© Dev Incubator</footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
