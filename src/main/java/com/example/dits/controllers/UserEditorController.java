@@ -48,7 +48,7 @@ public class UserEditorController {
         userService.update(user,userId);
         System.out.println(firstName + lastName + roleName + login + password);
 
-        return "/admin";
+        return "redirect:/admin";
 
     }
 
@@ -62,14 +62,14 @@ public class UserEditorController {
         User user = new User(firstName, lastName, login, encodedPassword, roleList);
         userService.save(user);
 
-        return "/admin";
+        return "redirect:/admin";
     }
 
     @GetMapping("/removeUser")
     public String removeUser(@RequestParam int userId){
         System.out.println(userId);
         userService.deleteUserByUserId(userId);
-        return "/admin";
+        return "redirect:/admin";
     }
 
     private List<Role> getRoleList(String roleName) {
