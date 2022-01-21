@@ -22,11 +22,13 @@ public class Role {
     private String roleName;
 
     @Fetch(FetchMode.SUBSELECT)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "users_role"
             , joinColumns = @JoinColumn(name = "roleId"),
     inverseJoinColumns = @JoinColumn(name = "userId"))
     @ToString.Exclude
     private List<User> users;
+
+
 
 }

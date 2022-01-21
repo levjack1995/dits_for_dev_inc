@@ -53,4 +53,16 @@ public class UserServiceImpl implements UserService {
     public User getUserByLogin(String login){
         return repository.getUserByLogin(login);
     }
+
+    @Transactional
+    @Override
+    public User getUserByUserId(int id) {
+        return repository.getUserByUserId(id);
+    }
+
+    @Transactional
+    @Override
+    public void deleteUserByUserId(int userId){
+        repository.deleteUserByUserId(userId);
+    }
 }

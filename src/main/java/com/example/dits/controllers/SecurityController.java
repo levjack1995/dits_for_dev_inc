@@ -27,9 +27,9 @@ public class SecurityController {
 
 
     @GetMapping("/admin")
-    public String adminPage(ModelMap model){
-        model.addAttribute("user",getPrincipal());
-        model.addAttrubute("users", userService.findAll());
+    public String adminPage(HttpSession session){
+        session.setAttribute("user",userService.getUserByLogin(getPrincipal()));
+        session.setAttribute("users", userService.findAll());
         return "admin";
     }
 
@@ -85,4 +85,5 @@ public class SecurityController {
             userName = principal.toString();
         return userName;
     }
+
 }

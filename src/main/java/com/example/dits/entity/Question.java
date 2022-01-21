@@ -33,7 +33,7 @@ public class Question {
     private Test test;
 
     @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,cascade = CascadeType.MERGE,
     orphanRemoval = true)
     private List<Statistic> statistics;
 }

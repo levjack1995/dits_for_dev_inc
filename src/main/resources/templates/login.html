@@ -46,7 +46,7 @@
                 <i class="far fa-eye" id="togglePassword"></i>
                 <div id = "passHelp" class="form-text login-margin warning-pass text-danger" th:if="${param.error!= null}">*Password is wrong</div>
               </div>
-              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" autocomplete="on"/>
+              <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" autocomplete="on"/>
               <button type="submit" class="btn btn-primary login-margin submit-button" id ="submit">Submit</button>
             </form>
 

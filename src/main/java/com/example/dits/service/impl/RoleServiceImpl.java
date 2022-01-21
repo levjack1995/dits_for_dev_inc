@@ -47,4 +47,10 @@ public class RoleServiceImpl implements RoleService {
         return repo.findAll();
     }
 
+    @Transactional
+    @Override
+    public Role getRoleByRoleName(String roleName) {
+        return repo.getRoleByRoleName(roleName);
+    }
+
 }

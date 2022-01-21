@@ -4,8 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1354ef1-07c0-473c-ab29-c78fa487eba8" name="Changes" comment="add Dserver.port = $PORT">
+    <list default="true" id="c1354ef1-07c0-473c-ab29-c78fa487eba8" name="Changes" comment="add entities.dat">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/controllers/UserEditorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/dits_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/dits_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat.values" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat.values" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat.values.s" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/entities/entities.dat_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/storage_v2/_src_/database/db7cken95vffgu.Pgw9KQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ee283480-be84-45db-9b53-962fcf4dbc13/storage_v2/_src_/database/db7cken95vffgu.Pgw9KQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dits.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dits_for_dev_inc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/DAO/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/DAO/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/DAO/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/DAO/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/controllers/SecurityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/controllers/SecurityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/entity/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/service/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/dits/controllers/SecurityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/dits/controllers/SecurityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/dits/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/dits/service/impl/RoleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/dits/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/dits/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +54,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="b68c677a754b5ce7326f3b52ff3eb5c39f8aca00" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,8 +112,8 @@
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.5349922" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -119,7 +149,7 @@
   <component name="RunManager" selected="Spring Boot.DitsApplication">
     <configuration name="DitsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.dits.DitsApplication" />
-      <module name="dits" />
+      <module name="dits_for_dev_inc" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.dits.*" />
@@ -131,7 +161,7 @@
       </method>
     </configuration>
     <configuration name="DitsApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dits" />
+      <module name="dits_for_dev_inc" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.dits.*" />
@@ -146,7 +176,7 @@
       </method>
     </configuration>
     <configuration name="QuestionServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dits" />
+      <module name="dits_for_dev_inc" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.dits.service.impl.*" />
@@ -161,7 +191,7 @@
       </method>
     </configuration>
     <configuration name="SecurityControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dits" />
+      <module name="dits_for_dev_inc" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.dits.controllers.*" />
@@ -176,7 +206,7 @@
       </method>
     </configuration>
     <configuration name="SecurityControllerTestForAdmin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dits" />
+      <module name="dits_for_dev_inc" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.dits.controllers.*" />
@@ -190,8 +220,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="dits_for_dev_inc" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="dits_for_dev_inc" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DitsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="dits" />
+      <module name="dits_for_dev_inc" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.dits.DitsApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
@@ -256,6 +299,7 @@
       <workItem from="1642674587893" duration="7492000" />
       <workItem from="1642712414914" duration="1028000" />
       <workItem from="1642715280169" duration="684000" />
+      <workItem from="1642717190845" duration="30024000" />
     </task>
     <task id="LOCAL-00001" summary="initcommit">
       <created>1641292800477</created>
@@ -453,7 +497,21 @@
       <option name="project" value="LOCAL" />
       <updated>1642671130854</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add entities.dat">
+      <created>1642717309390</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1642717309390</updated>
+    </task>
+    <task id="LOCAL-00030" summary="add entities.dat">
+      <created>1642717360256</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1642717360256</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,7 +531,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="last" />
     <MESSAGE value="add security func, fixed bugs" />
     <MESSAGE value="fix css" />
     <MESSAGE value="add User" />
@@ -498,7 +555,8 @@
     <MESSAGE value="add node to Jenkinsfile" />
     <MESSAGE value="add jar start to ProcFile" />
     <MESSAGE value="add Dserver.port = $PORT" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Dserver.port = $PORT" />
+    <MESSAGE value="add entities.dat" />
+    <option name="LAST_COMMIT_MESSAGE" value="add entities.dat" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -519,14 +577,14 @@
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/dits/service/impl/UserServiceImpl.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="79" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/dits/controllers/UserEditorController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/dits/controllers/SecurityController.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="80" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/dits/controllers/UserEditorController.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/example/dits/service/impl/TopicServiceImplTest.java</url>

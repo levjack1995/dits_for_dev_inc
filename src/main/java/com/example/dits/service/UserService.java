@@ -13,4 +13,6 @@ public interface UserService {
     void save(User user);
     List<User> findAll();
     User getUserByLogin(String login);
+    User getUserByUserId(int id);
+    void deleteUserByUserId(int userId);
 }
