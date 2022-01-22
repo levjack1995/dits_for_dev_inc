@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1354ef1-07c0-473c-ab29-c78fa487eba8" name="Changes" comment="add methods in Role , get Role by Name, and User by id">
+    <list default="true" id="c1354ef1-07c0-473c-ab29-c78fa487eba8" name="Changes" comment="add Redirect after edit to /admin">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/controllers/AdminStatisticController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/dto/TopicStatisticByTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/testStatistics.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/controllers/UserEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/controllers/UserEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/DAO/StatisticRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/DAO/StatisticRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/dto/TestStatistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/dto/TestStatistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/facades/StatisticFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/facades/StatisticFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/service/StatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/service/StatisticService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dits/service/impl/StatisticServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dits/service/impl/StatisticServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +277,7 @@
       <workItem from="1642674587893" duration="7492000" />
       <workItem from="1642712414914" duration="1028000" />
       <workItem from="1642715280169" duration="684000" />
-      <workItem from="1642717190845" duration="31435000" />
+      <workItem from="1642717190845" duration="39878000" />
     </task>
     <task id="LOCAL-00001" summary="initcommit">
       <created>1641292800477</created>
@@ -496,7 +503,21 @@
       <option name="project" value="LOCAL" />
       <updated>1642797982695</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="add Redirect to files">
+      <created>1642800022581</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1642800022581</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add Redirect after edit to /admin">
+      <created>1642800056330</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1642800056330</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,8 +537,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add User" />
-    <MESSAGE value="add UserPages with jsp and js" />
     <MESSAGE value="update User functionality" />
     <MESSAGE value="add all Thymeleafs to the project" />
     <MESSAGE value="Add user functionality" />
@@ -541,7 +560,9 @@
     <MESSAGE value="add entities.dat" />
     <MESSAGE value="add SecurityController and admin.html, change CascadeType of Entities" />
     <MESSAGE value="add methods in Role , get Role by Name, and User by id" />
-    <option name="LAST_COMMIT_MESSAGE" value="add methods in Role , get Role by Name, and User by id" />
+    <MESSAGE value="add Redirect to files" />
+    <MESSAGE value="add Redirect after edit to /admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Redirect after edit to /admin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -553,12 +574,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/dits/facades/StatisticFacade.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/dits/facades/StatisticFacade.java</url>
-          <line>86</line>
+          <line>140</line>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

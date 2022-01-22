@@ -1,6 +1,7 @@
 package com.example.dits.service.impl;
 
 import com.example.dits.DAO.StatisticRepository;
+import com.example.dits.entity.Question;
 import com.example.dits.entity.Role;
 import com.example.dits.entity.Statistic;
 import com.example.dits.entity.User;
@@ -29,9 +30,16 @@ public class StatisticServiceImpl implements StatisticService {
         }
     }
 
+    @Transactional
     @Override
     public List<Statistic> getStatisticsByUser(User user){
         return repository.getStatisticsByUser(user);
+    }
+
+    @Transactional
+    @Override
+    public List<Statistic> getStatisticByQuestion(Question question) {
+        return repository.getStatisticByQuestion(question);
     }
 
     @Transactional

@@ -1,11 +1,9 @@
 package com.example.dits.facades;
 
-import com.example.dits.dto.TestStatistic;
-import com.example.dits.dto.TestStatisticByDate;
-import com.example.dits.dto.UserStatistics;
-import com.example.dits.entity.Statistic;
-import com.example.dits.entity.User;
+import com.example.dits.dto.*;
+import com.example.dits.entity.*;
 import com.example.dits.service.StatisticService;
+import com.example.dits.service.TopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,19 +15,75 @@ import java.util.*;
 public class StatisticFacade {
 
     private final StatisticService statisticService;
+    private final TopicService topicService;
     private static final  int initValue = 0;
 
     @Transactional
     public UserStatistics getUserStatistics(User user){
+        List<TestStatistic> testStatisticList = getTestStatisticsByUser(user);
+
+        UserStatistics userStatistics = new UserStatistics(user.getFirstName(),user.getLastName(),user.getLogin(),testStatisticList);
+        return userStatistics;
+    }
+
+    private List<TestStatistic> getTestStatisticsByUser(User user) {
         List<Statistic> statistics = statisticService.getStatisticsByUser(user);
         Map<Date, ArrayList<Statistic>> statisticByDate  = getStatisticsByDate(statistics);
 
         List<TestStatisticByDate> testStatisticsByDate = getTestStatisticByDate(statisticByDate);
-        Map<String, TestStatistic> staticticByName = getMapTestStatisticsByTestName(testStatisticsByDate);
-        List<TestStatistic> testStatisticList = new ArrayList<>(staticticByName.values());
+        Map<String, TestStatistic> statisticByTestName = getMapTestStatisticsByTestName(testStatisticsByDate);
+        List<TestStatistic> testStatisticList = new ArrayList<>(statisticByTestName.values());
+        return testStatisticList;
+    }
 
-        UserStatistics userStatistics = new UserStatistics(user.getFirstName(),user.getLastName(),user.getLogin(),testStatisticList);
-        return userStatistics;
+    public List<TopicStatisticByTests> getTopicStaticByTests(){
+
+        List<Topic> topics = topicService.findAll();
+        List<TopicStatisticByTests> topicStatisticByTests = new ArrayList<>();
+
+        for (Topic topic : topics) {
+            List<Test> testLists= topic.getTestList();
+            List<TestStatistic> testStatistics = new ArrayList<>();
+
+            for (Test test : testLists){
+
+                List<Question> questionList = test.getQuestions();
+                List<QuestionStatistic> questionStatistics = new ArrayList<>();
+                Set<Date> uniqueDate = new HashSet<>();
+                int count = 0;
+                int questionAvg = 0;
+                int testSumAvg = 0;
+                for (Question question : questionList){
+
+                    List<Statistic> statisticList = statisticService.getStatisticByQuestion(question);
+                    int rightAnswer = 0;
+                    for (Statistic statistic : statisticList){
+                        uniqueDate.add(statistic.getDate());
+                        if (statistic.isCorrect())
+                            rightAnswer++;
+                    }
+
+                    count = uniqueDate.size();
+                    if (count != 0)
+                    questionAvg = calculateAvg(count, rightAnswer);
+
+                    testSumAvg += questionAvg;
+                    questionStatistics.add(new QuestionStatistic(question.getDescription(),count,questionAvg));
+                }
+
+                int questionStatisticsSize = questionStatistics.size();
+                int testAverage = calculateAvg(questionStatisticsSize, testSumAvg);
+                testStatistics.add(new TestStatistic(test.getName(),count,testAverage, questionStatistics));
+            }
+            topicStatisticByTests.add(new TopicStatisticByTests(topic.getName(),
+                    topic.getDescription(),testStatistics));
+        }
+
+        return topicStatisticByTests;
+    }
+
+    private int calculateAvg(int count, double rightAnswer) {
+        return (int) (rightAnswer / count);
     }
 
     private Map<String, TestStatistic> getMapTestStatisticsByTestName(List<TestStatisticByDate> testStatisticsByDate) {
