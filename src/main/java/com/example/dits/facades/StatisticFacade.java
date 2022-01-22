@@ -36,6 +36,7 @@ public class StatisticFacade {
         return testStatisticList;
     }
 
+    @Transactional
     public List<TopicStatisticByTests> getTopicStaticByTests(){
 
         List<Topic> topics = topicService.findAll();
@@ -72,7 +73,8 @@ public class StatisticFacade {
                 }
 
                 int questionStatisticsSize = questionStatistics.size();
-                int testAverage = calculateAvg(questionStatisticsSize, testSumAvg);
+
+                int testAverage = calculateTestAverage(testSumAvg, questionStatisticsSize);
                 testStatistics.add(new TestStatistic(test.getName(),count,testAverage, questionStatistics));
             }
             topicStatisticByTests.add(new TopicStatisticByTests(topic.getName(),
@@ -82,8 +84,15 @@ public class StatisticFacade {
         return topicStatisticByTests;
     }
 
+    private int calculateTestAverage(int testSumAvg, int questionStatisticsSize) {
+        if (questionStatisticsSize != 0)
+            return testSumAvg / questionStatisticsSize;
+        else
+            return testSumAvg;
+    }
+
     private int calculateAvg(int count, double rightAnswer) {
-        return (int) (rightAnswer / count);
+        return (int) (rightAnswer / count * 100);
     }
 
     private Map<String, TestStatistic> getMapTestStatisticsByTestName(List<TestStatisticByDate> testStatisticsByDate) {

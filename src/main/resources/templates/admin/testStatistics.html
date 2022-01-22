@@ -31,7 +31,19 @@
 <section class="container">
     <div class="row">
         <div class="col"><h1 class="users-list-text">Users list</h1></div>
-
+    <div th:each="topicSt : ${statistic}">
+        <span th:text="'topicName = '+ ${topicSt.topicName} + ' topicDesc = ' +  ${topicSt.topicDescription}"></span>
+        <br>
+        <div th:each="testSt : ${topicSt.testStatistics}">
+            <span th:text="'testName =' +  ${testSt.testName} + ' testCount = ' + ${testSt.count} + ' testAvgProc = ' + ${testSt.avgProc}">
+            </span>
+            <br>
+            <div th:each="questionSt : ${testSt.questionStatistics}">
+                <span th:text="'questionDecription = ' + ${questionSt.questionDescription} + ' avgProc = ' + ${questionSt.avgProc}"></span>
+                <br>
+            </div>
+        </div>
+    </div>
 
     </div></section>
 <script src = "../static/js/admin.js" th:src="@{js/admin.js}"></script>
