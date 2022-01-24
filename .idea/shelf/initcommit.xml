@@ -1,9 +1,0 @@
-<changelist name="initcommit" date="1641316176543" recycled="false">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/initcommit/shelved.patch" />
-  <option name="DESCRIPTION" value="initcommit" />
-  <binary>
-    <option name="BEFORE_PATH" value="src/main/resources/META-INF/spring.factories" />
-    <option name="AFTER_PATH" />
-    <option name="SHELVED_PATH" />
-  </binary>
-</changelist>
