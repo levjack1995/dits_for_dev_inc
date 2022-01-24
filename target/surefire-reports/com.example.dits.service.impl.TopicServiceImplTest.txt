@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.dits.service.impl.TopicServiceImplTest
--------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.476 s - in com.example.dits.service.impl.TopicServiceImplTest
