@@ -22,6 +22,6 @@ public class AdminStatisticController {
 
     @ModelAttribute("statistic")
     private List<TopicStatisticByTests> getTopicStatisticByTests(){
-        return  statisticFacade.getTopicStaticByTests();
+        return  statisticFacade.getListTopicStaticByTests();
     }
-    }
+}

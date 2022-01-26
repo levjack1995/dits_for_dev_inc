@@ -37,46 +37,62 @@ public class StatisticFacade {
     }
 
     @Transactional
-    public List<TopicStatisticByTests> getTopicStaticByTests(){
+    public TopicStatisticByTests getTopicStaticByTests(String name){
+        Topic topic = topicService.getTopicByName(name);
+
+        List<TestStatistic> testStatistics = getTestStatistics(topic);
+
+        return new TopicStatisticByTests(topic.getName(),
+                topic.getDescription(),testStatistics);
+    }
+
+    private List<TestStatistic> getTestStatistics(Topic topic) {
+        List<Test> testLists = topic.getTestList();
+        List<TestStatistic> testStatistics = new ArrayList<>();
+
+        for (Test test : testLists) {
+
+            List<Question> questionList = test.getQuestions();
+            List<QuestionStatistic> questionStatistics = new ArrayList<>();
+            Set<Date> uniqueDate = new HashSet<>();
+            int count = 0;
+            int questionAvg = 0;
+            int testSumAvg = 0;
+            for (Question question : questionList) {
+
+                List<Statistic> statisticList = statisticService.getStatisticByQuestion(question);
+                int rightAnswer = 0;
+                for (Statistic statistic : statisticList) {
+                    uniqueDate.add(statistic.getDate());
+                    if (statistic.isCorrect())
+                        rightAnswer++;
+                }
+
+                count = uniqueDate.size();
+                if (count != 0)
+                    questionAvg = calculateAvg(count, rightAnswer);
+
+                testSumAvg += questionAvg;
+                questionStatistics.add(new QuestionStatistic(question.getDescription(), count, questionAvg));
+            }
+
+            int questionStatisticsSize = questionStatistics.size();
+
+            int testAverage = calculateTestAverage(testSumAvg, questionStatisticsSize);
+            testStatistics.add(new TestStatistic(test.getName(), count, testAverage, questionStatistics));
+        }
+        return testStatistics;
+    }
+
+    @Transactional
+    public List<TopicStatisticByTests> getListTopicStaticByTests(){
 
         List<Topic> topics = topicService.findAll();
         List<TopicStatisticByTests> topicStatisticByTests = new ArrayList<>();
 
         for (Topic topic : topics) {
-            List<Test> testLists= topic.getTestList();
-            List<TestStatistic> testStatistics = new ArrayList<>();
+            List<TestStatistic> testStatistics = getTestStatistics(topic);
 
-            for (Test test : testLists){
-
-                List<Question> questionList = test.getQuestions();
-                List<QuestionStatistic> questionStatistics = new ArrayList<>();
-                Set<Date> uniqueDate = new HashSet<>();
-                int count = 0;
-                int questionAvg = 0;
-                int testSumAvg = 0;
-                for (Question question : questionList){
-
-                    List<Statistic> statisticList = statisticService.getStatisticByQuestion(question);
-                    int rightAnswer = 0;
-                    for (Statistic statistic : statisticList){
-                        uniqueDate.add(statistic.getDate());
-                        if (statistic.isCorrect())
-                            rightAnswer++;
-                    }
-
-                    count = uniqueDate.size();
-                    if (count != 0)
-                    questionAvg = calculateAvg(count, rightAnswer);
-
-                    testSumAvg += questionAvg;
-                    questionStatistics.add(new QuestionStatistic(question.getDescription(),count,questionAvg));
-                }
-
-                int questionStatisticsSize = questionStatistics.size();
-
-                int testAverage = calculateTestAverage(testSumAvg, questionStatisticsSize);
-                testStatistics.add(new TestStatistic(test.getName(),count,testAverage, questionStatistics));
-            }
             topicStatisticByTests.add(new TopicStatisticByTests(topic.getName(),
                     topic.getDescription(),testStatistics));
         }
