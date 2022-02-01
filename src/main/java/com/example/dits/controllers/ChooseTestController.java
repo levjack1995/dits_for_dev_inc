@@ -1,14 +1,13 @@
 package com.example.dits.controllers;
 
+import com.example.dits.dto.TestInfoDTO;
 import com.example.dits.entity.Test;
-import com.example.dits.entity.Topic;
 import com.example.dits.service.TestService;
-import com.example.dits.service.TopicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -16,31 +15,26 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-public class UserHomeController {
+public class ChooseTestController {
 
     private final TestService testService;
-    private final TopicService topicService;
-
-
+    private final ModelMapper modelMapper;
 
     @GetMapping("/chooseTheme")
-    @ResponseBody
-    public List<String> chooseTheme(@RequestParam(value = "topic", required = false)String topicName, HttpSession session){
-        Topic topic = topicService.getTopicByName(topicName);
-        List<Test> tests = testService.getTestsByTopic(topic);
+    public List<TestInfoDTO> chooseTheme(@RequestParam(value = "topic", required = false)String topicName, HttpSession session){
+        List<Test> tests = testService.getTestsByTopicName(topicName);
         session.setAttribute("tests", tests);
         if(tests.isEmpty()){
-            return new ArrayList<String>();
+            return null;
         }
         else {
-            List<String> testsName = tests.stream().map(Test::getName).collect(Collectors.toList());
-            return testsName;
+            return tests.stream().map(this::convertToDTO).collect(Collectors.toList());
         }
     }
+
     @GetMapping("/getDescription")
-    @ResponseBody
     public String description(@RequestParam(value = "test", required = false)String test, HttpSession session){
           List<Test> tests  = (List<Test>) session.getAttribute("tests");
           Optional<Test> optTest = tests.stream().filter(x->x.getName().equals(test)).findAny();
@@ -50,5 +44,9 @@ public class UserHomeController {
         else {
             return "[\"" + optTest.get().getDescription() +  "\"]";
         }
+    }
+
+    private TestInfoDTO convertToDTO(Test test){
+        return modelMapper.map(test, TestInfoDTO.class);
     }
 }

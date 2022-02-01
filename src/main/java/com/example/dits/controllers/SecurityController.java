@@ -45,18 +45,6 @@ public class SecurityController {
     public String loginPage(){
         return "login";}
 
-    @PostMapping("/login")
-    public String afterLogin(){
-        return "user";}
-
-
-    @GetMapping("/error")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "login";
-    }
-
-
     @GetMapping("/accessDenied")
     public String accessDeniedGet(){
         return "accessDenied";
@@ -74,7 +62,7 @@ public class SecurityController {
 
 
     private static String getPrincipal(){
-        String userName = null;
+        String userName;
         Object principal = SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 

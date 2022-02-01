@@ -8,9 +8,6 @@ public class AllUserStatisticController {
 
     @GetMapping("/userStatistic")
     public String test(){
-
-
-
         return "/admin/allUserStatistic";
     }
 }

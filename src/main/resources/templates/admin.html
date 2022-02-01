@@ -21,7 +21,7 @@
             <a href="#" th:href="@{/user}" class="bar__text bar__text--active">User</a>
             <a href="#" class="bar__text">Tests</a>
             <a href="#" class="bar__text">Statistic</a>
-            <span>Admin &bull; </span> <span th:text = "${session.user.getFirstName} + ' '+ ${session.user.getLastName} " class="bar__user"> Maksim Salivanov
+            <span>Admin &bull; </span> <span th:text = "${session.user.firstName} + ' '+ ${session.user.lastName} " class="bar__user"> Maksim Salivanov
             <a href="/logout"><img src="../../static/img/exit.png" th:src="@{/img/exit.png}" class="bar__door"></a></span>
             </div></div>
     </div>

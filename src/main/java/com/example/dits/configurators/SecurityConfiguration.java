@@ -61,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login")
                 .successHandler(customSuccessHandler)
-                .usernameParameter("login").passwordParameter("password").failureUrl("/login?error=1")
+                .usernameParameter("login").passwordParameter("password").failureUrl("/login?fail=1")
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/accessDenied");
     }

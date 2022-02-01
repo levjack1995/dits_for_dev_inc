@@ -1,5 +1,6 @@
 package com.example.dits.service;
 
+import com.example.dits.dto.TestInfoDTO;
 import com.example.dits.entity.Answer;
 import com.example.dits.entity.Statistic;
 import com.example.dits.entity.Test;
@@ -14,4 +15,6 @@ public interface TestService {
      void save(Test test);
      List<Test> findAll();
      List<Test> getTestsByTopic(Topic topic);
+     List<Test> getTestsByTopicName(String name);
+     List<TestInfoDTO> getTestInfoDTO (List<Test> tests);
 }

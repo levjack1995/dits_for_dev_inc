@@ -14,6 +14,7 @@ import java.util.List;
 @ToString
 @Entity
 public class Test {
+
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

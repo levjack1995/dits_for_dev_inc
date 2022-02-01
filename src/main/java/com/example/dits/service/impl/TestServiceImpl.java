@@ -1,6 +1,7 @@
 package com.example.dits.service.impl;
 
 import com.example.dits.DAO.TestRepository;
+import com.example.dits.dto.TestInfoDTO;
 import com.example.dits.entity.Answer;
 import com.example.dits.entity.Statistic;
 import com.example.dits.entity.Test;
@@ -53,6 +54,17 @@ public class TestServiceImpl implements TestService {
    @Override
    public List<Test> getTestsByTopic(Topic topic) {
       return repository.getTestsByTopic(topic);
+   }
+
+   @Transactional
+   @Override
+   public List<Test> getTestsByTopicName(String name) {
+      return repository.getTestsByTopicName(name);
+   }
+
+   @Override
+   public List<TestInfoDTO> getTestInfoDTO(List<Test> tests) {
+      return null;
    }
 
 }

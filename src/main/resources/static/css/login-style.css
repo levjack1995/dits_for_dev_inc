@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    font-family: Roboto, sans-serif;
+    line-height: 150%;
+    box-sizing: border-box;
+}
+body {
+    font-family: Roboto, sans-serif;
+    background: #06222F;
+}
+
+.page__header {
+    background: #012438;
+}
+
+.header-text {
+    font-size: 24px;
+}
+
+.signin {
+    padding: 190px 0;
+    background: #06222F;
+}
+
+.signin-image {
+    max-width: 240px;
+}
+
+.focus {
+    color: #17AC19;
+}
+
+.form {
+    padding: 37px 57px 72px;
+    background: #FAFAFA;
+    border-radius: 10px;
+}
+
+.form-title {
+    font-weight: bold;
+    font-size: 36px;
+    color: #012438;
+}
+
+.input-container {
+    margin-top: 35px;
+}
+
+.form-label {
+    font-size: 18px;
+    color: #141414;
+}
+
+.form-input {
+    height: 51px;
+    border-radius: 10px;
+}
+
+.password-container {
+    position: relative;
+}
+
+.form-password {
+    padding-right: 35px;
+}
+
+.password-control {
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    background: url('../../../../../../Dev-Inc-Task-Develo/dits_for_dev_inc/src/main/resources/static/img/eye-open-icon.svg') no-repeat center;
+    transform: translate(-50%, -50%);
+}
+
+.password-control.open {
+    background: url('../../../../../../Dev-Inc-Task-Develo/dits_for_dev_inc/src/main/resources/static/img/eye-close-icon.svg') no-repeat center;
+}
+
+.form-button {
+    margin-top: 58px;
+    font-size: 24px;
+    line-height: 150%;  
+    background: #008F02;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    color: #FAFAFA;
+}
+
+.button:hover {
+    background: #007802;
+    color: #FAFAFA; 
+}
+
+.page-footer {
+    padding: 32px 0;
+}
+
+.copyright {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
