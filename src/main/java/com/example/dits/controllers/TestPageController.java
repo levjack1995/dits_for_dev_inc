@@ -28,7 +28,7 @@ public class TestPageController {
     private static List<Statistic> statistics ;
 
     @GetMapping("/goTest")
-    public String goTest(@RequestParam(value = "testName") String test, @RequestParam(value = "themes") String topic, ModelMap model, HttpSession session){
+    public String goTest(@RequestParam(value = "testName") String test, @RequestParam(value = "theme") String topic, ModelMap model, HttpSession session){
         questionList = questionService.getQuestionsByTestName(test);
         countOfRightAnswers = 0;
         max = questionList.size();

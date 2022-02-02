@@ -34,11 +34,11 @@ public class SecurityController {
     }
 
 
-    @GetMapping("/user")
+    @GetMapping("/chooseTest")
     public String userPage(HttpSession session) {
         User user = userService.getUserByLogin(getPrincipal());
         session.setAttribute("user", user);
-        return "user/user";
+        return "user/chooseTest";
     }
 
     @GetMapping("/login")
