@@ -1,6 +1,5 @@
 package com.example.dits.service.impl;
 
-import com.example.dits.DAO.UserRepository;
 import com.example.dits.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

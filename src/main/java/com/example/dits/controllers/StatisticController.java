@@ -2,7 +2,7 @@ package com.example.dits.controllers;
 
 import com.example.dits.dto.UserStatistics;
 import com.example.dits.entity.User;
-import com.example.dits.facades.StatisticFacade;
+import com.example.dits.service.impl.StatisticServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,12 +14,12 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class StatisticController {
 
-    private final StatisticFacade statisticFacade;
+    private final StatisticServiceImpl statisticService;
 
     @GetMapping("/personalStatistic")
     public String personalStatistic(ModelMap model, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        UserStatistics userStatistics = statisticFacade.getUserStatistics(user);
+        UserStatistics userStatistics = statisticService.getUserStatistics(user);
         model.addAttribute("statisticList",userStatistics.getTestStatisticList());
         return "user/personalStatistic";
     }

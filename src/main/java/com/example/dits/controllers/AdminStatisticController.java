@@ -1,7 +1,7 @@
 package com.example.dits.controllers;
 
 import com.example.dits.dto.TopicStatisticByTests;
-import com.example.dits.facades.StatisticFacade;
+import com.example.dits.service.impl.StatisticServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminStatisticController {
 
-    private final StatisticFacade statisticFacade;
+    private final StatisticServiceImpl statisticService;
 
     @GetMapping("/statistic")
     public String testStatistic(){
@@ -22,6 +22,6 @@ public class AdminStatisticController {
 
     @ModelAttribute("statistic")
     private List<TopicStatisticByTests> getTopicStatisticByTests(){
-        return  statisticFacade.getListTopicStaticByTests();
+        return  statisticService.getListTopicStaticByTests();
     }
 }

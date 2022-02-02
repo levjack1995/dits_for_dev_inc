@@ -1,7 +1,5 @@
 package com.example.dits.service;
 
-import com.example.dits.entity.Answer;
-import com.example.dits.entity.Question;
 import com.example.dits.entity.Role;
 
 import java.util.List;

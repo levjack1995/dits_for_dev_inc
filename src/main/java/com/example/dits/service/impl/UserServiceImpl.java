@@ -1,12 +1,9 @@
 package com.example.dits.service.impl;
 
 import com.example.dits.DAO.UserRepository;
-import com.example.dits.entity.Question;
-import com.example.dits.entity.Statistic;
 import com.example.dits.entity.User;
 import com.example.dits.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

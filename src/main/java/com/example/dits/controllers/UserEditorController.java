@@ -10,12 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -57,7 +53,7 @@ public class UserEditorController {
                           @RequestParam String roleName, @RequestParam String login,
                           @RequestParam String password){
 
-        List<Role> roleList = getRoleList(roleName);
+        Role roleList = roleService.getRoleByRoleName(roleName);
         String encodedPassword = passwordEncoder.encode(password);
         User user = new User(firstName, lastName, login, encodedPassword, roleList);
         userService.save(user);
@@ -72,13 +68,6 @@ public class UserEditorController {
         return "redirect:/admin";
     }
 
-    private List<Role> getRoleList(String roleName) {
-        Role role = roleService.getRoleByRoleName(roleName);
-        List<Role> roleList = new ArrayList<>();
-        roleList.add(role);
-        return roleList;
-    }
-
     private void changePassword(String password, User user) {
         String encodedPassword = passwordEncoder.encode(password);
         user.setPassword(encodedPassword);
@@ -88,7 +77,7 @@ public class UserEditorController {
                              Role role, String login, User user){
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.getRoles().set(0,role);
+        user.setRole(role);
         user.setLogin(login);
     }
 
