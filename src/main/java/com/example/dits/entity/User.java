@@ -31,7 +31,6 @@ public class User {
 
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "users_role"
     , joinColumns = @JoinColumn(name = "userId")
     , inverseJoinColumns = @JoinColumn(name = "roleId"))
