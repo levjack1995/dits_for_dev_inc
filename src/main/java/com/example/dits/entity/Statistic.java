@@ -11,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 @Entity
+@Builder
 public class Statistic {
 
     @Id

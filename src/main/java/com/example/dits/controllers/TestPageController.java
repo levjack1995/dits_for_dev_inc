@@ -4,6 +4,7 @@ import com.example.dits.entity.*;
 import com.example.dits.service.*;
 import com.example.dits.service.impl.StatisticServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -21,85 +22,127 @@ public class TestPageController {
     private final QuestionService questionService;
     private final StatisticServiceImpl statisticService;
     private final AnswerService answerService;
-    private static List<Question> questionList;
-    private static int countOfRightAnswers;
-    private static int max;
-    private static int counter;
-    private static List<Statistic> statistics ;
 
     @GetMapping("/goTest")
-    public String goTest(@RequestParam int testId, @RequestParam(value = "theme") String topic, ModelMap model, HttpSession session){
-        // test id
+    public String goTest(@RequestParam int testId, @RequestParam(value = "topicName") String topicName, ModelMap model, HttpSession session){
         Test test = testService.getTestByTestId(testId);
-        questionList = questionService.getQuestionsByTest(test);
-        countOfRightAnswers = 0;
-        max = questionList.size();
-        counter = 0;
-        statistics = new ArrayList<>();
-        List<Answer> answers = answerService.getAnswersByQuestion(questionList.get(counter));
+        List<Question> questionList = questionService.getQuestionsByTest(test);
+        int quantityOfQuestions = questionList.size();
+        int questionNumber = 0;
+        int quantityOfRightAnswers = 0;
 
-        session.setAttribute("testName", test);
-        session.setAttribute("topicName", topic);
-        session.setAttribute("quantityOfQuestions",max);
+        List<Answer> answers = getAnswersForQuestionFromQuestionList(questionList, questionNumber);
+        String questionDescription = getDescriptionForQuestionFromQuestionList(questionList, questionNumber);
 
-        model.addAttribute("question", questionList.get(counter).getDescription());
+        session.setAttribute("testName", test.getName());
+        session.setAttribute("topicName", topicName);
+        session.setAttribute("questionSize", quantityOfQuestions);
+        session.setAttribute("quantityOfRightAnswers", quantityOfRightAnswers);
+        session.setAttribute("statistics", new ArrayList<Statistic>());
+
+        session.setAttribute("questions",questionList);
+        session.setAttribute("questionNumber" , ++questionNumber);
+
+        model.addAttribute("question", questionDescription);
         model.addAttribute("answers", answers);
-        model.addAttribute("counter",++counter);
-
         return "user/testPage";
+    }
+
+    private String getDescriptionForQuestionFromQuestionList(List<Question> questionList, int index) {
+        return questionList.get(index).getDescription();
+    }
+
+    private List<Answer> getAnswersForQuestionFromQuestionList(List<Question> questionList, int index) {
+        return answerService.getAnswersByQuestion(questionList.get(index));
     }
 
     @GetMapping("/nextTestPage")
     public String nextTestPage(@RequestParam(value = "answeredQuestion", required = false) List<Integer> answeredQuestion,
                                ModelMap model,
                                HttpSession session){
-        List<Answer> answers = getPrevAnswer();
-        saveStatistic(answeredQuestion, session, answers);
 
-        model.addAttribute("question", questionList.get(counter).getDescription());
+        List<Question> questionList = (List<Question>) session.getAttribute("questions");
+        int questionNumber = (int) session.getAttribute("questionNumber");
+        User user = (User) session.getAttribute("user");
+
+        List<Answer> answers = getAnswersForQuestionFromQuestionList(questionList, questionNumber);
+        String questionDescription = getDescriptionForQuestionFromQuestionList(questionList, questionNumber);
+
+        boolean isCorrect = isRightAnswer(answeredQuestion,questionList,questionNumber);
+        List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
+        statisticList.add(Statistic.builder()
+                .question(questionList.get(questionNumber))
+                .user(user)
+                .correct(isCorrect).build());
+
+        session.setAttribute("statistics", statisticList);
+        session.setAttribute("questionNumber" , ++questionNumber);
+        model.addAttribute("question",questionDescription);
         model.addAttribute("answers", answers);
-        model.addAttribute("counter",++counter);
 
         return "user/testPage";
+    }
+
+    private boolean isRightAnswer(List<Integer> answeredQuestion, List<Question> questionList, int questionNumber) {
+        List<Answer> prevAnswer = getPreviousAnswers(questionList, questionNumber);
+        List<Integer> rightIndexesList = getListOfIndexesOfRightAnswers(prevAnswer);
+        // проверить на сравнение.
+        return answeredQuestion.equals(rightIndexesList);
+    }
+
+    private List<Integer> getListOfIndexesOfRightAnswers(List<Answer> prevAnswer) {
+        List<Integer> rightAnswers = new ArrayList<>();
+        for (int i = 0; i < prevAnswer.size(); i++) {
+            if (prevAnswer.get(i).isCorrect()){
+                rightAnswers.add(i);
+            }
+        }
+        return rightAnswers;
+    }
+
+    private List<Answer> getPreviousAnswers(List<Question> questionList, int questionNumber) {
+        return answerService.getAnswersByQuestion(questionList.get(questionNumber - 1));
     }
 
     @GetMapping("/resultPage")
     public String testStatistic(@RequestParam(value = "answeredQuestion", required = false) List<Integer> answeredQuestion,
                                 ModelMap model,
                                 HttpSession session){
-        List<Answer> answers = getPrevAnswer();
-        saveStatistic(answeredQuestion, session, answers);
-        saveStatisticToDB();
-        int percents = (int)((double)countOfRightAnswers / max * 100);
+
+        List<Question> questions = (List<Question>) session.getAttribute("questions");
+        int questionNumber = questions.size() - 1;
+        boolean isCorrect = isRightAnswer(answeredQuestion,questions,questionNumber);
+        User user = (User) session.getAttribute("user");
+
+        List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
+        statisticList.add(Statistic.builder()
+                .question(questions.get(questionNumber))
+                .user(user)
+                .correct(isCorrect).build());
+
+        int countOfRightAnswers = 0;
+        Date date = new Date();
+
+        for (Statistic statistic : statisticList){
+            statistic.setDate(date);
+            if (statistic.isCorrect())
+                countOfRightAnswers++;
+        }
+
+        saveStatisticToDB(statisticList);
+
+        double percentOfRightAnswers = (double)countOfRightAnswers / questions.size();
+
+        percentOfRightAnswers = Precision.round((percentOfRightAnswers), 0);
         model.addAttribute("rightAnswers",countOfRightAnswers);
-        model.addAttribute("countOfQuestions",max);
-        model.addAttribute("percentageComplete", ((double)countOfRightAnswers / max));
-        model.addAttribute("percents", percents);
+        model.addAttribute("countOfQuestions", questions.size());
+        model.addAttribute("percentageComplete", (percentOfRightAnswers));
+//        model.addAttribute("percents", percents);
         return "user/resultPage";
     }
 
-    private void saveStatisticToDB() {
-        Date date = new Date();
-        for (var statistic : statistics){
-            statistic.setDate(date);
-            statisticService.save(statistic);
-        }
-    }
-
-    private void saveStatistic(List<Integer> answeredQuestion, HttpSession session, List<Answer> answers) {
-        var numbersOfRightAnswers = getNumbersOfRightAnswers(answers);
-        User currentUser = (User) session.getAttribute("user");
-
-        boolean correctAnswer = false;
-        if (numbersOfRightAnswers.equals(answeredQuestion)) {
-            correctAnswer = true;
-            countOfRightAnswers++;
-        }
-        statistics.add(new Statistic(new Date(), correctAnswer, questionList.get(counter - 1), currentUser));
-    }
-
-    private List<Answer> getPrevAnswer() {
-        return answerService.getAnswersByQuestion(questionList.get(counter - 1));
+    private void saveStatisticToDB(List<Statistic> statistics) {
+      statistics.stream().forEach(statisticService::save);
     }
 
     private List<Integer> getNumbersOfRightAnswers(List<Answer> answers){
