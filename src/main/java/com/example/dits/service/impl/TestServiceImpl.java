@@ -67,4 +67,10 @@ public class TestServiceImpl implements TestService {
       return null;
    }
 
+   @Transactional
+   @Override
+   public Test getTestByTestId(int id) {
+      return repository.getTestByTestId(id);
+   }
+
 }

@@ -75,8 +75,8 @@ async function updateCurrentThemeData(themeName) {
 
 function updateTestsData(data) {
     testsData = data;
-    const selectInner = data.reduce((accum, { name }, index) => {
-        return accum + `<option value='${name}'>${name}</option>`;
+    const selectInner = data.reduce((accum, { name, testId }, index) => {
+        return accum + `<option value='${testId}'>${name}</option>`;
     }, '');
 
     testSelect.innerHTML = selectInner;

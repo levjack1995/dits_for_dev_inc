@@ -28,8 +28,10 @@ public class TestPageController {
     private static List<Statistic> statistics ;
 
     @GetMapping("/goTest")
-    public String goTest(@RequestParam(value = "testName") String test, @RequestParam(value = "theme") String topic, ModelMap model, HttpSession session){
-        questionList = questionService.getQuestionsByTestName(test);
+    public String goTest(@RequestParam int testId, @RequestParam(value = "theme") String topic, ModelMap model, HttpSession session){
+        // test id
+        Test test = testService.getTestByTestId(testId);
+        questionList = questionService.getQuestionsByTest(test);
         countOfRightAnswers = 0;
         max = questionList.size();
         counter = 0;

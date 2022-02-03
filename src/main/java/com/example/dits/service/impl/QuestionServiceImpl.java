@@ -3,6 +3,7 @@ package com.example.dits.service.impl;
 import com.example.dits.DAO.QuestionRepository;
 import com.example.dits.entity.Answer;
 import com.example.dits.entity.Question;
+import com.example.dits.entity.Test;
 import com.example.dits.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,18 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     public List<Question> getQuestionsByTestName(String name){
         return repo.getQuestionsByTestName(name);
+    }
+
+    @Transactional
+    @Override
+    public List<Question> getQuestionsByTest_TestId(int id) {
+        return repo.getQuestionsByTest_TestId(id);
+    }
+
+    @Transactional
+    @Override
+    public List<Question> getQuestionsByTest(Test test) {
+        return repo.getQuestionsByTest(test);
     }
 
     @Transactional

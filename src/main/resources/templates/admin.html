@@ -46,14 +46,14 @@
                 </label>
                 <label>
                     Role
-                    <select name="roleName">
-                        <option selected th:value="${user.roles.get(0).roleName}"
-                        th:text ="${user.roles.get(0).roleName.substring(5).toLowerCase()}">User</option>
-                        <option value="ROLE_USER" th:if="${user.roles.get(0).roleName.equals('ROLE_ADMIN')}" th:value="ROLE_USER"
-                        th:text ="user">Admin</option>
-                        <option value="ROLE_ADMIN" th:if="${user.roles.get(0).roleName.equals('ROLE_USER')}" th:value="ROLE_ADMIN"
-                                th:text ="admin">Admin</option>
-                    </select>
+<!--                    <select name="roleName">-->
+<!--                        <option selected th:value="${user.roles.get(0).roleName}"-->
+<!--                        th:text ="${user.roles.get(0).roleName.substring(5).toLowerCase()}">User</option>-->
+<!--                        <option value="ROLE_USER" th:if="${user.roles.get(0).roleName.equals('ROLE_ADMIN')}" th:value="ROLE_USER"-->
+<!--                        th:text ="user">Admin</option>-->
+<!--                        <option value="ROLE_ADMIN" th:if="${user.roles.get(0).roleName.equals('ROLE_USER')}" th:value="ROLE_ADMIN"-->
+<!--                                th:text ="admin">Admin</option>-->
+<!--                    </select>-->
                 </label>
                 <label>
                     Login

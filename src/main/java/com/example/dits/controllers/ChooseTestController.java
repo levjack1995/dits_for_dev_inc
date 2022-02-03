@@ -23,7 +23,7 @@ public class ChooseTestController {
 
     @ResponseBody
     @GetMapping("/chooseTheme")
-    public List<TestInfoDTO> chooseTheme(@RequestParam(value = "theme", required = false)String topicName, HttpSession session){
+    public List<TestInfoDTO> getTestNameAndDescriptionFromTopic(@RequestParam(value = "theme", required = false)String topicName, HttpSession session){
         List<Test> tests = testService.getTestsByTopicName(topicName);
         session.setAttribute("tests", tests);
         if(tests.isEmpty()){
@@ -34,18 +34,18 @@ public class ChooseTestController {
         }
     }
 
-    @ResponseBody
-    @GetMapping("/getDescription")
-    public String description(@RequestParam(value = "test", required = false)String test, HttpSession session){
-          List<Test> tests  = (List<Test>) session.getAttribute("tests");
-          Optional<Test> optTest = tests.stream().filter(x->x.getName().equals(test)).findAny();
-        if(optTest.isEmpty()){
-            return "[]";
-        }
-        else {
-            return "[\"" + optTest.get().getDescription() +  "\"]";
-        }
-    }
+//    @ResponseBody
+//    @GetMapping("/getDescription")
+//    public String description(@RequestParam(value = "test", required = false)String test, HttpSession session){
+//          List<Test> tests  = (List<Test>) session.getAttribute("tests");
+//          Optional<Test> optTest = tests.stream().filter(x->x.getName().equals(test)).findAny();
+//        if(optTest.isEmpty()){
+//            return "[]";
+//        }
+//        else {
+//            return "[\"" + optTest.get().getDescription() +  "\"]";
+//        }
+//    }
 
     private TestInfoDTO convertToDTO(Test test){
         return modelMapper.map(test, TestInfoDTO.class);
