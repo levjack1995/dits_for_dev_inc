@@ -65,8 +65,8 @@
               <div class="question" th:text="${question}">
               </div>
               <div class="answer" th:each="answer, iter : ${answers}">
-                <input id="answer1" th:id="answer.name" type="checkbox" name = "answeredQuestion" th:value="${iter.index}" >
-                <label for="answer1" th:for="answer.name" th:text="${answer.getDescription}"></label>
+                <input id="answer1" th:id="${answer.answerId}" type="checkbox" name = "answeredQuestion" th:value="${iter.index}" >
+                <label for="answer1" th:for="${answer.answerId}" th:text="${answer.getDescription}"></label>
               </div>
               <button
               type="submit"

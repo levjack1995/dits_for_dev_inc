@@ -2,9 +2,7 @@ package com.example.dits.controllers;
 
 import com.example.dits.entity.*;
 import com.example.dits.service.*;
-import com.example.dits.service.impl.StatisticServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +15,13 @@ import java.util.*;
 public class TestPageController {
 
     private final TestService testService;
-    private final UserService userService;
-
     private final QuestionService questionService;
-    private final StatisticServiceImpl statisticService;
     private final AnswerService answerService;
+    private final StatisticService statisticService;
 
     @GetMapping("/goTest")
     public String goTest(@RequestParam int testId, @RequestParam(value = "theme") String topicName, ModelMap model, HttpSession session){
+
         //Логика получения данных
         Test test = testService.getTestByTestId(testId);
         List<Question> questionList = questionService.getQuestionsByTest(test);
@@ -49,10 +46,6 @@ public class TestPageController {
         model.addAttribute("answers", answers);
         return "user/testPage";
     }
-
-//    private String getDescriptionFromQuestionList(List<Question> questionList, int index) {
-//        return questionList.get(index).getDescription();
-//    }
 
     @GetMapping("/nextTestPage")
     public String nextTestPage(@RequestParam(value = "answeredQuestion", required = false) List<Integer> answeredQuestion,
@@ -89,29 +82,38 @@ public class TestPageController {
     public String testStatistic(@RequestParam(value = "answeredQuestion", required = false) List<Integer> answeredQuestion,
                                 ModelMap model,
                                 HttpSession session){
+
         //Получение данных
         List<Question> questions = (List<Question>) session.getAttribute("questions");
         int questionNumber = questions.size() - 1;
         boolean isCorrect = answerService.isRightAnswer(answeredQuestion,questions,questionNumber);
         User user = (User) session.getAttribute("user");
+        List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
+
+        if (!isResultPage(questionNumber, statisticList)){
+            statisticList.add(Statistic.builder()
+                    .question(questions.get(questionNumber))
+                    .user(user)
+                    .correct(isCorrect).build());
+        }
 
         //Получение данных и запихивание в модель
-        List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
-        statisticList.add(Statistic.builder()
-                .question(questions.get(questionNumber))
-                .user(user)
-                .correct(isCorrect).build());
+
 
         int countOfRightAnswers = statisticService.calculateRightAnswers(statisticList);
         statisticService.saveStatisticsToDB(statisticList);
 
-        double percentOfRightAnswers = answerService.countPercentsOfRightAnswers(countOfRightAnswers,questions.size());
+        int percentOfRightAnswers = (int) answerService.countPercentsOfRightAnswers(countOfRightAnswers,questions.size());
 
         model.addAttribute("rightAnswers",countOfRightAnswers);
         model.addAttribute("countOfQuestions", questions.size());
         model.addAttribute("percentageComplete", percentOfRightAnswers);
 //        model.addAttribute("percents", percents);
         return "user/resultPage";
+    }
+
+    private boolean isResultPage(int questionNumber, List<Statistic> statisticList) {
+        return statisticList.size() >= questionNumber;
     }
 
 //    private void saveStatisticToDB(List<Statistic> statistics) {
