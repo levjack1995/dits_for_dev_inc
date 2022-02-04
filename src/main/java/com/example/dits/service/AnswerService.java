@@ -7,11 +7,14 @@ import java.util.List;
 
 public interface AnswerService {
 
-    public void create(Answer a);
-    public void update(Answer a, int id);
-    public void delete(Answer a);
-    public void save(Answer a);
-    public List<Answer> findAll();
+    void create(Answer a);
+    void update(Answer a, int id);
+    void delete(Answer a);
+    void save(Answer a);
+    List<Answer> findAll();
     List<Answer> getAnswersByQuestion(Question question);
+    List<Answer> getAnswersFromQuestionList(List<Question> questionList, int index);
+    boolean isRightAnswer(List<Integer> answeredQuestion, List<Question> questionList, int questionNumber);
+    double countPercentsOfRightAnswers(double countOfRightAnswers, double questionSize);
 
 }

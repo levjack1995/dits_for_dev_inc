@@ -25,21 +25,23 @@ public class TestPageController {
 
     @GetMapping("/goTest")
     public String goTest(@RequestParam int testId, @RequestParam(value = "theme") String topicName, ModelMap model, HttpSession session){
+        //Логика получения данных
         Test test = testService.getTestByTestId(testId);
         List<Question> questionList = questionService.getQuestionsByTest(test);
         int quantityOfQuestions = questionList.size();
         int questionNumber = 0;
         int quantityOfRightAnswers = 0;
+        //Левая логика
 
-        List<Answer> answers = getAnswersForQuestionFromQuestionList(questionList, questionNumber);
-        String questionDescription = getDescriptionForQuestionFromQuestionList(questionList, questionNumber);
+        List<Answer> answers = answerService.getAnswersFromQuestionList(questionList, questionNumber);
+        String questionDescription = questionService.getDescriptionFromQuestionList(questionList, questionNumber);
 
+        //Логика запихивания данных
         session.setAttribute("testName", test.getName());
         session.setAttribute("topicName", topicName);
         session.setAttribute("questionSize", quantityOfQuestions);
         session.setAttribute("quantityOfRightAnswers", quantityOfRightAnswers);
         session.setAttribute("statistics", new ArrayList<Statistic>());
-
         session.setAttribute("questions",questionList);
         session.setAttribute("questionNumber" , ++questionNumber);
 
@@ -48,28 +50,28 @@ public class TestPageController {
         return "user/testPage";
     }
 
-    private String getDescriptionForQuestionFromQuestionList(List<Question> questionList, int index) {
-        return questionList.get(index).getDescription();
-    }
-
-    private List<Answer> getAnswersForQuestionFromQuestionList(List<Question> questionList, int index) {
-        return answerService.getAnswersByQuestion(questionList.get(index));
-    }
+//    private String getDescriptionFromQuestionList(List<Question> questionList, int index) {
+//        return questionList.get(index).getDescription();
+//    }
 
     @GetMapping("/nextTestPage")
     public String nextTestPage(@RequestParam(value = "answeredQuestion", required = false) List<Integer> answeredQuestion,
                                ModelMap model,
                                HttpSession session){
-
+        //Получение данных с сессии и модели
         List<Question> questionList = (List<Question>) session.getAttribute("questions");
         int questionNumber = (int) session.getAttribute("questionNumber");
         User user = (User) session.getAttribute("user");
+        //Логика на проверку правильности вопроса
+        boolean isCorrect = answerService.isRightAnswer(answeredQuestion,questionList,questionNumber);
 
-        List<Answer> answers = getAnswersForQuestionFromQuestionList(questionList, questionNumber);
-        String questionDescription = getDescriptionForQuestionFromQuestionList(questionList, questionNumber);
+        //Посмотреть мб можно как-то их в убрать это дублирование кода?
+        List<Answer> answers = answerService.getAnswersFromQuestionList(questionList, questionNumber);
+        String questionDescription = questionService.getDescriptionFromQuestionList(questionList, questionNumber);
 
-        boolean isCorrect = isRightAnswer(answeredQuestion,questionList,questionNumber);
+        //Получение данных с сессии
         List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
+        //Добавление данных в статистику - логика контроллера
         statisticList.add(Statistic.builder()
                 .question(questionList.get(questionNumber))
                 .user(user)
@@ -83,74 +85,45 @@ public class TestPageController {
         return "user/testPage";
     }
 
-    private boolean isRightAnswer(List<Integer> answeredQuestion, List<Question> questionList, int questionNumber) {
-        List<Answer> prevAnswer = getPreviousAnswers(questionList, questionNumber);
-        List<Integer> rightIndexesList = getListOfIndexesOfRightAnswers(prevAnswer);
-        // проверить на сравнение.
-        return answeredQuestion.equals(rightIndexesList);
-    }
-
-    private List<Integer> getListOfIndexesOfRightAnswers(List<Answer> prevAnswer) {
-        List<Integer> rightAnswers = new ArrayList<>();
-        for (int i = 0; i < prevAnswer.size(); i++) {
-            if (prevAnswer.get(i).isCorrect()){
-                rightAnswers.add(i);
-            }
-        }
-        return rightAnswers;
-    }
-
-    private List<Answer> getPreviousAnswers(List<Question> questionList, int questionNumber) {
-        return answerService.getAnswersByQuestion(questionList.get(questionNumber - 1));
-    }
-
     @GetMapping("/resultPage")
     public String testStatistic(@RequestParam(value = "answeredQuestion", required = false) List<Integer> answeredQuestion,
                                 ModelMap model,
                                 HttpSession session){
-
+        //Получение данных
         List<Question> questions = (List<Question>) session.getAttribute("questions");
         int questionNumber = questions.size() - 1;
-        boolean isCorrect = isRightAnswer(answeredQuestion,questions,questionNumber);
+        boolean isCorrect = answerService.isRightAnswer(answeredQuestion,questions,questionNumber);
         User user = (User) session.getAttribute("user");
 
+        //Получение данных и запихивание в модель
         List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
         statisticList.add(Statistic.builder()
                 .question(questions.get(questionNumber))
                 .user(user)
                 .correct(isCorrect).build());
 
-        int countOfRightAnswers = 0;
-        Date date = new Date();
+        int countOfRightAnswers = statisticService.calculateRightAnswers(statisticList);
+        statisticService.saveStatisticsToDB(statisticList);
 
-        for (Statistic statistic : statisticList){
-            statistic.setDate(date);
-            if (statistic.isCorrect())
-                countOfRightAnswers++;
-        }
+        double percentOfRightAnswers = answerService.countPercentsOfRightAnswers(countOfRightAnswers,questions.size());
 
-        saveStatisticToDB(statisticList);
-
-        double percentOfRightAnswers = (double)countOfRightAnswers / questions.size();
-
-        percentOfRightAnswers = Precision.round((percentOfRightAnswers), 0);
         model.addAttribute("rightAnswers",countOfRightAnswers);
         model.addAttribute("countOfQuestions", questions.size());
-        model.addAttribute("percentageComplete", (percentOfRightAnswers));
+        model.addAttribute("percentageComplete", percentOfRightAnswers);
 //        model.addAttribute("percents", percents);
         return "user/resultPage";
     }
 
-    private void saveStatisticToDB(List<Statistic> statistics) {
-      statistics.stream().forEach(statisticService::save);
-    }
+//    private void saveStatisticToDB(List<Statistic> statistics) {
+//      statistics.stream().forEach(statisticService::save);
+//    }
 
-    private List<Integer> getNumbersOfRightAnswers(List<Answer> answers){
-        var numberOfRightAnswers = new ArrayList<Integer>();
-        for (int i = 0; i < answers.size() ; i++) {
-            if (answers.get(i).isCorrect())
-            numberOfRightAnswers.add(i);
-        }
-        return numberOfRightAnswers;
-    }
+//    private List<Integer> getNumbersOfRightAnswers(List<Answer> answers){
+//        var numberOfRightAnswers = new ArrayList<Integer>();
+//        for (int i = 0; i < answers.size() ; i++) {
+//            if (answers.get(i).isCorrect())
+//            numberOfRightAnswers.add(i);
+//        }
+//        return numberOfRightAnswers;
+//    }
 }

@@ -36,6 +36,11 @@ public class QuestionServiceImpl implements QuestionService {
         return repo.getQuestionsByTest(test);
     }
 
+    @Override
+    public String getDescriptionFromQuestionList(List<Question> questionList, int index) {
+        return questionList.get(index).getDescription();
+    }
+
     @Transactional
     public void create(Question question) {
         repo.save(question);

@@ -15,4 +15,5 @@ public interface QuestionService {
     List<Question> getQuestionsByTestName(String name);
     List<Question> getQuestionsByTest_TestId(int id);
     List<Question> getQuestionsByTest(Test test);
+    String getDescriptionFromQuestionList(List<Question> questionList, int index);
 }

@@ -5,10 +5,12 @@ import com.example.dits.entity.Answer;
 import com.example.dits.entity.Question;
 import com.example.dits.service.AnswerService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.math3.util.Precision;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,4 +53,36 @@ public class AnswerServiceImpl implements AnswerService {
     public List<Answer> getAnswersByQuestion(Question question){
         return repo.getAnswersByQuestion(question);
     }
+
+    @Override
+    public List<Answer> getAnswersFromQuestionList(List<Question> questionList, int index) {
+        return getAnswersByQuestion(questionList.get(index));
+    }
+
+    @Override
+    public boolean isRightAnswer(List<Integer> answeredQuestion, List<Question> questionList, int questionNumber) {
+        List<Answer> prevAnswer = getPreviousAnswers(questionList, questionNumber);
+        List<Integer> rightIndexesList = getListOfIndexesOfRightAnswers(prevAnswer);
+        return answeredQuestion.equals(rightIndexesList);
+    }
+
+    @Override
+    public double countPercentsOfRightAnswers(double countOfRightAnswers, double questionSize) {
+        return Precision.round(countOfRightAnswers / questionSize, 0);
+    }
+
+    private List<Integer> getListOfIndexesOfRightAnswers(List<Answer> prevAnswer) {
+        List<Integer> rightAnswers = new ArrayList<>();
+        for (int i = 0; i < prevAnswer.size(); i++) {
+            if (prevAnswer.get(i).isCorrect()){
+                rightAnswers.add(i);
+            }
+        }
+        return rightAnswers;
+    }
+
+    private List<Answer> getPreviousAnswers(List<Question> questionList, int questionNumber) {
+        return getAnswersByQuestion(questionList.get(questionNumber - 1));
+    }
+
 }
