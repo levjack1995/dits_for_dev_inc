@@ -24,7 +24,7 @@ public class TestPageController {
     private final AnswerService answerService;
 
     @GetMapping("/goTest")
-    public String goTest(@RequestParam int testId, @RequestParam(value = "topicName") String topicName, ModelMap model, HttpSession session){
+    public String goTest(@RequestParam int testId, @RequestParam(value = "theme") String topicName, ModelMap model, HttpSession session){
         Test test = testService.getTestByTestId(testId);
         List<Question> questionList = questionService.getQuestionsByTest(test);
         int quantityOfQuestions = questionList.size();
