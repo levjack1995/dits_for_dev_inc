@@ -63,6 +63,11 @@ public class TestServiceImpl implements TestService {
    }
 
    @Override
+   public List<Test> getTestsByTopic_TopicId(int ID) {
+      return repository.getTestsByTopic_TopicId(ID);
+   }
+
+   @Override
    public List<TestInfoDTO> getTestInfoDTO(List<Test> tests) {
       return null;
    }
