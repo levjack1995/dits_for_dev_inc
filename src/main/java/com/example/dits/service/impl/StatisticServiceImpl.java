@@ -84,7 +84,6 @@ public class StatisticServiceImpl implements StatisticService {
     @Transactional
     public UserStatistics getUserStatistics(User user){
         List<TestStatistic> testStatisticList = getTestStatisticsByUser(user);
-
         return new UserStatistics(user.getFirstName(),user.getLastName(),user.getLogin(),testStatisticList);
     }
 
@@ -94,7 +93,10 @@ public class StatisticServiceImpl implements StatisticService {
 
         List<TestStatisticByDate> testStatisticsByDate = getTestStatisticByDate(statisticByDate);
         Map<String, TestStatistic> statisticByTestName = getMapTestStatisticsByTestName(testStatisticsByDate);
-        return new ArrayList<>(statisticByTestName.values());
+        List<TestStatistic> statisticList = new ArrayList<>(statisticByTestName.values());
+        Comparator<TestStatistic> comp = Comparator.comparingInt(TestStatistic::getAvgProc);
+        statisticList.sort(comp);
+        return statisticList;
     }
 
     @Transactional
@@ -199,7 +201,7 @@ public class StatisticServiceImpl implements StatisticService {
         for (ArrayList<Statistic> values : statisticByDate.values()){
             double countOfRightAnswers = 0;
             TestStatisticByDate testStatisticByDate = new TestStatisticByDate();
-            System.out.println(values.get(0).getQuestion().getTest().getName());
+//            System.out.println(values.get(0).getQuestion().getTest().getName());
             testStatisticByDate.setTestName(values.get(0).getQuestion().getTest().getName());
             for (Statistic st : values){
                 if(st.isCorrect()){

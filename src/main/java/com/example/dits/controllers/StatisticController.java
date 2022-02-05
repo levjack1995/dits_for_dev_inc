@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor
 public class StatisticController {
-
     private final StatisticServiceImpl statisticService;
 
     @GetMapping("/personalStatistic")

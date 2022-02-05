@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TestStatistic {
+public class TestStatistic implements Comparable<TestStatistic>{
     private String testName;
     private int count;
     private int avgProc;
@@ -19,5 +19,10 @@ public class TestStatistic {
         this.testName = testName;
         this.count = count;
         this.avgProc = avgProc;
+    }
+
+    @Override
+    public int compareTo(TestStatistic o) {
+        return o.avgProc-this.avgProc;
     }
 }
