@@ -28,7 +28,7 @@
                 </div>
               </div>
               <div class="col-auto d-flex align-items-center nav-control">
-                <span>Admin</span><span class="nav-control__separator"></span><span th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">Maksim Salivanov</span><a class="nav-control__logout" href="#">
+                <span>Admin </span><span class="nav-control__separator"></span><span th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">Maksim Salivanov</span><a class="nav-control__logout" href="#">
                 <img src="../../static/img/logout-icon.svg" th:src="@{img/logout-icon.svg}"></a>
               </div>
           </div>
@@ -46,9 +46,9 @@
         </button>
       </div>
       <ul class="container users__list">
-          <li class="row users__item user-info">
-            <span class="col-3 user-info__name">Maria Zapalina</span>
-            <a href="#" class="col user-info__email">zapalina@gmail.com</a>
+          <li class="row users__item user-info" th:each="user : ${session.users}" data-th-id="${user.userId}">
+            <span class="col-3 user-info__name" th:text="${user.firstName} + ' ' + ${user.lastName}">Maria Zapalina</span>
+            <a href="#" class="col user-info__email" th:text="${user.login}">zapalina@gmail.com</a>
             <div class="col-auto user-info__control">
               <button class="user-info__button button">
                 <img src="../../static/img/edit-icon.svg" th:src="@{img/edit-icon.svg}" alt="edit user">
