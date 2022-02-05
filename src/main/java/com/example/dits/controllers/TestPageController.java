@@ -22,18 +22,15 @@ public class TestPageController {
     @GetMapping("/goTest")
     public String goTest(@RequestParam int testId, @RequestParam(value = "theme") String topicName, ModelMap model, HttpSession session){
 
-        //Логика получения данных
         Test test = testService.getTestByTestId(testId);
         List<Question> questionList = questionService.getQuestionsByTest(test);
         int quantityOfQuestions = questionList.size();
         int questionNumber = 0;
         int quantityOfRightAnswers = 0;
-        //Левая логика
 
         List<Answer> answers = answerService.getAnswersFromQuestionList(questionList, questionNumber);
         String questionDescription = questionService.getDescriptionFromQuestionList(questionList, questionNumber);
 
-        //Логика запихивания данных
         session.setAttribute("testName", test.getName());
         session.setAttribute("topicName", topicName);
         session.setAttribute("questionSize", quantityOfQuestions);
@@ -51,20 +48,16 @@ public class TestPageController {
     public String nextTestPage(@RequestParam(value = "answeredQuestion", required = false) List<Integer> answeredQuestion,
                                ModelMap model,
                                HttpSession session){
-        //Получение данных с сессии и модели
+
         List<Question> questionList = (List<Question>) session.getAttribute("questions");
         int questionNumber = (int) session.getAttribute("questionNumber");
         User user = (User) session.getAttribute("user");
-        //Логика на проверку правильности вопроса
         boolean isCorrect = answerService.isRightAnswer(answeredQuestion,questionList,questionNumber);
 
-        //Посмотреть мб можно как-то их в убрать это дублирование кода?
         List<Answer> answers = answerService.getAnswersFromQuestionList(questionList, questionNumber);
         String questionDescription = questionService.getDescriptionFromQuestionList(questionList, questionNumber);
 
-        //Получение данных с сессии
         List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
-        //Добавление данных в статистику - логика контроллера
         statisticList.add(Statistic.builder()
                 .question(questionList.get(questionNumber))
                 .user(user)
@@ -83,7 +76,7 @@ public class TestPageController {
                                 ModelMap model,
                                 HttpSession session){
 
-        //Получение данных
+
         List<Question> questions = (List<Question>) session.getAttribute("questions");
         int questionNumber = questions.size() - 1;
         boolean isCorrect = answerService.isRightAnswer(answeredQuestion,questions,questionNumber);
@@ -97,18 +90,14 @@ public class TestPageController {
                     .correct(isCorrect).build());
         }
 
-        //Получение данных и запихивание в модель
-
-
         int countOfRightAnswers = statisticService.calculateRightAnswers(statisticList);
         statisticService.saveStatisticsToDB(statisticList);
-
         int percentOfRightAnswers = (int) answerService.countPercentsOfRightAnswers(countOfRightAnswers,questions.size());
 
         model.addAttribute("rightAnswers",countOfRightAnswers);
         model.addAttribute("countOfQuestions", questions.size());
         model.addAttribute("percentageComplete", percentOfRightAnswers);
-//        model.addAttribute("percents", percents);
+
         return "user/resultPage";
     }
 
@@ -116,16 +105,4 @@ public class TestPageController {
         return statisticList.size() >= questionNumber;
     }
 
-//    private void saveStatisticToDB(List<Statistic> statistics) {
-//      statistics.stream().forEach(statisticService::save);
-//    }
-
-//    private List<Integer> getNumbersOfRightAnswers(List<Answer> answers){
-//        var numberOfRightAnswers = new ArrayList<Integer>();
-//        for (int i = 0; i < answers.size() ; i++) {
-//            if (answers.get(i).isCorrect())
-//            numberOfRightAnswers.add(i);
-//        }
-//        return numberOfRightAnswers;
-//    }
 }

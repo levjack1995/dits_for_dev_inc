@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 public class DitsApplication {
 
@@ -13,5 +16,4 @@ public class DitsApplication {
         ConfigurableApplicationContext run = SpringApplication.run(DitsApplication.class, args);
 
     }
-
 }
