@@ -51,21 +51,21 @@
                     </div>
                     <div class="tests" id="testThemes">
                         <div class="tests__section">
-                            <div class="row tests__item test-item" data-id="1">
-                                <a class="col test-item__text" href="#">Java 2 Fundamentals</a>
-                                <span class="col-auto test-item__control">
-                    <button class="test-item__submit"><img src="../../static/img/submit-icon.svg" alt="" th:src="@{img/submit-icon.svg}" ></button>
-                    <button class="test-item__edit"><img src="../../static/img/edit-icon.svg" th:src="@{img/edit-icon.svg}" alt=""></button>
-                    <button><img src="../../static/img/delete-icon.svg" th:src="@{img/delete-icon.svg}" alt=""></button>
-                  </span>
-                            </div>
+<!--                            <div class="row tests__item test-item" data-id="1">-->
+<!--                                <a class="col test-item__text" href="#">Java 2 Fundamentals</a>-->
+<!--                                <span class="col-auto test-item__control">-->
+<!--                    <button class="test-item__submit"><img src="../../static/img/submit-icon.svg" alt="" th:src="@{img/submit-icon.svg}" ></button>-->
+<!--                    <button class="test-item__edit"><img src="../../static/img/edit-icon.svg" th:src="@{img/edit-icon.svg}" alt=""></button>-->
+<!--                    <button><img src="../../static/img/delete-icon.svg" th:src="@{img/delete-icon.svg}" alt=""></button>-->
+<!--                  </span>-->
+<!--                            </div>-->
 
                             <div class="row tests__item test-item" data-id="1" th:each="topic : ${topicList}">
                                 <a class="col test-item__text" href="#" th:text="${topic.topicName}">Java 2 Fundamentals</a>
                                 <span class="col-auto test-item__control">
                     <button class="test-item__submit"><img src="../../static/img/submit-icon.svg" th:src="@{img/submit-icon.svg}" alt=""></button>
                     <button class="test-item__edit"><img src="../../static/img/edit-icon.svg" th:src="@{img/edit-icon.svg}" alt=""></button>
-                    <button><img src="../../static/img/delete-icon.svg" alt=""></button>
+                    <button><img src="../../static/img/delete-icon.svg" th:src="@{img/delete-icon.svg}" alt=""></button>
                   </span>
                             </div>
 
