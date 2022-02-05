@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>ADMIN-1</title>
+  <link rel="stylesheet" href="../../static/css/user-editor.css" th:src="@{css/user-editor.css}">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg nav">
+        <a class="col-auto navbar-brand" href="#"><img src="../../static/img/logo.svg" th:src="@{img/logo.svg}"></a>
+        <div class="col d-flex justify-content-end">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="../../static/img/burger-icon.png" th:src="@{img/burger-icon.png}">
+          </button>
+        </div>
+        <div class="col-12 col-lg-10">
+          <div class="collapse navbar-collapse w-100" id="navbarNavAltMarkup">
+              <div class="col">
+                <div class="col navbar-nav justify-content-evenly">
+                  <a class="nav-link active" aria-current="page" href="#">Users</a>
+                  <a class="nav-link" href="#">Tests</a>
+                  <a class="nav-link" href="#">Statistic</a>
+                </div>
+              </div>
+              <div class="col-auto d-flex align-items-center nav-control">
+                <span>Admin</span><span class="nav-control__separator"></span><span th:text="${user.firstName} + ' ' + ${user.lastName}">Maksim Salivanov</span><a class="nav-control__logout" href="#">
+                <img src="../../static/img/logout-icon.svg" th:src="@{img/logout-icon.svg}"></a>
+              </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main class="main">
+    <div class="users container">
+      <div class="row align-items-center users__top">
+        <h2 class="col-auto users__title">Users list</h2>
+        <button class="col-auto users__add-button add-button button" data-bs-toggle="modal" data-bs-target="#createUserModal">
+          <img src="../../static/img/add-icon.svg" th:src ="@{img/add-icon.svg}" alt="add user icon">
+          <span>Add new user</span>
+        </button>
+      </div>
+      <ul class="container users__list">
+          <li class="row users__item user-info">
+            <span class="col-3 user-info__name">Maria Zapalina</span>
+            <a href="#" class="col user-info__email">zapalina@gmail.com</a>
+            <div class="col-auto user-info__control">
+              <button class="user-info__button button">
+                <img src="../../static/img/edit-icon.svg" th:src="@{img/edit-icon.svg}" alt="edit user">
+              </button>
+              <button class="user-info__button button" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
+                <img src="../../static/img/delete-icon.svg" th:src ="@{img/delete-icon.svg}" alt="delete user">
+              </button>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer__copyright">© Dev Incubator</div>
+  </footer>
+
+  
+  <!-- Create new User Modal -->
+  <div class="modal fade createUserModal" id="createUserModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content createUserModal__content">
+        <div class="container">
+          <div class="row createUserModal__header">
+            <div class="row justify-content-between">
+              <h5 class="col modal-title createUserModal__title">Create new user</h5>
+              <button type="button" class="col-auto" data-bs-dismiss="modal" aria-label="Close">
+                <img src="../../static/img/close-icon.svg" th:src="@{img/close-icon.svg}" alt="">
+              </button>
+            </div>
+          </div>
+          <form class="modal-body d-flex flex-column createUserModal__body">
+            <label class="d-flex justify-content-between align-items-center createUserModal__label">
+              <span class="createUserModal__label-text">Name</span>
+              <input class="form-input" type="text" required>
+            </label>
+            <label class="d-flex justify-content-between align-items-center createUserModal__label">
+              <span class="createUserModal__label-text">Surname</span>
+              <input class="form-input" type="text" required>
+            </label>
+            <label class="d-flex justify-content-between align-items-center createUserModal__label">
+              <span class="createUserModal__label-text">Role</span>
+              <select class="form-input" type="text" required>
+                <option disabled>User/Admin</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </label>
+            <label class="d-flex justify-content-between align-items-center createUserModal__label">
+              <span class="createUserModal__label-text">Login</span>
+              <input class="form-input" type="text" required>
+            </label>
+            <label class="d-flex justify-content-between align-items-center createUserModal__label">
+              <span class="createUserModal__label-text">Password</span>
+              <input class="form-input" type="text" required>
+            </label>
+            <button type="submit" class="createUserModal__button form-button">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete User Modal -->
+
+  <div class="modal fade deleteUserModal" id="deleteUserModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content deleteUserModal__content">
+        <div class="container">
+          <div class="row deleteUserModal__header">
+            <div class="row justify-content-between">
+              <h5 class="col modal-title deleteUserModal__title">Approve your action</h5>
+              <button type="button" class="col-auto" data-bs-dismiss="modal" aria-label="Close">
+                <img src="../../static/img/close-icon.svg" th:src="@{img/close-icon.svg}" alt="">
+              </button>
+            </div>
+          </div>
+          <p class="row deleteUserModal__text">Are you shure you want to delete this item?</p>
+          <p class="row deleteUserModal__text deleteUserModal__text_small">This action will delete all related items</p>
+          <div class="d-flex justify-content-between deleteUserModal__button-group">
+            <button type="submit" class="deleteUserModal__button form-button form-button_cancel" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="deleteUserModal__button form-button">Accept</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+     
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script src="./index.js"></script>
+</body>
+</html>

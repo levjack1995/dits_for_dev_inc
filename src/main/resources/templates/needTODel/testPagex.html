@@ -18,17 +18,17 @@
     <div class="container">
         <div class="row">
             <div class="col-2">
-                <a href="#" th:href="@{/user}"><img src="../../static/img/icon.png" th:src="@{img/icon.png}" alt="dev-incubator-icon"/></a>
+                <a href="#" th:href="@{/templates/user}"><img src="../../static/img/icon.png" th:src="@{img/icon.png}" alt="dev-incubator-icon"/></a>
             </div>
             <div class="col-4 mt7">
-                <a href="#" th:href="@{/user}" class="assessment-ref">Assessment</a>
+                <a href="#" th:href="@{/templates/user}" class="assessment-ref">Assessment</a>
             </div>
             <div class="col-2 mt7 ">
                 <a href="#" class="statistics-ref">Statistics</a>
             </div>
             <div class="col-4 user-info"><span>Student <span>&bull; </span></span><span th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName} ">Ivan Ivanov</span>
 
-                <a href="/logout"><img src="../../static/img/exit.png" th:src="@{/img/exit.png}"  class="door"></a> </div>
+                <a href="/logout"><img src="../../static/img/exit.png" th:src="@{/img/exit.png}" class="door"></a> </div>
         </div>
     </div>
 </header>
