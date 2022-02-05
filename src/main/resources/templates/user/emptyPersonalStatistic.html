@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -53,35 +53,22 @@
 </header>
 <main class="flex-grow-1">
     <div class="container">
-        <div class="row">
-
-            <div class="result statistic">
-                <h1>Your personal statistic</h1>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Test</th>
-                        <th scope="col">Pass</th>
-                        <th scope="col">Average <img class="sort" src="../../static/img/vector.png"
-                                                     th:src="@{img/vector.png}" alt="average"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="stat,iter : ${statisticList}">
-                        <th scope="row" th:text="${iter.index+1}">1</th>
-                        <td th:text="${stat.testName}">Java 2 AWT & Swing</td>
-                        <td th:text="${stat.getCount()}">2</td>
-                        <td th:text="${stat.getAvgProc()}">98%</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="title">
+            <h1 class="start" th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Ivanov Andrey</h1>
         </div>
+
+        <h3 class="py-3">You haven't finished any test yet</h3>
+        <button
+                onclick="location.href='/chooseTest'"
+                type="submit"
+                class="btn btn-lg mt-3 w-50"
+        >
+            Start now
+        </button>
     </div>
 </main>
 <footer class="py-4">
-    <h3 class="text-center">© Dev Incubator</h3>
+<h3 class="text-center">© Dev Incubator</h3>
 </footer>
 
 <script
@@ -93,6 +80,5 @@
         src="https://kit.fontawesome.com/b605d0c877.js"
         crossorigin="anonymous"
 ></script>
-<script th:src="@{js/user.js}"></script>
 </body>
 </html>
