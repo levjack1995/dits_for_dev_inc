@@ -49,4 +49,11 @@ public class User {
         this.password = password;
         this.role = role;
     }
+
+    public User(String firstName, String lastName, String login, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.role = role;
+    }
 }

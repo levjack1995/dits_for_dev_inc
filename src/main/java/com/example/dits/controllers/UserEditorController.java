@@ -1,10 +1,13 @@
 package com.example.dits.controllers;
 
+import com.example.dits.dto.UserInfoDTO;
 import com.example.dits.entity.Role;
 import com.example.dits.entity.User;
+import com.example.dits.mapper.UserInfoMapper;
 import com.example.dits.service.RoleService;
 import com.example.dits.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,32 +24,42 @@ public class UserEditorController {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
     private final RoleService roleService;
+    private final UserInfoMapper userInfoMapper;
 
     @Autowired
-    public UserEditorController(UserService userService, RoleService roleService) {
+    public UserEditorController(UserService userService, RoleService roleService, ModelMapper modelMapper, UserInfoMapper userInfoMapper) {
         passwordEncoder = new BCryptPasswordEncoder();
         this.userService = userService;
         this.roleService = roleService;
+        this.userInfoMapper = userInfoMapper;
     }
 
+    //В форме редактирования
     @PostMapping("/editUser")
     public String editUser(@RequestParam String firstName, @RequestParam String lastName,
                            @RequestParam String roleName, @RequestParam String login,
                            @RequestParam String password, @RequestParam int userId){
 
         User user = userService.getUserByUserId(userId);
+        Role role = roleService.getRoleByRoleName(roleName);
 
         if (!password.isEmpty()) {
-            changePassword(password, user);
+            userService.updateUserWithPassword(user,userId,firstName,lastName,role
+            ,login,password);
+            return "redirect:/user-editor";
         }
 
-        Role role = roleService.getRoleByRoleName(roleName);
-        changeUser(firstName,lastName,role,login,user);
-        userService.update(user,userId);
-        System.out.println(firstName + lastName + roleName + login + password);
+        userService.updateUser(user, userId,firstName, lastName, role, login);
 
-        return "redirect:/admin";
+        return "redirect:/user-editor";
 
+    }
+
+    @ResponseBody
+    @GetMapping("/editUser")
+    public UserInfoDTO getUserInfo(@RequestParam int id){
+        User user = userService.getUserByUserId(id);
+        return userInfoMapper.convertToUserInfoDTO(user);
     }
 
     @PostMapping("/addUser")
@@ -53,32 +67,17 @@ public class UserEditorController {
                           @RequestParam String roleName, @RequestParam String login,
                           @RequestParam String password){
 
-        Role roleList = roleService.getRoleByRoleName(roleName);
-        String encodedPassword = passwordEncoder.encode(password);
-        User user = new User(firstName, lastName, login, encodedPassword, roleList);
-        userService.save(user);
+        Role role = roleService.getRoleByRoleName(roleName);
+        User user = new User(firstName, lastName, login, role);
+        userService.saveUserWithEncodedPassword(user,password);
 
-        return "redirect:/admin";
+        return "redirect:/user-editor";
     }
 
     @GetMapping("/removeUser")
     public String removeUser(@RequestParam int userId){
-        System.out.println(userId);
         userService.deleteUserByUserId(userId);
-        return "redirect:/admin";
-    }
-
-    private void changePassword(String password, User user) {
-        String encodedPassword = passwordEncoder.encode(password);
-        user.setPassword(encodedPassword);
-    }
-
-    private void changeUser (String firstName, String lastName,
-                             Role role, String login, User user){
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setRole(role);
-        user.setLogin(login);
+        return "redirect:/user-editor";
     }
 
 }

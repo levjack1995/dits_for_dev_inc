@@ -1,5 +1,6 @@
 package com.example.dits.controllers;
 
+import com.example.dits.dto.UserInfoDTO;
 import com.example.dits.entity.*;
 import com.example.dits.service.*;
 import lombok.RequiredArgsConstructor;
@@ -104,5 +105,6 @@ public class TestPageController {
     private boolean isResultPage(int questionNumber, List<Statistic> statisticList) {
         return statisticList.size() >= questionNumber;
     }
+
 
 }

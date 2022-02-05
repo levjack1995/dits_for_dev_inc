@@ -38,6 +38,7 @@
               <input type="password" class="form-control form-password form-input" id="password-input" name="password">
               <a href="#" class="password-control" id="password-control"></a>
             </div>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <button type="submit" class="btn col-12 form-button">Submit</button>
           </form>
         </div>

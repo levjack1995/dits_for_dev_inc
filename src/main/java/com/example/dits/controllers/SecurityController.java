@@ -21,11 +21,11 @@ public class SecurityController {
     private final UserService userService;
 
 
-    @GetMapping("/admin")
+    @GetMapping("/user-editor")
     public String adminPage(HttpSession session){
         session.setAttribute("user",userService.getUserByLogin(getPrincipal()));
         session.setAttribute("users", userService.findAll());
-        return "admin";
+        return "admin/user-editor";
     }
 
 
