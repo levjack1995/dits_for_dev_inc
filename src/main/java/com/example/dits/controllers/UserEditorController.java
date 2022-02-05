@@ -35,7 +35,7 @@ public class UserEditorController {
     }
 
     //В форме редактирования
-    @PostMapping("/editUser")
+    @PostMapping("/editTopic")
     public String editUser(@RequestParam String firstName, @RequestParam String lastName,
                            @RequestParam String roleName, @RequestParam String login,
                            @RequestParam String password, @RequestParam int userId){
