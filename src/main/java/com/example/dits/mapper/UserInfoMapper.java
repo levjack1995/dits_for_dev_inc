@@ -19,7 +19,6 @@ public class UserInfoMapper {
                         .firstName(user.getFirstName())
                         .lastName(user.getLastName())
                         .login(user.getLogin())
-                        .role(roleDTO)
-                        .build();
+                        .role(roleDTO).build();
     }
 }

@@ -104,7 +104,7 @@ button {
 }
 
 .tests__item:hover .test-controls {
- visibility: visible;
+  visibility: visible;
 }
 
 .test-text:hover {
@@ -118,7 +118,7 @@ button {
 
 .test-item__text {
   font-size: 18px;
-  line-height: 25px;  
+  line-height: 25px;
   color: #0B0B0B;
 }
 

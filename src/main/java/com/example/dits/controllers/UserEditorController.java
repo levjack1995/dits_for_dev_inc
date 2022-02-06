@@ -35,21 +35,21 @@ public class UserEditorController {
     }
 
     //В форме редактирования
-    @PostMapping("/editTopic")
+    @PostMapping("/updateUser")
     public String editUser(@RequestParam String firstName, @RequestParam String lastName,
                            @RequestParam String roleName, @RequestParam String login,
-                           @RequestParam String password, @RequestParam int userId){
+                           @RequestParam String password, @RequestParam int id){
 
-        User user = userService.getUserByUserId(userId);
+        User user = userService.getUserByUserId(id);
         Role role = roleService.getRoleByRoleName(roleName);
 
         if (!password.isEmpty()) {
-            userService.updateUserWithPassword(user,userId,firstName,lastName,role
+            userService.updateUserWithPassword(user,id,firstName,lastName,role
             ,login,password);
             return "redirect:/user-editor";
         }
 
-        userService.updateUser(user, userId,firstName, lastName, role, login);
+        userService.updateUser(user, id,firstName, lastName, role, login);
 
         return "redirect:/user-editor";
 
@@ -74,9 +74,9 @@ public class UserEditorController {
         return "redirect:/user-editor";
     }
 
-    @GetMapping("/removeUser")
-    public String removeUser(@RequestParam int userId){
-        userService.deleteUserByUserId(userId);
+    @PostMapping("/removeUser")
+    public String removeUser(@RequestParam int id){
+        userService.deleteUserByUserId(id);
         return "redirect:/user-editor";
     }
 
