@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@i@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
-  font-family: Roboto;
+  font-family: Roboto,sans-serif;
   line-height: 150%;
   box-sizing: border-box;
 }
@@ -14,7 +14,7 @@ header {
 }
 
 .container {
-  max-width: 1200px!important;
+  max-width: 1104px!important;
 }
 
 a {
@@ -116,21 +116,29 @@ button {
   background: none;
 }
 
-.test-item__text {
+.test-item__input {
+  padding: 0;
   font-size: 18px;
   line-height: 25px;
   color: #0B0B0B;
-}
-
-.test-item__text:hover {
-  color: #007802;
-}
-
-.test-item__text:focus-visible {
   border: none;
 }
 
-.test-item.edit .test-item__text {
+.test-item__input:focus-visible {
+  border: none;
+  outline: none;
+}
+
+
+.test-item__input:hover {
+  color: #007802;
+}
+
+.test-item__input:focus-visible {
+  border: none;
+}
+
+.test-item.edit .test-item__input {
   color: #F78F0F;
   border-bottom: 1px solid #F78F0F;
 }
@@ -164,13 +172,27 @@ button {
 }
 
 .detail {
-  padding: 0 44px;
+  padding-left: 52px;
 }
 
 .detail__title {
+  margin-left: 20px;
   font-size: 30px;
   line-height: 36px;
   color: #008F02;
+}
+
+.detail__create {
+  margin-top: 45px;
+  padding: 14px 24px 14px 30px;
+  background: #FFFFFF;
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+
+.detail__list {
+  margin-top: 28px;
 }
 
 .detail__list-title {
@@ -194,12 +216,17 @@ button {
   color: #0B0B0B;
 }
 
+
+
 .question {
-  margin-top: 30px;
   padding: 14px 24px 14px 30px;
   background: #FFFFFF;
   box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+}
+
+.detail__list .question:not(:first-child) {
+  margin-top: 45px;
 }
 
 .question__text {
@@ -277,4 +304,8 @@ button {
   line-height: 36px;
   text-align: center;
   color: #FAFAFA;
+}
+
+footer {
+  background: #FAFAFA;
 }
