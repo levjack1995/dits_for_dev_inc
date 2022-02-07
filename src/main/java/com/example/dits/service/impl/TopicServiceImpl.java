@@ -1,11 +1,9 @@
 package com.example.dits.service.impl;
 
 import com.example.dits.DAO.TopicRepository;
-import com.example.dits.entity.Role;
 import com.example.dits.entity.Topic;
 import com.example.dits.service.TopicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,5 +48,10 @@ public class TopicServiceImpl implements TopicService {
     @Transactional
     public Topic getTopicByName(String name) {
         return repository.getTopicByName(name);
+    }
+
+    @Override
+    public Topic getTopicByTopicId(int topicId) {
+        return repository.getTopicByTopicId(topicId);
     }
 }

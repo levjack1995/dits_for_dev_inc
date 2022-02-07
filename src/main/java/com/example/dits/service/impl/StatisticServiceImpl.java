@@ -100,13 +100,9 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Transactional
-    public TopicStatisticByTests getTopicStaticByTests(String name){
-        Topic topic = topicService.getTopicByName(name);
-
-        List<TestStatistic> testStatistics = getTestStatistics(topic);
-
-        return new TopicStatisticByTests(topic.getName(),
-                topic.getDescription(),testStatistics);
+    public List<TestStatistic> getListOfTestsWithStatisticsByTopic(int  topicId){
+        Topic topic = topicService.getTopicByTopicId(topicId);
+        return getTestStatistics(topic);
     }
 
     private List<TestStatistic> getTestStatistics(Topic topic) {
@@ -130,7 +126,8 @@ public class StatisticServiceImpl implements StatisticService {
                     questionAvg = calculateAvg(numberOfAttempts, rightAnswers);
 
                 testSumAvg += questionAvg;
-                questionStatistics.add(new QuestionStatistic(question.getDescription(), numberOfAttempts, questionAvg));
+                questionStatistics.add(new QuestionStatistic(numberOfAttempts, questionAvg));
+               // questionStatistics.add(new QuestionStatistic(question.getDescription(), numberOfAttempts, questionAvg));
             }
 
             int testAverage = calculateTestAverage(testSumAvg, questionStatistics.size());

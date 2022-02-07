@@ -12,14 +12,13 @@ import com.example.dits.mapper.TestMapper;
 import com.example.dits.service.QuestionService;
 import com.example.dits.service.TestService;
 import com.example.dits.service.TopicService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +29,6 @@ public class AdminTestController {
     private final TopicService topicService;
     private final TestService testService;
     private final QuestionService questionService;
-    private final ObjectMapper mapper;
     private final TestMapper testMapper;
     private final QuestionMapper questionMapper;
 
@@ -54,7 +52,12 @@ public class AdminTestController {
     @GetMapping("/getAnswers")
     public List<QuestionWithAnswersDTO> getQuestionsWithAnswers(@RequestParam int id){
         List<Question> questions = questionService.getQuestionsByTest_TestId(id);
-        return questions.stream().map(questionMapper::convertToQuestionWithAnswersDTO).collect(Collectors.toList());
+        List<QuestionWithAnswersDTO> list = new ArrayList<>();
+        for (Question question : questions) {
+            QuestionWithAnswersDTO questionWithAnswersDTO = questionMapper.convertToQuestionWithAnswersDTO(question);
+            list.add(questionWithAnswersDTO);
+        }
+        return list;
     }
 
     @GetMapping("/removeTest")
