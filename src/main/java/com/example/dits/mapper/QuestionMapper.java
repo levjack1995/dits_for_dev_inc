@@ -20,6 +20,7 @@ public class QuestionMapper {
     public QuestionWithAnswersDTO convertToQuestionWithAnswersDTO(Question question){
         List<AnswerDTO> answerDTOList = question.getAnswers().stream().map(this::convertToAnswerDTO)
                 .collect(Collectors.toList());
+
         return QuestionWithAnswersDTO.builder()
                 .questionId(question.getQuestionId())
                 .description(question.getDescription())

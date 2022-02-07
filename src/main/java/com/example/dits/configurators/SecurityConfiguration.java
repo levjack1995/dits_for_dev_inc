@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final CustomSuccessHandler customSuccessHandler;
 
     private final PasswordEncoder passwordEncoder;
-    // из какого пакета
+
     private final DataSource dataSource;
 
     @Autowired
