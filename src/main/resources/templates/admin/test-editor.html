@@ -58,9 +58,8 @@
                     </div>
                     <div class="tests" id="testThemes" th:each="topic : ${topicList}"  >
                         <div class="tests__section" th:action="@{/getTests}">
-                            <div class="row tests__item test-item" data-id="1"  >
-                                <a class="col test-item__text" href="" th:href="@{/getTests(id=2)}"
-                                   method="post" th:text="${topic.topicName}">Java 2 Fundamentals</a>
+                            <div class="row tests__item test-item" data-th-data-id="${topic.topicId}"  >
+                                <input class="col test-item__input" th:value="${topic.topicName}" readonly>
                                 <span class="col-auto test-item__control">
                     <button class="test-item__submit"><img src="../../static/img/submit-icon.svg"
                                                            th:src="@{img/submit-icon.svg}" alt=""></button>
@@ -189,6 +188,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-<script src="../../static/js/user-editor.js" th:src="@{js/user-editor.js}"></script>
+<script src="../../static/js/user-editor.js" th:src="@{js/test-editor.js}"></script>
 </body>
 </html>
