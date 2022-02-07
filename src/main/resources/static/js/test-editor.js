@@ -159,7 +159,11 @@ function detailClickHandler(target) {
 
 
 
+<<<<<<< HEAD
  const activateAddTestButton = document.getElementById('activateAddTestButton');
+=======
+/* const activateAddTestButton = document.getElementById('activateAddTestButton');
+>>>>>>> origin/feature/add-html-pages
 const addTestForm = document.getElementById('addTestForm');
 activateAddTestButton.addEventListener('click', () => {
     addTestForm.classList.toggle('active');
@@ -173,4 +177,8 @@ function clickQuestionHandler(target) {
     if(target.classList.contains('question__text')) {
         target.closest('.question').classList.toggle('open')
     }
+<<<<<<< HEAD
 }
+=======
+} */
+>>>>>>> origin/feature/add-html-pages

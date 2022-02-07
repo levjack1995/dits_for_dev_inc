@@ -57,9 +57,15 @@
                         </button>
                     </div>
                     <div class="tests" id="testThemes" th:each="topic : ${topicList}"  >
+<<<<<<< HEAD
                         <div class="tests__section">
                             <div class="row tests__item test-item" data-th-data-id="${topic.topicId}"  >
                                 <input class="col test-item__input" th:value="${topic.topicName}" readonly/>
+=======
+                        <div class="tests__section" th:action="@{/getTests}">
+                            <div class="row tests__item test-item" data-th-data-id="${topic.topicId}"  >
+                                <input class="col test-item__input" th:value="${topic.topicName}" readonly>
+>>>>>>> origin/feature/add-html-pages
                                 <span class="col-auto test-item__control">
                     <button class="test-item__submit"><img src="../../static/img/submit-icon.svg"
                                                            th:src="@{img/submit-icon.svg}" alt=""></button>
