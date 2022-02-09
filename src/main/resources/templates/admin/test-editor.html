@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../static/css/test-editor.css" th:href="@{css/test-editor.css}">
     <title>Admin-4</title>
 </head>
@@ -13,12 +12,10 @@
 <header>
     <div class="container">
         <nav class="row navbar navbar-expand-lg">
-            <a class="col-auto navbar-brand" href="#"><img src="../../static/img/logo.svg" th:src="@{img/logo.svg}"></a>
+            <a class="col-auto navbar-brand" href="#"><img src="./img/logo.svg"></a>
             <div class="col d-flex justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <img src="../../static/img/burger-icon.png" th:src="@{img/burger-icon.png}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <img src="./img//burger-icon.png">
                 </button>
             </div>
             <div class="col-12 col-lg-10">
@@ -31,8 +28,7 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <span>Admin</span><span class="nav-separator mx-1 mb-1"></span><span>Maksim Salivanov</span><a
-                            class="ms-2" href="#"><img src="../../static/img/logout.svg" th:src="@{img/logout.svg}"></a>
+                        <span>Admin</span><span class="nav-separator mx-1 mb-1"></span><span>Maksim Salivanov</span><a class="ms-2" href="#"><img src="./img/logout.svg"></a>
                     </div>
                 </div>
             </div>
@@ -43,146 +39,55 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-3 tests-sidebar">
-                    <div class="sidebar-add-test">
-                        <span class="sidebar-add-test__text">Themes</span>
-                        <button id="activateAddTestButton"><img class="button" src="../../static/img/add-icon.svg"
-                                                                alt="" th:src="@{img/add-icon.svg}"></button>
+                <div class="col-3 theme-sidebar">
+                    <div class="d-flex sidebar-add-theme">
+                        <span class="sidebar-add-theme__text">Themes</span>
+                        <button class="sidebar-add-theme__button" id="activateAddThemeButton"><img class="button" src="./img/add-icon.svg" alt=""></button>
                     </div>
-                    <div class="row py-3 add-test-form" id="addTestForm" action="#">
-                        <input class="col-auto add-test-form__input" type="text">
-                        <button class="col-auto add-test-form__button" type="submit">
-                            <img src="../../static/img/submit-icon.svg" th:src="@{img/submit-icon.svg}"
-                                 alt="submit icon">
+                    <form class="d-flex py-3 add-theme-form" id="addThemeForm" action="#">
+                        <input class="col-auto add-theme-form__input" type="text" required>
+                        <button class="col-auto add-theme-form__button" type="submit">
+                            <img src="./img/submit-icon.svg" alt="submit icon">
                         </button>
-                    </div>
-                    <div class="tests" id="testThemes" th:each="topic : ${topicList}"  >
-<<<<<<< HEAD
-                        <div class="tests__section">
-                            <div class="row tests__item test-item" data-th-data-id="${topic.topicId}"  >
-                                <input class="col test-item__input" th:value="${topic.topicName}" readonly/>
-=======
-                        <div class="tests__section" th:action="@{/getTests}">
-                            <div class="row tests__item test-item" data-th-data-id="${topic.topicId}"  >
-                                <input class="col test-item__input" th:value="${topic.topicName}" readonly>
->>>>>>> origin/feature/add-html-pages
-                                <span class="col-auto test-item__control">
-                    <button class="test-item__submit"><img src="../../static/img/submit-icon.svg"
-                                                           th:src="@{img/submit-icon.svg}" alt=""></button>
-                    <button class="test-item__edit"><img src="../../static/img/edit-icon.svg"
-                                                         th:src="@{img/edit-icon.svg}" alt=""></button>
-                    <button><img src="../../static/img/delete-icon.svg" th:src="@{img/delete-icon.svg}" alt=""></button>
-                  </span>
+                    </form>
+                    <div class="theme" id="testThemes">
+                        <div class="theme__section">
+                            <div class="row theme__item theme-item" data-id="1">
+                                <input class="col theme-item__input" value="Java 2 Fundamentals" readonly>
+                                <span class="col-auto theme-item__control">
+                      <button class="theme-item__submit"><img src="./img/submit-icon.svg" alt=""></button>
+                      <button class="theme-item__edit"><img src="./img/edit-icon.svg" alt=""></button>
+                      <button><img src="./img/delete-icon.svg" alt=""></button>
+                    </span>
                             </div>
 
-<!--                            <div class="row tests__item test-item" data-id="1">-->
-<!--                                <a class="col test-item__text" href="#">Java 2 Fundamentals</a>-->
-<!--                                <span class="col-auto test-item__control">-->
-<!--                    <button class="test-item__submit"><img src="../../static/img/submit-icon.svg"-->
-<!--                                                           th:src="@{img/submit-icon.svg}" alt=""></button>-->
-<!--                    <button class="test-item__edit"><img src="../../static/img/edit-icon.svg"-->
-<!--                                                         th:src="@{img/edit-icon.svg}" alt=""></button>-->
-<!--                    <button><img src="../../static/img/delete-icon.svg" th:src="@{img/delete-icon.svg}" alt=""></button>-->
-<!--                  </span>-->
-<!--                            </div>-->
+                            <div class="row theme__item theme-item" data-id="2">
+                                <input class="col theme-item__input" value="JavaScript" readonly>
+                                <span class="col-auto theme-item__control">
+                      <button class="theme-item__submit"><img src="./img/submit-icon.svg" alt=""></button>
+                      <button class="theme-item__edit"><img src="./img/edit-icon.svg" alt=""></button>
+                      <button><img src="./img/delete-icon.svg" alt=""></button>
+                    </span>
+                            </div>
 
                         </div>
                     </div>
                 </div>
 
                 <div class="col-9 detail">
-
                     <h2 class="text-start detail__title">Java 2 Fundamentals</h2>
-
-                    <div class="align-items-center question">
-                        <button type="button" class="row detail-card__add-button" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                            <img class="col-auto" src="../../static/img/add-icon.svg" alt="add new test"
-                            th:src="@{img/add-icon.svg}">
+                    <div class="align-items-center detail__create">
+                        <button type="button" class="row detail-card__add-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <img class="col-auto" src="./img/add-icon.svg" alt="add new test">
                             <span class="col-auto detail-card__text">Create new test</span>
                         </button>
                     </div>
-
                     <h3 class="detail__list-title">List of tests</h3>
                     <div class="detail__list" id="detailList">
-                        <div class="question">
-                            <div class="row">
-                                <a class="col question__text" data-bs-toggle="collapse" href="#test1" role="button"
-                                   aria-expanded="false" aria-controls="collapseExample">
-                                    Inheritance, Interfaces, Exceptional situations
-                                </a>
-                                <button class="col-auto question__add-button"><img src="../../static/img/add-icon.svg"
-                                                                                   th:src="@{img/add-icon.svg}"
-                                                                                   alt="Edit test question"></button>
-                                <div class="col-auto question__control">
-                                    <button><img src="../../static/img/edit-icon.svg" th:src="@{img/edit-icon.svg}"
-                                                 alt="Edit test question"></button>
-                                    <button><img src="../../static/img/delete-icon.svg" th:src="@{img/delete-icon.svg}"
-                                                 alt="Delete test question"></button>
-                                </div>
-                            </div>
-                            <div class="collapse question__list" id="test1">
-                                <div class="row align-items-center question__item">
-                                    <span class="col-auto">1</span>
-                                    <textarea class="col form-input" type="text" readonly>
-   Что будет результато компиляции и выполнения следующего кода byte
-                        </textarea>
-                                    <div class="col-auto question-control">
-                                        <button><img src="../../static/img/edit-icon.svg"
-                                                     th:src="@{img/edit-icon.svg}" alt="Edit test question"></button>
-                                        <button><img src="../../static/img/delete-icon.svg"
-                                                     th:src="@{img/delete-icon.svg}" alt="Delete test question">
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center question__item">
-                                    <span class="col-auto">2</span>
-                                    <textarea class="col form-input" type="text" readonly>
-  Что будет результатомкомпиляции и выполнения следующего кода byte b1=113; System.out.println(b3); Весь вопрос можно развернуть с помощь textarea элемента, по умолчанию показывается одна строка
-                        </textarea>
-                                    <div class="col-auto question-control">
-                                        <button><img src="../../static/img/edit-icon.svg" th:src="@{img/edit-icon.svg}"
-                                                     alt="Edit test question"></button>
-                                        <button><img src="../../static/img/delete-icon.svg"
-                                                     th:src="@{img/delete-icon.svg}" alt="Delete test question">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-
-                    </div>
-
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="container modal-content">
-                                <div class="row">
-                                    <h5 class="col modal__title">New test</h5>
-                                    <button type="col-auto button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <form class="d-flex flex-column" action="">
-                                    <label>
-                                        <div>Name</div>
-                                        <input class="col-12 form-input" type="text">
-                                    </label>
-                                    <label>
-                                        <div class="">Description</div>
-                                        <textarea class="col-12 form-input" name="" id="" cols="30" rows="10">
-                        </textarea>
-                                    </label>
-                                    <button class="form-button" type="button">Submit</button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 </main>
 <footer class="footer">
@@ -191,9 +96,62 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-<script src="../../static/js/user-editor.js" th:src="@{js/test-editor.js}"></script>
+
+<!-- New question Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="container modal-content">
+            <div class="row">
+                <h5 class="col modal__title">New test</h5>
+                <button type="col-auto button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="d-flex flex-column" action="">
+                <label>
+                    <div>Name</div>
+                    <input class="col-12 form-input" type="text">
+                </label>
+                <label class="modal__description">
+                    <div>Description</div>
+                    <textarea class="col-12 form-input" name="" id="" cols="30" rows="10">
+            </textarea>
+                </label>
+                <button class="form-button" type="button">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Question Modal -->
+<div class="modal fade question-modal" id="questionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="container modal-content">
+            <div class="row">
+                <button type="col-auto button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="d-flex flex-column" id="createQuestionForm" action="">
+                <label >
+                    <div class="question__title">Question</div>
+                    <textarea class="col-12 form-input" name="" id="questionFormQuestion" cols="30" rows="10">
+            </textarea>
+                </label>
+                <div class="row" id="questionFormAnswerField">
+
+                </div>
+
+                <div class="row">
+                    <button type="button" class="col-auto d-flex align-items-center add-answer-button">
+                        <img src="./img/add-icon.svg" alt="">
+                        <span> Add new question</span>
+                    </button>
+                    <button class="col form-button" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="./index.js"></script>
 </body>
 </html>

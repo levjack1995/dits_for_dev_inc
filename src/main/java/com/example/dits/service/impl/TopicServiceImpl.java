@@ -54,4 +54,17 @@ public class TopicServiceImpl implements TopicService {
     public Topic getTopicByTopicId(int topicId) {
         return repository.getTopicByTopicId(topicId);
     }
+
+    @Transactional
+    @Override
+    public void removeTopicByTopicId(int topicId) {
+        repository.removeTopicByTopicId(topicId);
+    }
+
+    @Transactional
+    @Override
+    public void updateTopicName(int topicId, String name) {
+        Topic topicByTopicId = repository.getTopicByTopicId(topicId);
+        topicByTopicId.setName(name);
+    }
 }

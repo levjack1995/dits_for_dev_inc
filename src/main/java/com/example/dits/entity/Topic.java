@@ -20,6 +20,10 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int topicId;
 
+    public Topic(String name) {
+        this.name = name;
+    }
+
     public Topic(String description, String name) {
         this.description = description;
         this.name = name;

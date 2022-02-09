@@ -78,4 +78,19 @@ public class TestServiceImpl implements TestService {
       return repository.getTestByTestId(id);
    }
 
+   @Transactional
+   @Override
+   public void removeTestByTestId(int id) {
+      repository.removeTestByTestId(id);
+   }
+
+   @Transactional
+   @Override
+   public void update(int id, String name, String description) {
+      Test testByTestId = repository.getTestByTestId(id);
+      testByTestId.setName(name);
+      testByTestId.setDescription(description);
+   }
+
+
 }

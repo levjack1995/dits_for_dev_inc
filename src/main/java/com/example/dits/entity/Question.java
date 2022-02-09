@@ -22,6 +22,10 @@ public class Question {
     @Column
     private String description;
 
+    public Question(String description) {
+        this.description = description;
+    }
+
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL,
     orphanRemoval = true)

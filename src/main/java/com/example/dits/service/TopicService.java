@@ -12,4 +12,6 @@ public interface TopicService {
     List<Topic> findAll();
     Topic getTopicByName(String name);
     Topic getTopicByTopicId(int topicId);
+    void removeTopicByTopicId(int topicId);
+    void updateTopicName(int topicId, String name);
 }

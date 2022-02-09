@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @RequiredArgsConstructor

@@ -15,4 +15,5 @@ public interface TestRepository extends JpaRepository<Test,Integer> {
     List<Test> getTestsByTopicName(String name);
     List<Test> getTestsByTopic_TopicId(int topicId);
     Test getTestByTestId(int id);
+    void removeTestByTestId(int id);
 }

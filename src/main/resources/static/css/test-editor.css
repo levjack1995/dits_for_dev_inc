@@ -1,7 +1,7 @@
-@i@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
-  font-family: Roboto,sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 150%;
   box-sizing: border-box;
 }
@@ -48,22 +48,22 @@ button {
   background: none;
 }
 
-.tests-sidebar {
+.theme-sidebar {
   margin-top: 12px;
 }
 
-.sidebar-add-test__text {
+.sidebar-add-theme__text {
   font-size: 24px;
   line-height: 24px;
   color: #7A7A7A;
 }
 
-.add-test-form {
+.add-theme-form {
   flex-wrap: nowrap;
   border-bottom: 1px solid #17AC19;
 }
 
-.add-test-form__input {
+.add-theme-form__input {
   padding: 7px 14px;
   display: none;
   width: 165px;
@@ -73,50 +73,50 @@ button {
   border-radius: 10px;
 }
 
-.tests__section {
+.theme__section {
   margin-top: 16px;
 }
 
-.add-test-form.active .add-test-form__input {
+.add-theme-form.active .add-theme-form__input {
   display: block;
 }
 
-.add-test-form.active .add-test-form__button {
+.add-theme-form.active .add-theme-form__button {
   display: block;
 }
 
-.add-test-form__button {
+.add-theme-form__button {
   display: none;
 }
 
-.test-title {
+.theme-title {
   font-size: 18px;
   line-height: 25px;
   color: #0B0B0B;
 }
 
-.tests__item:not(:first-child) {
+.theme__item:not(:first-child) {
   margin-top: 27px;
 }
 
-.tests__item:hover .test-text, .test-text {
+.theme__item:hover .theme-text, .theme-text {
   color: #007802;
 }
 
-.tests__item:hover .test-controls {
+.theme__item:hover .theme-controls {
   visibility: visible;
 }
 
-.test-text:hover {
+.theme-text:hover {
   color: #007802;
   border-bottom: 1px solid #DBDBDB;
 }
 
-.test-text:active {
+.theme-text:active {
   background: none;
 }
 
-.test-item__input {
+.theme-item__input {
   padding: 0;
   font-size: 18px;
   line-height: 25px;
@@ -124,50 +124,50 @@ button {
   border: none;
 }
 
-.test-item__input:focus-visible {
+.theme-item__input:focus-visible {
   border: none;
   outline: none;
 }
 
 
-.test-item__input:hover {
+.theme-item__input:hover {
   color: #007802;
 }
 
-.test-item__input:focus-visible {
+.theme-item__input:focus-visible {
   border: none;
 }
 
-.test-item.edit .test-item__input {
+.theme-item.edit .theme-item__input {
   color: #F78F0F;
   border-bottom: 1px solid #F78F0F;
 }
 
-.tests__item .tests__item-control {
+.theme__item .theme__item-control {
   visibility: hidden;
 }
 
-.tests__item:hover .tests__item-control {
+.theme__item:hover .theme__item-control {
   visibility: visible;
 }
 
-.test-item.edit .test-controls {
+.theme-item.edit .theme-controls {
   visibility: visible;
 }
 
-.test-item__submit {
+.theme-item__submit {
   display: none;
 }
 
-.test-item.edit .test-item__submit {
+.theme-item.edit .theme-item__submit {
   display: initial;
 }
 
-.test-item__edit {
+.theme-item__edit {
   display: initial;
 }
 
-.test-item.edit .test-item__edit {
+.theme-item.edit .theme-item__edit {
   display: none;
 }
 
@@ -225,6 +225,12 @@ button {
   border-radius: 10px;
 }
 
+.question__title {
+  font-size: 24px;
+  line-height: 36px;
+  color: #008F02;
+}
+
 .detail__list .question:not(:first-child) {
   margin-top: 45px;
 }
@@ -252,7 +258,6 @@ button {
 }
 
 .form-input {
-  margin-top: 9px;
   padding: 6px 5px 6px 13px;
   border: 1px solid #C4C4C4;
   box-sizing: border-box;
@@ -268,6 +273,22 @@ button {
 
 .question.open .question__control {
   display: none;
+}
+
+.question-modal__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+}
+
+.answer:not(:first-child) {
+  margin-top: 20px;
+}
+
+.answer__title {
+  font-size: 20px;
+  line-height: 36px;
+  color: #008F02
 }
 
 .footer__copyright {
@@ -292,6 +313,10 @@ button {
   font-size: 30px;
   line-height: 45px;
   color: #000000;
+}
+
+.modal__description {
+  margin-top: 22px;
 }
 
 .form-button {

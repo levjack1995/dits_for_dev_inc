@@ -19,4 +19,6 @@ public interface TestService {
      List<Test> getTestsByTopic_TopicId(int ID);
      List<TestInfoDTO> getTestInfoDTO (List<Test> tests);
      Test getTestByTestId(int id);
+     void removeTestByTestId(int id);
+     void update(int id, String name, String description);
 }

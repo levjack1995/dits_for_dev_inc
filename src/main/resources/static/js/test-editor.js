@@ -1,44 +1,3 @@
-// const dataByTopicId =
-//     [
-//         {
-//             "name": "Second test",
-//             "description": "DescTest2",
-//             "testId": 2,
-//             "questions": [
-//                 {
-//                     "questionId": 2,
-//                     "description": "1st quest for test2"
-//                 },
-//                 {
-//                     "questionId": 3,
-//                     "description": "2st quest for test2"
-//                 },
-//                 {
-//                     "questionId": 4,
-//                     "description": "3d quest for test2"
-//                 },
-//                 {
-//                     "questionId": 5,
-//                     "description": "4d qyest for test2"
-//                 },
-//                 {
-//                     "questionId": 6,
-//                     "description": "5d quest for test2"
-//                 }
-//             ]
-//         },
-//         {
-//             "name": "TherdNameTest",
-//             "description": "DescT3",
-//             "testId": 19,
-//             "questions": [
-//
-//             ]
-//         }
-//     ];
-
-
-
 function getQuestionHtml({ name, description, testId, questions }) {
     const question = document.createElement('div');
     question.className = 'question';
@@ -48,7 +7,7 @@ function getQuestionHtml({ name, description, testId, questions }) {
       <a class="col question__text" data-bs-toggle="collapse" href='#test${testId}' role="button" aria-expanded="false" aria-controls="collapseExample">
         ${name}
       </a>
-      <button class="col-auto question__add-button"><img src="./img/add-icon.svg" alt="Edit test question"></button>
+      <button class="col-auto question__add-button" data-bs-toggle="modal" data-bs-target="#questionModal"><img src="./img/add-icon.svg" alt="Edit test question"></button>
       <div class="col-auto question__control">
         <button><img src="./img/edit-icon.svg" alt="Edit test question"></button>
         <button><img src="./img/delete-icon.svg" alt="Delete test question"></button>
@@ -78,6 +37,8 @@ function getQuestionHtml({ name, description, testId, questions }) {
 
 
 const detailList = document.getElementById('detailList');
+const addThemeForm = document.getElementById('addThemeForm');
+const addThemeFormInput = document.querySelector('.add-theme-form__input');
 let prevEditedTheme = null;
 let prevEditedThemeValue = null;
 let currentThemeId = null;
@@ -100,15 +61,15 @@ async function setNewThemeTests(themeId) {
 }
 
 function testThemeClichHandler(target) {
-    const testItem = target.closest('.test-item');
+    const testItem = target.closest('.theme-item');
     if (testItem) {
         const themeId = testItem.dataset.id;
-        if (target.closest('.test-item__input')) {
+        if (target.closest('.theme-item__input')) {
             if (themeId !== currentThemeId) {
                 setNewThemeTests(themeId);
             }
         }
-        if (target.closest('.test-item__edit')) {
+        if (target.closest('.theme-item__edit')) {
             setThemeEditMode(testItem)
         }
     }
@@ -118,9 +79,15 @@ document.addEventListener('click', ({ target }) => {
     const targetClassList = target.classList;
     if (target.closest('#testThemes')) {
         testThemeClichHandler(target)
-    } else if(target.closest('#detailList')) {
+        deactivateAddThemeForm();
+    }
+ else if (target.closest('.sidebar-add-theme')) {
+    addThemeClickHandler(target);
+}
+else if(target.closest('#detailList')) {
         refreshThemesValues();
         detailClickHandler(target);
+        deactivateAddThemeForm();
     }
     /* refreshThemesValues(); */
 })
@@ -131,15 +98,15 @@ document.addEventListener('click', ({ target }) => {
 function setThemeEditMode(newTheme) {
     if (prevEditedTheme) {
         prevEditedTheme.classList.remove('edit');
-        prevEditedTheme.querySelector('.test-item__input').setAttribute('readonly', '');
-        prevEditedTheme.querySelector('.test-item__input').value = prevEditedThemeValue;
+        prevEditedTheme.querySelector('.theme-item__input').setAttribute('readonly', '');
+        prevEditedTheme.querySelector('.theme-item__input').value = prevEditedThemeValue;
     }
     prevEditedTheme = newTheme;
     if (newTheme) {
         newTheme.classList.add('edit');
-        newTheme.querySelector('.test-item__input').removeAttribute('readonly');
-        newTheme.querySelector('.test-item__input').focus();
-        prevEditedThemeValue = newTheme.querySelector('.test-item__input').value;
+        newTheme.querySelector('.theme-item__input').removeAttribute('readonly');
+        newTheme.querySelector('.theme-item__input').focus();
+        prevEditedThemeValue = newTheme.querySelector('.theme-item__input').value;
     }
 }
 
@@ -151,34 +118,59 @@ function refreshThemesValues() {
 const prevQuestion = null;
 
 function detailClickHandler(target) {
-    if (target.closest('.question')) {
-        console.log('Yes')
+    const question = target.closest('.question');
+    if (question) {
+        const questionId = question.dataset.id;
+        console.log(questionId)
     }
+}
+
+function changeActiveAddThemeFormStatus() {
+    addThemeForm.classList.toggle('active');
+}
+
+function addThemeClickHandler(target) {
+    if (target.closest('.sidebar-add-theme__button')) {
+        changeActiveAddThemeFormStatus();
+    }
+}
+
+function deactivateAddThemeForm() {
+    addThemeForm.reset();
+    addThemeForm.classList.remove('active');
 }
 
 
 
 
-<<<<<<< HEAD
+
+
  const activateAddTestButton = document.getElementById('activateAddTestButton');
-=======
-/* const activateAddTestButton = document.getElementById('activateAddTestButton');
->>>>>>> origin/feature/add-html-pages
 const addTestForm = document.getElementById('addTestForm');
-activateAddTestButton.addEventListener('click', () => {
-    addTestForm.classList.toggle('active');
-})
+const addAnswerButton = document.getElementById('addAnswerButton');
+
+
+// activateAddTestButton.addEventListener('click', () => {
+//     addTestForm.classList.toggle('active');
+// })
+
+function clickQuestionHandler(target) {
+    if(target.classList.contains('question__text')) {
+        target.closest('.question').classList.toggle('open')
+    } else if(target.closest('.question__add-button')) {
+        console.log('button')
+    }
+}
+
 detailList.addEventListener('click', ({ target }) => {
     if (target.closest('.question')) {
         clickQuestionHandler(target);
     }
 })
-function clickQuestionHandler(target) {
-    if(target.classList.contains('question__text')) {
-        target.closest('.question').classList.toggle('open')
-    }
-<<<<<<< HEAD
-}
-=======
-} */
->>>>>>> origin/feature/add-html-pages
+
+addAnswerButton.addEventListener('click', () => {
+    console.log('hello');
+});
+
+
+

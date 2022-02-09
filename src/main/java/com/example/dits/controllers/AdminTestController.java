@@ -18,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,43 +49,87 @@ public class AdminTestController {
 
     @ResponseBody
     @GetMapping("/getAnswers")
-    public List<QuestionWithAnswersDTO> getQuestionsWithAnswers(@RequestParam int id){
-        List<Question> questions = questionService.getQuestionsByTest_TestId(id);
-        List<QuestionWithAnswersDTO> list = new ArrayList<>();
-        for (Question question : questions) {
-            QuestionWithAnswersDTO questionWithAnswersDTO = questionMapper.convertToQuestionWithAnswersDTO(question);
-            list.add(questionWithAnswersDTO);
-        }
-        return list;
+    public QuestionWithAnswersDTO getQuestionsWithAnswers(@RequestParam int id){
+        Question question = questionService.getQuestionById(id);
+        questionMapper.convertToQuestionWithAnswersDTO(question);
+        return questionMapper.convertToQuestionWithAnswersDTO(question);
     }
 
-    @GetMapping("/removeTest")
-    public String removeTest(@RequestParam int testId){
-        Test test = testService.getTestByTestId(testId);
-        testService.delete(test);
-        return "redirect:/admin/index";
+    @ResponseBody
+    @PostMapping("/removeTest")
+    public List<TestWithQuestionsDTO> removeTest(@RequestParam int testId, @RequestParam int topicId){
+        testService.removeTestByTestId(testId);
+        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
     }
 
-    @GetMapping("/removeTopic")
-    public String removeTopic(@RequestParam String topicId){
-        Topic topic = topicService.getTopicByName(topicId);
-        topicService.delete(topic);
-        return "redirect:/admin/index";
+    @ResponseBody
+    @PostMapping("/removeTopic")
+    public List<TopicDTO> removeTopic(@RequestParam int topicId){
+        topicService.removeTopicByTopicId(topicId);
+        return getTopicDTOList();
     }
 
-    @GetMapping("/addTopic")
-    public String removeUser(@RequestParam String name,@RequestParam String description){
-        Topic topic = new Topic(name,description);
+    private List<TopicDTO> getTopicDTOList() {
+        return topicService.findAll().stream().map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @ResponseBody
+    @PostMapping("/addTopic")
+    public List<TopicDTO> addTopic(@RequestParam String name){
+        Topic topic = new Topic(name);
         topicService.save(topic);
-        return "redirect:/admin/index";
+        return getTopicDTOList();
+    }
+
+    @ResponseBody
+    @PostMapping("/addTest")
+    public List<TestWithQuestionsDTO> addTest(@RequestParam String name, @RequestParam String description,
+                                     @RequestParam int topicId){
+        Topic topic = topicService.getTopicByTopicId(topicId);
+        Test test = Test.builder().name(name).description(description).topic(topic).build();
+        testService.save(test);
+        return getTestWithQuestionsDTOList(topic);
+    }
+
+    @ResponseBody
+    @PostMapping("/editTopic")
+    public List<TopicDTO> editTopic(@RequestParam int id, @RequestParam String name){
+        topicService.updateTopicName(id,name);
+        return getTopicDTOList();
+    }
+
+    @ResponseBody
+    @PostMapping("/editTest")
+    public List<TestWithQuestionsDTO> editTest(@RequestParam String name, @RequestParam String description,
+                                               @RequestParam int testId, @RequestParam int topicId){
+        testService.update(testId,name,description);
+        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
+    }
+
+    @ResponseBody
+    @PostMapping("/addQuestion")
+    public List<TestWithQuestionsDTO> addQuestion(@RequestParam String description,@RequestParam int testId
+            , @RequestParam int topicId){
+        questionService.addQuestion(description,testId);
+        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
+    }
+
+    @ResponseBody
+    @PostMapping("/editQuestion")
+    public List<TestWithQuestionsDTO> editQuestion(@RequestParam String description, @RequestParam int questionId,
+                                                   @RequestParam int topicId){
+        questionService.editQuestion(description,questionId);
+        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
     }
 
 
-
+    private List<TestWithQuestionsDTO> getTestWithQuestionsDTOList(Topic topic) {
+        return topic.getTestList().stream().map(testMapper::convertToTestDTO).collect(Collectors.toList());
+    }
 
     private TopicDTO convertToDTO(Topic topic){
         return modelMapper.map(topic, TopicDTO.class);
     }
-
 
 }
