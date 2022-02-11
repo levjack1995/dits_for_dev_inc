@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
   line-height: 150%;
   box-sizing: border-box;
 }
@@ -173,6 +173,11 @@ button {
 
 .detail {
   padding-left: 52px;
+  display: none;
+}
+
+.detail.active {
+  display: block;
 }
 
 .detail__title {
@@ -218,14 +223,14 @@ button {
 
 
 
-.question {
+.test {
   padding: 14px 24px 14px 30px;
   background: #FFFFFF;
   box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
 
-.question__title {
+.test__title {
   font-size: 24px;
   line-height: 36px;
   color: #008F02;
@@ -235,17 +240,17 @@ button {
   margin-top: 45px;
 }
 
-.question__text {
+.test__text {
   font-size: 18px;
   line-height: 25px;
   color: #000000
 }
 
-.question:hover {
+.test:hover {
   color: #007802;
 }
 
-.question:hover .question__text {
+.test:hover .test__text {
   color: #007802;
 }
 
@@ -253,7 +258,7 @@ button {
   margin-top: 14px;
 }
 
-.question__item:not(:first-child) {
+.test:not(:first-child) {
   margin-top: 15px;
 }
 
@@ -267,11 +272,11 @@ button {
   color: #777777;
 }
 
-.question:not(.open) .question__add-button {
+.test:not(.open) .test__add-button {
   display: none;
 }
 
-.question.open .question__control {
+.test.open .test__control {
   display: none;
 }
 
@@ -333,4 +338,8 @@ button {
 
 footer {
   background: #FAFAFA;
+}
+
+.hidden{
+  visibility: hidden;
 }

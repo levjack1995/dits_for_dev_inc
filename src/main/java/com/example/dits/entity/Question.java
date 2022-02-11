@@ -40,4 +40,9 @@ public class Question {
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,cascade = CascadeType.MERGE,
     orphanRemoval = true)
     private List<Statistic> statistics;
+
+    public Question(String description, Test test) {
+        this.description = description;
+        this.test = test;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.dits.controllers;
 
 
+import com.example.dits.dto.QuestionEditModel;
 import com.example.dits.dto.QuestionWithAnswersDTO;
 import com.example.dits.dto.TestWithQuestionsDTO;
 import com.example.dits.dto.TopicDTO;
@@ -41,6 +42,13 @@ public class AdminTestController {
     }
 
     @ResponseBody
+    @GetMapping("/getTopics")
+    public List<TopicDTO> getTopicList(){
+        List<Topic> topicList = topicService.findAll();
+        return topicList.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    @ResponseBody
     @GetMapping("/getTests")
     public List<TestWithQuestionsDTO> getTestsWithQuestions(@RequestParam int id) {
         List<Test> testList = testService.getTestsByTopic_TopicId(id);
@@ -56,14 +64,14 @@ public class AdminTestController {
     }
 
     @ResponseBody
-    @PostMapping("/removeTest")
+    @DeleteMapping("/removeTest")
     public List<TestWithQuestionsDTO> removeTest(@RequestParam int testId, @RequestParam int topicId){
         testService.removeTestByTestId(testId);
         return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
     }
 
     @ResponseBody
-    @PostMapping("/removeTopic")
+    @DeleteMapping("/removeTopic")
     public List<TopicDTO> removeTopic(@RequestParam int topicId){
         topicService.removeTopicByTopicId(topicId);
         return getTopicDTOList();
@@ -93,14 +101,14 @@ public class AdminTestController {
     }
 
     @ResponseBody
-    @PostMapping("/editTopic")
+    @PutMapping("/editTopic")
     public List<TopicDTO> editTopic(@RequestParam int id, @RequestParam String name){
         topicService.updateTopicName(id,name);
         return getTopicDTOList();
     }
 
     @ResponseBody
-    @PostMapping("/editTest")
+    @PutMapping("/editTest")
     public List<TestWithQuestionsDTO> editTest(@RequestParam String name, @RequestParam String description,
                                                @RequestParam int testId, @RequestParam int topicId){
         testService.update(testId,name,description);
@@ -109,18 +117,24 @@ public class AdminTestController {
 
     @ResponseBody
     @PostMapping("/addQuestion")
-    public List<TestWithQuestionsDTO> addQuestion(@RequestParam String description,@RequestParam int testId
-            , @RequestParam int topicId){
-        questionService.addQuestion(description,testId);
-        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
+    public List<TestWithQuestionsDTO> addQuestion(@RequestBody QuestionEditModel questionModel){
+        questionService.addQuestion(questionModel);
+        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(questionModel.getTopicId()));
     }
 
+//    @ResponseBody
+//    @PutMapping("/editQuestion")
+//    public List<TestWithQuestionsDTO> editQuestion(@RequestParam String description, @RequestParam int questionId,
+//                                                   @RequestParam int topicId){
+//        questionService.editQuestion(description,questionId);
+//        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
+//    }
+
     @ResponseBody
-    @PostMapping("/editQuestion")
-    public List<TestWithQuestionsDTO> editQuestion(@RequestParam String description, @RequestParam int questionId,
-                                                   @RequestParam int topicId){
-        questionService.editQuestion(description,questionId);
-        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
+    @PostMapping("/editQuestionAnswers")
+    public List<TestWithQuestionsDTO> editQuestionAnswers(@RequestBody QuestionEditModel questionModel){
+        questionService.editQuestion(questionModel);
+        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(questionModel.getTopicId()));
     }
 
 

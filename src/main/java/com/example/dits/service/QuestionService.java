@@ -1,5 +1,6 @@
 package com.example.dits.service;
 
+import com.example.dits.dto.QuestionEditModel;
 import com.example.dits.entity.Answer;
 import com.example.dits.entity.Question;
 import com.example.dits.entity.Test;
@@ -19,4 +20,6 @@ public interface QuestionService {
     List<Question> getQuestionsByTest(Test test);
     Question getQuestionById(int id);
     String getDescriptionFromQuestionList(List<Question> questionList, int index);
+    void editQuestion(QuestionEditModel questionEditModel);
+    void addQuestion(QuestionEditModel questionEditModel);
 }
