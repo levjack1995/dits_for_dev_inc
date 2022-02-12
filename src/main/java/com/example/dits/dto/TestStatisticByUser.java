@@ -9,8 +9,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TestStatisticByUser {
+public class TestStatisticByUser implements Comparable<TestStatisticByUser>{
     private String testName;
     private int count;
     private int avgProc;
+
+    @Override
+    public int compareTo(TestStatisticByUser o) {
+        return o.getAvgProc()-this.getAvgProc();
+    }
 }

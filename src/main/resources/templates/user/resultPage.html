@@ -18,7 +18,7 @@
         <div class="container py-4">
           <div class="row">
             <div class="logo d-flex col-4 col-lg-2">
-              <a href="#">
+              <a href="#" th:href="@{/chooseTest}">
                 <img
                 src="../../static/img/logo.png" th:src = "@{img/logo.png}"
                 alt="logo-dev-incubtor"
@@ -34,9 +34,9 @@
             <ul
               class="nav nav-header col-12 col-lg-4 justify-content-center order-lg-1 order-2"
             >
-              <li><a href="#" class="nav-link link-primary">Assessment</a></li>
+              <li><a href="#" th:href="@{/chooseTest}" class="nav-link link-primary">Assessment</a></li>
               <li>
-                <a href="#" class="nav-link link-secondary">Statistics</a>
+                <a href="#" th:href="@{/personalStatistic}" class="nav-link link-secondary">Statistics</a>
               </li>
             </ul>
 

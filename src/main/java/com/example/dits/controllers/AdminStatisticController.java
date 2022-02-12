@@ -1,13 +1,9 @@
 package com.example.dits.controllers;
 
 import com.example.dits.dto.*;
-import com.example.dits.entity.Question;
-import com.example.dits.entity.Test;
 import com.example.dits.entity.Topic;
 import com.example.dits.entity.User;
-import com.example.dits.mapper.TestMapper;
 import com.example.dits.mapper.TestStatisticMapper;
-import com.example.dits.service.TestService;
 import com.example.dits.service.TopicService;
 import com.example.dits.service.UserService;
 import com.example.dits.service.impl.StatisticServiceImpl;
@@ -16,7 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,7 +32,7 @@ public class AdminStatisticController {
     public String testStatistic(ModelMap model){
         List<TopicDTO> topicDTOList = topicService.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
         model.addAttribute("topicList",topicDTOList);
-        return "admin/testStatistics";
+        return "userStatistics";
     }
 
     @ResponseBody

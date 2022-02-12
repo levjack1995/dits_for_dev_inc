@@ -32,7 +32,7 @@ public class AdminTestController {
     private final TestMapper testMapper;
     private final QuestionMapper questionMapper;
 
-
+    @ModelAttribute
     @GetMapping("/testBuilder")
     public String getTopics(ModelMap model) {
         List<Topic> topicList = topicService.findAll();
@@ -53,6 +53,7 @@ public class AdminTestController {
     public List<TestWithQuestionsDTO> getTestsWithQuestions(@RequestParam int id) {
         List<Test> testList = testService.getTestsByTopic_TopicId(id);
         return testList.stream().map(testMapper::convertToTestDTO).collect(Collectors.toList());
+
     }
 
     @ResponseBody

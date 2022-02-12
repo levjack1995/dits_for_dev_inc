@@ -21,10 +21,10 @@
                 <a href="#" th:href="@{/user}"><img src="../../static/img/icon.png" th:src="@{img/icon.png}" alt="dev-incubator-icon"/></a>
             </div>
             <div class="col-4 mt7">
-                <a href="#" th:href="@{/user}" class="assessment-ref">Assessment</a>
+                <a href="" th:href="@{/user}" class="assessment-ref">Assessment</a>
             </div>
             <div class="col-2 mt7 ">
-                <a href="#" class="statistics-ref">Statistics</a>
+                <a href="personalStatistic.html" th:href="@{/personalStatistic}" class="statistics-ref">Statistics</a>
             </div>
             <div class="col-4 user-info"><span>Student <span>&bull; </span></span><span th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName} ">Ivan Ivanov</span>
 

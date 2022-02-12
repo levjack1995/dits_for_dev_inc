@@ -1,14 +1,14 @@
 package com.example.dits.mapper;
 
-import com.example.dits.dto.RoleDTO;
 import com.example.dits.dto.TestStatistic;
 import com.example.dits.dto.TestStatisticByUser;
 import com.example.dits.dto.UserStatistics;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -23,6 +23,7 @@ public class TestStatisticMapper {
                     .avgProc(statistic.getAvgProc()).count(statistic.getCount()).build();
             testStatisticByUsers.add(testStat);
         }
+        Collections.sort(testStatisticByUsers);
         return testStatisticByUsers;
     }
 
