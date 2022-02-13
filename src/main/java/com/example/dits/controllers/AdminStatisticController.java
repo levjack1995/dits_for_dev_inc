@@ -32,7 +32,7 @@ public class AdminStatisticController {
     public String testStatistic(ModelMap model){
         List<TopicDTO> topicDTOList = topicService.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
         model.addAttribute("topicList",topicDTOList);
-        return "userStatistics";
+        return "admin/test-statistic";
     }
 
     @ResponseBody
@@ -45,7 +45,7 @@ public class AdminStatisticController {
     public String userStatistic(ModelMap model){
         List<SimpleUserDTO> userDTOS = userService.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
         model.addAttribute("userListStat",userDTOS);
-        return "admin/userStatistics";
+        return "admin/user-statistic";
     }
 
     @ResponseBody
