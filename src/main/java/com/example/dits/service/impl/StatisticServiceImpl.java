@@ -126,8 +126,8 @@ public class StatisticServiceImpl implements StatisticService {
                     questionAvg = calculateAvg(numberOfAttempts, rightAnswers);
 
                 testSumAvg += questionAvg;
-                questionStatistics.add(new QuestionStatistic(numberOfAttempts, questionAvg));
-               // questionStatistics.add(new QuestionStatistic(question.getDescription(), numberOfAttempts, questionAvg));
+                //questionStatistics.add(new QuestionStatistic(numberOfAttempts, questionAvg));
+                questionStatistics.add(new QuestionStatistic(question.getDescription(), numberOfAttempts, questionAvg));
             }
             Collections.sort(questionStatistics);
 

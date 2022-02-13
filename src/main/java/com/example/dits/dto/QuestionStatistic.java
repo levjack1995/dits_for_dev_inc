@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionStatistic implements Comparable<QuestionStatistic>{
-    //private String questionDescription;
+    private String questionDescription;
     private int count;
     private int avgProc;
 
