@@ -2,9 +2,7 @@ package com.example.dits.DAO;
 
 import com.example.dits.entity.Question;
 import com.example.dits.entity.Test;
-import org.hibernate.SessionFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

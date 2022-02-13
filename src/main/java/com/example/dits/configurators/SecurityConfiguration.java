@@ -40,17 +40,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "users_role.roleId = role.roleId where login = ?");
     }
 
-//    @Autowired
-//    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(passwordEncoder)
-//                .withUser("user").password(passwordEncoder.encode("user"))
-//                .roles("USER")
-//                .and()
-//                .withUser("admin")
-//                .password(passwordEncoder.encode("admin")).roles("ADMIN");
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()

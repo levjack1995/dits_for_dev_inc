@@ -1,8 +1,6 @@
 package com.example.dits.service;
 
 import com.example.dits.dto.TestInfoDTO;
-import com.example.dits.entity.Answer;
-import com.example.dits.entity.Statistic;
 import com.example.dits.entity.Test;
 import com.example.dits.entity.Topic;
 

@@ -1,6 +1,5 @@
 package com.example.dits.controllers;
 
-import com.example.dits.dto.UserInfoDTO;
 import com.example.dits.entity.*;
 import com.example.dits.service.*;
 import lombok.RequiredArgsConstructor;

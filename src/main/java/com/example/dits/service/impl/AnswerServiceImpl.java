@@ -6,7 +6,6 @@ import com.example.dits.entity.Question;
 import com.example.dits.service.AnswerService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.math3.util.Precision;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

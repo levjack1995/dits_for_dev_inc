@@ -56,12 +56,6 @@ public class AdminStatisticController {
         return statisticMapper.convertToUserStatisticDTO(userStatistics);
     }
 
-//    @ModelAttribute("statistic")
-//    private List<TopicStatisticByTests> getTopicStatisticByTests(){
-//        return  statisticService.getListTopicStaticByTests();
-//    }
-
-
     private TopicDTO convertToDTO(Topic topic){
         return modelMapper.map(topic, TopicDTO.class);
     }

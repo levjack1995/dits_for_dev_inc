@@ -123,21 +123,12 @@ public class AdminTestController {
         return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(questionModel.getTopicId()));
     }
 
-//    @ResponseBody
-//    @PutMapping("/editQuestion")
-//    public List<TestWithQuestionsDTO> editQuestion(@RequestParam String description, @RequestParam int questionId,
-//                                                   @RequestParam int topicId){
-//        questionService.editQuestion(description,questionId);
-//        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
-//    }
-
     @ResponseBody
     @PostMapping("/editQuestionAnswers")
     public List<TestWithQuestionsDTO> editQuestionAnswers(@RequestBody QuestionEditModel questionModel){
         questionService.editQuestion(questionModel);
         return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(questionModel.getTopicId()));
     }
-
 
     private List<TestWithQuestionsDTO> getTestWithQuestionsDTOList(Topic topic) {
         return topic.getTestList().stream().map(testMapper::convertToTestDTO).collect(Collectors.toList());

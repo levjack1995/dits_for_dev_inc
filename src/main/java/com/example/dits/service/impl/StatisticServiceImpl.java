@@ -147,21 +147,21 @@ public class StatisticServiceImpl implements StatisticService {
         return rightAnswer;
     }
 
-    @Transactional
-    public List<TopicStatisticByTests> getListTopicStaticByTests(){
-
-        List<Topic> topics = topicService.findAll();
-        List<TopicStatisticByTests> topicStatisticByTests = new ArrayList<>();
-
-        for (Topic topic : topics) {
-            List<TestStatistic> testStatistics = getTestStatistics(topic);
-
-            topicStatisticByTests.add(new TopicStatisticByTests(topic.getName(),
-                    topic.getDescription(),testStatistics));
-        }
-
-        return topicStatisticByTests;
-    }
+//    @Transactional
+//    public List<TopicStatisticByTests> getListTopicStaticByTests(){
+//
+//        List<Topic> topics = topicService.findAll();
+//        List<TopicStatisticByTests> topicStatisticByTests = new ArrayList<>();
+//
+//        for (Topic topic : topics) {
+//            List<TestStatistic> testStatistics = getTestStatistics(topic);
+//
+//            topicStatisticByTests.add(new TopicStatisticByTests(topic.getName(),
+//                    topic.getDescription(),testStatistics));
+//        }
+//
+//        return topicStatisticByTests;
+//    }
 
     private int calculateTestAverage(int testSumAvg, int questionStatisticsSize) {
         if (questionStatisticsSize != 0)
@@ -200,7 +200,6 @@ public class StatisticServiceImpl implements StatisticService {
         for (ArrayList<Statistic> values : statisticByDate.values()){
             double countOfRightAnswers = 0;
             TestStatisticByDate testStatisticByDate = new TestStatisticByDate();
-//            System.out.println(values.get(0).getQuestion().getTest().getName());
             testStatisticByDate.setTestName(values.get(0).getQuestion().getTest().getName());
             for (Statistic st : values){
                 if(st.isCorrect()){

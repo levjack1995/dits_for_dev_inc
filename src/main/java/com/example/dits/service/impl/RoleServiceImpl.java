@@ -1,11 +1,9 @@
 package com.example.dits.service.impl;
 
 import com.example.dits.DAO.RoleRepository;
-import com.example.dits.entity.Answer;
 import com.example.dits.entity.Role;
 import com.example.dits.service.RoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +15,6 @@ import java.util.Optional;
 public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository repo;
-
 
     @Transactional
     public void create(Role role) {
