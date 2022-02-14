@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../static/css/resultPageFinal.css" th:href = "@{css/resultPageFinal.css}" />
+    <title>User4</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <a class="col-auto navbar-brand" th:href="@{/chooseTest}">
+                <img src="../../static/img/logo.svg" th:src="@{img/logo.svg}"></a>
+            <div class="col d-flex justify-content-end">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <img src="../../static/img/burger-icon.png" th:src="@{img/burger-icon.png}">
+                </button>
+            </div>
+            <div class="col-12 col-lg-10">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="col">
+                        <div class="col navbar-nav justify-content-evenly">
+                            <a class="nav-link active" th:href="@{/chooseTest}">Assessment</a>
+                            <a class="nav-link" th:href="@{/personalStatistic}">Statistics</a>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <span>Student</span><span class="nav-separator mx-1 mb-1"></span>
+                        <span th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Dmitriy Fedotov</span>
+                        <a class="ms-2" th:href="@{/logout}"><img src="../../static/img/logout.svg" th:src="@{img/logout.svg}"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="title">
+            <h1 th:text="${session.topicName}">Topic 1. Basic Structure of Java Program</h1>
+            <span class="ps-2">/</span>
+            <h3 th:text="${session.testName}">Java 2 Fundamentals</h3>
+        </div>
+
+        <div class="result">
+            <h3>Your result</h3>
+            <h2 th:text="${percentageComplete}+'%'">
+                75%
+            </h2>
+            <h2>
+                (<span th:text="${rightAnswers}">55</span>/<span th:text="${countOfQuestions}">75</span>)
+            </h2>
+            <div class="count-answers"><p>Correct answers</p><p>55</p></div>
+            <div class="count-answers"><p>Wrong answers</p><p>20</p></div>
+        </div>
+        <button onclick="location.href='/personalStatistic'"
+                type="submit"
+                class="btn"
+        >
+            Show all my statistic
+        </button>
+    </div>
+</main>
+<footer class="py-4">
+<h3 class="text-center">© Dev Incubator</h3>
+</footer>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://kit.fontawesome.com/b605d0c877.js"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>

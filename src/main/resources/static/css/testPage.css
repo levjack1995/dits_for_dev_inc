@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    font-family: "Roboto";
+}
+
+p,
+h3,
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    font-size: 24px;
+    color: #fafafa;
+    background: #012438;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-link {
+    color: inherit;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #17ac19;
+}
+
+.nav-separator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.nav-link {
+    color: inherit;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #17ac19;
+}
+
+.nav-separator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 60px;
+    margin-bottom: 86px;
+    background-color: #008f02;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+}
+.btn:hover {
+    background-color: #007802;
+    color: #fff;
+}
+.btn:focus {
+    background-color: #17ac19;
+}
+
+.container {
+    max-width: 1104px;
+}
+
+main {
+    flex: 1;
+}
+main img {
+    max-width: 100%;
+}
+main .title {
+    border-bottom: 2px solid #008f02;
+    padding-top: 40px;
+    padding-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+main .title h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #008f02;
+    padding-right: 8px;
+    line-height: 100%;
+}
+main .title h3 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+}
+main .title p {
+    flex: 1 0;
+    text-align: right;
+    font-size: 20px;
+    color: #008f02;
+    font-weight: 700;
+}
+main .question {
+    padding-top: 17px;
+    padding-bottom: 30px;
+}
+main pre {
+    margin: 0;
+}
+main pre span {
+    font-size: 14px;
+    font-weight: 400;
+}
+main .answer {
+    display: flex;
+    align-items: flex-start;
+    padding: 39px 0 12px 0;
+    border-top: 1px solid #c9c9c9;
+}
+main .answer img {
+    max-width: 50%;
+}
+main .answer:last-of-type {
+    border-bottom: 1px solid #c9c9c9;
+}
+main input[type=checkbox]:checked,
+main input[type=checkbox]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+main input[type=checkbox] + label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #777777;
+    background-color: #ffffff;
+}
+main input[type=checkbox]:checked + label:before {
+    border: 1px solid #008f02;
+}
+main input[type=checkbox]:checked + label,
+main input[type=checkbox]:not(:checked) + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 28px;
+    line-height: 20px;
+    cursor: pointer;
+}
+main input[type=checkbox]:checked + label:before,
+main input[type=checkbox]:not(:checked) + label:before {
+    border-radius: 2px;
+}
+main input[type=checkbox]:checked + label:after,
+main input[type=checkbox]:not(:checked) + label::after {
+    content: "";
+    position: absolute;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+main input[type=checkbox]:checked + label:after,
+main input[type=checkbox]:not(:checked) + label:after {
+    left: 3px;
+    bottom: 7px;
+    width: 10px;
+    height: 6px;
+    border-radius: 1px;
+    border-left: 3px solid #008f02;
+    border-bottom: 3px solid #008f02;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+main input[type=checkbox]:not(:checked) + label:after {
+    opacity: 0;
+}
+main input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
+
+footer h3 {
+    text-align: center;
+    padding: 24px 0;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .student > :nth-child(-n+2) {
+        display: none;
+    }
+}
+@media (max-width: 576px) {
+    main .title {
+        padding: 25px 10px;
+    }
+    main .title p,
+    main .title h3 {
+        margin: 0;
+    }
+}

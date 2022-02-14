@@ -10,51 +10,42 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../static/css/user-style.css" th:href ="@{css/user-style.css}"/>
+    <link rel="stylesheet" href="../../static/css/testPage.css" th:href ="@{css/testPage.css}"/>
     <title>User2</title>
   </head>
   <body class="vh-100 d-flex flex-column">
-      <header>
-        <div class="container py-4">
-          <div class="row">
-            <div class="logo d-flex col-4 col-lg-2">
-              <a href="#" th:href="@{/chooseTest}">
-                <img
-                src="../../static/img/logo.png"  th:src="@{img/logo.png}"
-                alt="logo-dev-incubtor"
-                class="logo-img me-2"
-              />
-              </a>
-              <div class="d-flex flex-column">
-                <p>INCUBATOR</p>
-                <p>TESTING</p>
+  <header>
+    <div class="container">
+      <nav class="row navbar navbar-expand-lg">
+        <a class="col-auto navbar-brand" th:href="@{/chooseTest}"><img src="../../static/img/logo.svg" th:src="@{img/logo.svg}"></a>
+        <div class="col d-flex justify-content-end">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="../../static/img/burger-icon.png" th:src="@{img/burger-icon.png}">
+          </button>
+        </div>
+        <div class="col-12 col-lg-10">
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="col">
+              <div class="col navbar-nav justify-content-evenly">
+                <a class="nav-link active" aria-current="page" th:href="@{/chooseTest}">Assessment</a>
+                <a class="nav-link" th:href="@{/personalStatistic}">Statistics</a>
               </div>
             </div>
-
-            <ul
-              class="nav nav-header col-12 col-lg-4 justify-content-center order-lg-1 order-2"
-            >
-              <li><a href="#" th:href="@{/chooseTest}" class="nav-link link-primary">Assessment</a></li>
-              <li>
-                <a href="#" th:href="@{/personalStatistic}" class="nav-link link-secondary">Statistics</a>
-              </li>
-            </ul>
-
-            <div
-              class="student d-flex justify-content-end align-items-center col-8 col-lg-6 order-lg-2 order-1 text-center"
-            >
-              <p>Student</p>
-              <i class="fas fa-circle"></i>
-              <p th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">Dmitriy Fedotov</p>
-              <img class="exit" src="../../static/img/exit.png" alt="exit" th:src="@{img/exit.png}"/>
+            <div class="col-auto">
+              <span>User</span><span class="nav-separator mx-1 mb-1"></span><span
+                    th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Dmitriy Fedotov</span>
+              <a class="ms-2" th:href="@{/logout}">
+                <img src="../../static/img/logout.svg" th:src="@{img/logout.svg}"></a>
             </div>
           </div>
         </div>
-      </header>
+      </nav>
+    </div>
+  </header>
       <main class="flex-grow-1">
         <div class="container">
           <div class="row">
-            <div class="title">
+            <div class="d-flex align-items-baseline title">
               <h1 th:text="${session.topicName}">To start testing choose theme and test</h1>
               <h3 th:text="${session.testName}">Java 2 Fundamentals</h3>
               <p th:text="${session.questionNumber} + '/' + ${session.questionSize}">11/20</p>

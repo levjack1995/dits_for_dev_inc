@@ -1,84 +1,86 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
-    font-family: "Roboto", sans-serif;
-}
-
-p,
-h3,
-h1 {
-    padding: 0;
-    margin: 0;
+    font-family: Roboto;
+    line-height: 150%;
+    box-sizing: border-box;
 }
 
 header {
-    background-color: #012438;
-}
-header p {
+    padding: 12px 0;
     font-size: 24px;
-    font-weight: 500;
-    color: #fff;
-}
-header .logo p {
-    padding: 0;
-    margin: 0;
-    font-size: 17px;
-    font-weight: 900;
-}
-header .logo p:first-child {
-    color: #008f02;
-}
-header .logo p:last-child {
-    color: #fff;
-}
-header .logo .logo-img {
-    width: 40px;
-    height: 50px;
-}
-header .nav-header .nav-link {
-    font-size: 24px;
-    font-weight: 500;
-}
-header .nav-header .link-primary {
-    color: #17ac19;
-}
-header .nav-header .link-secondary {
-    color: #fff;
-}
-header .student p {
-    color: #fff;
-    margin-bottom: 0;
-    padding: 0 16px;
-}
-header img {
-    height: 30px;
-    width: 30px;
-}
-header .fa-circle {
-    font-size: 10px;
-    color: #fff;
-}
-header .exit {
-    cursor: pointer;
+    color: #FAFAFA;
+    background: #012438;
 }
 
-.btn {
-    background-color: #008f02;
+a {
+    text-decoration: none;
+}
+.hidden {
+    display: none!important;
+}
+
+.nav-link {
+    color: inherit;
+}
+
+
+.nav-link:hover, .nav-link.active {
+    color: #17AC19;
+}
+
+.nav-separator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #FFFFFF;
+    border-radius: 50%;
+}
+
+.select-label {
+    font-size: 18px;
+    line-height: 25px;
+    color: #141414;
+}
+
+.select-input {
+    padding: 13px 30px 16px 19px;
+    border: 1px solid #141414;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 25px;
+    color: #141414;
+}
+
+.test-description {
+    margin-top: 38px;
+    padding: 23px 30px;
+    border: 1px solid #141414;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.submit-button {
+    padding: 15px 8px 15px 8px;
     color: #fff;
     font-size: 24px;
     font-weight: 500;
+    background: #008F02;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 10px;
 }
-.btn:hover {
+
+.submit-button:hover {
     background-color: #007802;
     color: #fff;
 }
-.btn:focus {
+
+.submit-button:focus {
     background-color: #17ac19;
 }
 
-.btn-lg {
-    padding: 0.4rem 1rem;
-}
 
 main img {
     max-width: 100%;
@@ -129,8 +131,6 @@ main .answer input[type=checkbox]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
-
-
 main .answer input[type=checkbox]:checked + label:before,
 main .answer input[type=checkbox]:not(:checked) + label:before {
     content: "";

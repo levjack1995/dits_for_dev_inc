@@ -98,7 +98,7 @@ public class TestPageController {
         model.addAttribute("countOfQuestions", questions.size());
         model.addAttribute("percentageComplete", percentOfRightAnswers);
 
-        return "user/resultPage";
+        return "user/resultPageFinal";
     }
 
     private boolean isResultPage(int questionNumber, List<Statistic> statisticList) {
