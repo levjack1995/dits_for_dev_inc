@@ -32,13 +32,12 @@ public class AdminTestController {
     private final TestMapper testMapper;
     private final QuestionMapper questionMapper;
 
-    @ModelAttribute
     @GetMapping("/testBuilder")
     public String getTopics(ModelMap model) {
         List<Topic> topicList = topicService.findAll();
         List<TopicDTO> topicDTOList = topicList.stream().map(this::convertToDTO).collect(Collectors.toList());
-        model.addAttribute("topicList",topicDTOList);
-        return "/admin/test-editor";
+        model.addAttribute("topicLists",topicDTOList);
+        return "admin/test-editor";
     }
 
     @ResponseBody

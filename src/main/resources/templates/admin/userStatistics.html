@@ -28,7 +28,8 @@
                         </div>
                     </div>
                     <div class="col-auto d-flex align-items-center nav-control">
-                        <span>Admin</span><span class="nav-control__separator"></span><span>Maksim Salivanov</span><a class="nav-control__logout" href="#"><img src="../../static/img/logout-icon.svg" th:src="@{img/logout-icon.svg}"></a>
+                        <span>Admin </span><span class="nav-control__separator"></span><span th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">Maksim Salivanov</span><a class="nav-control__logout" href="#" th:href="@{/logout}">
+                        <img src="../../static/img/logout-icon.svg"  th:src="@{img/logout-icon.svg}" ></a>
                     </div>
                 </div>
             </div>

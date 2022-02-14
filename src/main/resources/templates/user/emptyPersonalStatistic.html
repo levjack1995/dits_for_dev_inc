@@ -45,8 +45,8 @@
             >
                 <p>Student</p>
                 <i class="fas fa-circle"></i>
-                <p th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Dmitriy Fedotov</p>
-                <img class="exit" src="../../static/img/exit.png" th:src="@{img/exit.png}" alt="exit"/>
+                <p th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}" >Dmitriy Fedotov</p>  <a class="nav-control__logout" href="#" th:href="@{/logout}">
+                <img src="../../static/img/logout-icon.svg"  th:src="@{img/logout-icon.svg}" ></a>
             </div>
         </div>
     </div>
