@@ -51,7 +51,7 @@ function setUserDataInForm({ userId, firstName, lastName, login, role: { rolesLi
 }
 
 async function getEditUserData(userId) {
-    let url = new URL("http://localhost:8080/editUser");
+    let url = new URL("/editUser");
     let params = {id : userId};
     url.search = new URLSearchParams(params).toString();
     response = await fetch(url);
