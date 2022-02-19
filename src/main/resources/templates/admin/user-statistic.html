@@ -55,7 +55,7 @@
                     th:text = "${user.firstName}+ ' ' + ${user.lastName}">Sashko</option>
                   </select>
                 </label>
-                <a href="#" class="col-auto d-flex align-items-center align-self-end result__link">Test statistics</a>
+                <a th:href="@{/adminStatistic}" class="col-auto d-flex align-items-center align-self-end result__link">Test statistics</a>
               </div>
             </div>
             <div class="col-12 data-container" id="dataContainer">
