@@ -37,6 +37,7 @@ public class AdminTestController {
         List<Topic> topicList = topicService.findAll();
         List<TopicDTO> topicDTOList = topicList.stream().map(this::convertToDTO).collect(Collectors.toList());
         model.addAttribute("topicLists",topicDTOList);
+        model.addAttribute("title","test editor");
         return "admin/test-editor";
     }
 

@@ -19,6 +19,7 @@ public class StatisticController {
     public String personalStatistic(ModelMap model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         UserStatistics userStatistics = statisticService.getUserStatistics(user);
+        model.addAttribute("title","Statistic");
         if (userStatistics.getTestStatisticList().size() > 0){
             model.addAttribute("statisticList",userStatistics.getTestStatisticList());
             return "user/personalStatistic";

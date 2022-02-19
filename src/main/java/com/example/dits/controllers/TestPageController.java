@@ -41,6 +41,7 @@ public class TestPageController {
 
         model.addAttribute("question", questionDescription);
         model.addAttribute("answers", answers);
+        model.addAttribute("title","Test");
         return "user/testPage";
     }
 
@@ -67,7 +68,7 @@ public class TestPageController {
         session.setAttribute("questionNumber" , ++questionNumber);
         model.addAttribute("question",questionDescription);
         model.addAttribute("answers", answers);
-
+        model.addAttribute("title","Test page");
         return "user/testPage";
     }
 
@@ -97,7 +98,7 @@ public class TestPageController {
         model.addAttribute("rightAnswers",countOfRightAnswers);
         model.addAttribute("countOfQuestions", questions.size());
         model.addAttribute("percentageComplete", percentOfRightAnswers);
-
+        model.addAttribute("title","Result");
         return "user/resultPageFinal";
     }
 

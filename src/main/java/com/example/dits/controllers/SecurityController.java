@@ -3,11 +3,13 @@ package com.example.dits.controllers;
 import com.example.dits.entity.User;
 import com.example.dits.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,22 +24,25 @@ public class SecurityController {
 
 
     @GetMapping("/user-editor")
-    public String adminPage(HttpSession session){
+    public String adminPage(HttpSession session,ModelMap model){
         session.setAttribute("user",userService.getUserByLogin(getPrincipal()));
         session.setAttribute("users", userService.findAll());
+        model.addAttribute("title","User editor");
         return "admin/user-editor";
     }
 
 
     @GetMapping("/chooseTest")
-    public String userPage(HttpSession session) {
+    public String userPage(HttpSession session,ModelMap model) {
         User user = userService.getUserByLogin(getPrincipal());
         session.setAttribute("user", user);
+        model.addAttribute("title","Testing");
         return "user/chooseTest";
     }
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(ModelMap model){
+        model.addAttribute("title","Login");
         return "login";}
 
     @GetMapping("/accessDenied")
