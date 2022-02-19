@@ -1,41 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{css/style.css}"/>
-    <title>Personal Statistics</title>
-</head>
-<body>
-<header>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg nav">
-            <a class="col-auto navbar-brand" href="#"><img src="../../static/img/logo.svg" th:src="@{img/logo.svg}"></a>
-            <div class="col d-flex justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <img src="../../static/img/burger-icon.png" th:src="@{img/burger.png}">
-                </button>
-            </div>
-            <div class="col-12 col-lg-10">
-                <div class="collapse navbar-collapse w-100" id="navbarNavAltMarkup">
-                    <div class="col">
-                        <div class="col navbar-nav justify-content-evenly">
-                            <a class="nav-link" aria-current="page" href="#" th:href="@{/chooseTest}" >Assesment</a>
-                            <a class="nav-link  active" href="#" th:href="@{/personalStatistic}" >Statistics</a>
-                        </div>
-                    </div>
-                    <div class="col-auto d-flex align-items-center nav-control">
-                        <span>Student</span><span class="nav-separator"></span></span><span th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}" >Maksim Salivanov</span><a class="nav-control__logout" href="#" th:href="@{/logout}"><img src="../../static/img/logout-icon.svg" th:src="@{img/logout-icon.svg}"></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
 
-<main class="">
+<div th:replace="header"></div>
+
+<main>
     <section class="result">
         <div class="container result__container">
             <div class="row justify-content-center result__head">
@@ -78,15 +46,9 @@
     </section>
 </main>
 
-<footer>
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <h3 class="footer-text">© Dev Incubator</h3>
-        </div>
-    </div>
-</footer>
+<div th:replace="footer"></div>
+<div th:replace="modals"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="../../static/js/script.js" th:src="@{js/script.js}"></script>
 </body>
 </html>

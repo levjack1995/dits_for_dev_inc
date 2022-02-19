@@ -1,0 +1,52 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="icon" type="image/png" th:href="@{/img/favicon.ico}"/>
+    <title>Title</title>
+
+</head>
+<body class="page">
+<header class="p-3 page__header">
+    <div class="container">
+        <div class="row align-items-center justify-content-center justify-content-sm-between g-3">
+            <div class="col-2">
+                <a href="/">
+                    <img th:src="@{/img/logo.svg}" alt="devincubator logo">
+                </a>
+            </div>
+            <div class="col col-auto"> <!--if need login-->
+                <div class="focus header-text">Authentication required</div>
+            </div>
+            <div class="d-none">
+                <div class="col-5 offset-1"> <!--if admin удалить класс d-none-->
+                    <a class="nav-link active" aria-current="page" href="#" >Users</a>
+                    <a class="nav-link" href="#" >Tests</a>
+                    <a class="nav-link" href="#" >Statistic</a>
+                </div>
+                <div class="col-4">
+                    <span>Admin </span><span class="nav-control__separator"></span><span>Maksim Salivanov</span>
+                    <a class="nav-control__logout" href="#"><img th:src="@{img/logout-icon.svg}" ></a>
+                </div>
+            </div>
+            <div class="d-none"><!--if user убрать див d-none-->
+                <div class="col-5 offset-1">
+                    <a class="nav-link" href="#" >Assessment</a>
+                    <a class="nav-link" href="#" >Statistics</a>
+                </div>
+                <div class="col-4">
+                    <span>User </span><span class="nav-control__separator"></span><span>Peter Bogdanov</span>
+                    <a class="nav-control__logout" href="#"><img th:src="@{img/logout-icon.svg}" ></a>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-end d-none"><!--бургер для адаптивного меню-->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <img th:src="@{img/burger-icon.png}">
+                </button>
+            </div>
+
+        </div>
+    </div>
+</header>
