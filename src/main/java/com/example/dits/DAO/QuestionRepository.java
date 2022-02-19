@@ -12,4 +12,5 @@ public interface QuestionRepository extends JpaRepository<Question,Integer> {
     List<Question> getQuestionsByTest_TestId(int id);
     List<Question> getQuestionsByTest(Test test);
     Question getQuestionByQuestionId(int id);
+    void removeQuestionByQuestionId(int id);
 }

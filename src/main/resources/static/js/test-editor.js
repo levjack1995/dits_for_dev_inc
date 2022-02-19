@@ -150,7 +150,7 @@ async function getTestsData(themeId) {
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url);
     result = await response.json();
-    dataByTopicId = result;
+    // dataByTopicId = result;
     return result;
 }
 
@@ -488,9 +488,7 @@ function getNewAnswerField(data) {
   `;
     return answer;
 }
-async function deleteQuestion(id) {
-    console.log('delete question')
-}
+
 
 
 function openQuestionEditForm( { questionId, description, answerDTOList }) {
@@ -528,11 +526,11 @@ function setCurrentQuestionId(target) {
 }
 
 function questionClickHandler(target) {
+    setCurrentQuestionId(target);
     if (target.closest('.question__edit-button')) {
-        setCurrentQuestionId(target);
         editQuestion();
     } else if (target.closest('.question__delete-button')) {
-        deleteQuestion()
+        deleteQuestion();
     }
 }
 
@@ -571,6 +569,20 @@ function clickTestHandler(target) {
     else if (target.closest('.test__delete-button')) {
         deleteTest();
     }
+}
+
+async function deleteQuestion() {
+    const url = new URL("http://localhost:8080/removeQuestion");
+    const params = {questionId : currentQuestionId, topicId : currentThemeId};
+    url.search = new URLSearchParams(params).toString();
+    let response = await fetch(url,  {
+        method: 'DELETE',
+        headers: {
+            "X-CSRF-TOKEN": token
+        }});
+    let result = await response.json();
+    await setNewThemeTests(result);
+    console.log('delete question')
 }
 
 detailList.addEventListener('click', ({ target }) => {
