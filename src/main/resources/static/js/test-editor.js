@@ -133,7 +133,7 @@ addThemeForm.addEventListener('submit', async (event) => {
         const params = {name: newThemeValue};
         url.search = new URLSearchParams(params).toString();
         const response = await fetch(url, {
-            method: '',headers: {
+            method: 'POST',headers: {
                 "X-CSRF-TOKEN": token
             }
         });

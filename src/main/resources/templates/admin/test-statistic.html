@@ -56,7 +56,8 @@
                     <option th:each ="topic : ${topicList}" th:value="${topic.topicId}" th:text="${topic.topicName}">Java 2 Fundamentals</option>
                   </select>
                 </label>
-                <a href="#" class="col-auto d-flex align-items-center align-self-end result__link">User statistics</a>
+                <a th:href="@{/getUserStatistic}" class="col-auto d-flex align-items-center align-self-end result__link">
+                  User statistics</a>
               </div>
             </div>
             <div class="col-12 data-container" id="dataContainer">
