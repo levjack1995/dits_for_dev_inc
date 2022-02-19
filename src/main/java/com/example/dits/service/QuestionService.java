@@ -21,4 +21,5 @@ public interface QuestionService {
     String getDescriptionFromQuestionList(List<Question> questionList, int index);
     void editQuestion(QuestionEditModel questionEditModel);
     void addQuestion(QuestionEditModel questionEditModel);
+    void removeQuestionById(int id);
 }

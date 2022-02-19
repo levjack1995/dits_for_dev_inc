@@ -11,36 +11,33 @@
                 <h3 th:text="${session.testName}">Java 2 Fundamentals</h3>
                 <p th:text="${session.questionNumber} + '/' + ${session.questionSize}">11/20</p>
             </div>
-        </div>
-        <div class="row">
-            <form action="#"
-                  th:action="${session.questionSize == session.questionNumber} ? 'resultPage' : 'nextTestPage'"
-                  th:method="get">
-                <div class="question" th:text="${question}">
-                </div>
-                <div class="answer" th:each="answer, iter : ${answers}">
-                    <input id="answer1" th:id="${answer.answerId}" type="checkbox" name="answeredQuestion"
-                           th:value="${iter.index}">
-                    <label for="answer1" th:for="${answer.answerId}" th:text="${answer.getDescription}"></label>
-                </div>
-                <button
-                        type="submit"
-                        class="btn btn-lg w-100"
-                        th:if="${session.questionSize != session.questionNumber}"
-                >
-                    Next
-                    <img src="../../static/img/arrow.png" th:src="@{img/arrow.png}" alt="Next">
-                </button>
-                <button
-                        type="submit"
-                        class="btn btn-lg w-100"
-                        th:if="${session.questionSize == session.questionNumber}"
-                >
-                    Next
-                    <img src="../../static/img/arrow.png" th:src="@{img/arrow.png}" alt="Next">
-                </button>
-            </form>
-        </div>
+          </div>
+          <div class="row">
+            <form action="#" th:action="${session.questionSize == session.questionNumber} ? 'resultPage' : 'nextTestPage'" th:method="get">
+              <div class="question" th:text="${question}">
+              </div>
+              <div class="answer" th:each="answer, iter : ${answers}">
+                <input id="answer1" th:id="${answer.answerId}" type="checkbox" name = "answeredQuestion" th:value="${iter.index}" >
+                <label for="answer1" th:for="${answer.answerId}" th:text="${answer.getDescription}"></label>
+              </div>
+              <button
+              type="submit"
+              class="btn btn-lg w-100"
+              th:if="${session.questionSize != session.questionNumber}"
+            >
+              Next
+              <img src ="../../static/img/arrow.png" th:src="@{img/arrow.png}" alt="Next">
+            </button>
+              <button
+                      type="submit"
+                      class="btn btn-lg w-100"
+                      th:if="${session.questionSize == session.questionNumber}"
+              >
+                Finish
+                <img src ="../../static/img/arrow.png" th:src="@{img/arrow.png}" alt="Next">
+              </button>
+          </form>
+          </div>
 
     </div>
     </div>

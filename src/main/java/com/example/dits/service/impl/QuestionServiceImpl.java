@@ -72,6 +72,12 @@ public class QuestionServiceImpl implements QuestionService {
         saveAnswers(answerEditModels, question);
     }
 
+    @Transactional
+    @Override
+    public void removeQuestionById(int id) {
+        questionRepository.removeQuestionByQuestionId(id);
+    }
+
     private void saveAnswers(List<AnswerEditModel> answerEditModels, Question question) {
          answerEditModels.stream().forEach(x->answerRepository.save(new Answer(
                 x.getAnswer(),x.isCorrect(),question)));

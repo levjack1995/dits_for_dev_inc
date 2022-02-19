@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -74,9 +71,19 @@ public class UserEditorController {
         return "redirect:/user-editor";
     }
 
-    @PostMapping("/removeUser")
+    @PostMapping(value = "/removeUser",params = "action=delete")
     public String removeUser(@RequestParam int id){
         userService.deleteUserByUserId(id);
+        return "redirect:/user-editor";
+    }
+
+    @PostMapping(value = "/removeUser",params = "action=cancel")
+    public String cancelUser(@RequestParam int id){
+        return "redirect:/user-editor";
+    }
+
+    @GetMapping("/cancel")
+    public String cancel(){
         return "redirect:/user-editor";
     }
 

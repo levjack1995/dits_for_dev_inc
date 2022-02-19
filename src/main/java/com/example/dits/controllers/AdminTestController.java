@@ -123,6 +123,14 @@ public class AdminTestController {
     }
 
     @ResponseBody
+    @DeleteMapping("/removeQuestion")
+    public List<TestWithQuestionsDTO> removeQuestion(@RequestParam int questionId, @RequestParam int topicId){
+        questionService.removeQuestionById(questionId);
+        return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(topicId));
+    }
+
+
+    @ResponseBody
     @PostMapping("/editQuestionAnswers")
     public List<TestWithQuestionsDTO> editQuestionAnswers(@RequestBody QuestionEditModel questionModel){
         questionService.editQuestion(questionModel);

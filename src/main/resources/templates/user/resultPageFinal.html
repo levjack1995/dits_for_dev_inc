@@ -19,8 +19,8 @@
             <h2>
                 (<span th:text="${rightAnswers}">55</span>/<span th:text="${countOfQuestions}">75</span>)
             </h2>
-            <div class="count-answers"><p>Correct answers</p><p>55</p></div>
-            <div class="count-answers"><p>Wrong answers</p><p>20</p></div>
+            <div class="count-answers"><p>Correct answers</p><p th:text="${rightAnswers}">55</p></div>
+            <div class="count-answers"><p>Wrong answers</p><p th:text="${countOfQuestions} - ${rightAnswers}">20</p></div>
         </div>
         <button onclick="location.href='/personalStatistic'"
                 type="submit"
