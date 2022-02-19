@@ -5,9 +5,7 @@
             <div class="container">
                 <div class="row createUserModal__header">
                     <h5 class="col modal-title offset-1">Create new user</h5>
-                    <button type="button" class="col-auto" data-bs-dismiss="modal" aria-label="Close">
-                        <img th:src="@{img/close-icon.svg}" alt="">
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form th:action="@{/addUser}" class="createUserModal__body" method="post">
                     <label class="row createUserModal__label">

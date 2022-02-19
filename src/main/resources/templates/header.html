@@ -1,10 +1,13 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
     <link rel="icon" type="image/png" th:href="@{/img/favicon.ico}"/>
     <title th:text="${title}"></title>
 
@@ -18,19 +21,19 @@
                     <img th:src="@{/img/logo.svg}" alt="devincubator logo">
                 </a>
             </div>
-            <div class="col col-auto" th:if="${session.user == null}"> <!--if need login-->
+            <div class="col col-auto" th:if="${session.user == null}">
                 <div class="focus header-text">Authentication required</div>
             </div>
             <th:block th:if="${session.user != null}" th:switch="${session.user.getRole().getRoleName()}" >
                 <th:block th:case="'ROLE_ADMIN'">
-                <div class="col-5 offset-1" > <!--if admin удалить класс d-none-->
+                <div class="col-5 offset-1" >
                     <a th:class="${title == 'User editor'} ? 'nav-link active' : 'nav-link'" aria-current="page" href="#" th:href="@{/user-editor}" >Users</a>
                     <a th:class="${title == 'test editor'} ? 'nav-link active' : 'nav-link'" href="#" th:href="@{/testBuilder}" >Tests</a>
                     <a th:class="${title == 'Statistic' } ? 'nav-link active' : 'nav-link'" href="#" th:href="@{/adminStatistic}" >Statistic</a>
                 </div>
-                <div class="col-4">
-                    <span>Admin </span><span class="nav-control__separator"></span><span>Maksim Salivanov</span>
-                    <a class="nav-control__logout" href="#"><img th:src="@{img/logout-icon.svg}" ></a>
+                <div class="col-4 text-end">
+                    <span>Admin </span><span class="nav-control__separator"></span><span th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">Admin Name</span>
+                    <a class="nav-control__logout" href="#" th:href="@{/logout}"><img th:src="@{img/logout-icon.svg}" ></a>
                 </div>
             </th:block>
                 <th:block th:case="'ROLE_USER'">
@@ -38,8 +41,8 @@
                             <a th:class="${title == 'Testing' } ? 'nav-link active' : 'nav-link'" th:href="@{/chooseTest}" >Assessment</a>
                             <a th:class="${title == 'Statistic' } ? 'nav-link active' : 'nav-link'" href="#" th:href="@{/personalStatistic}" >Statistics</a>
                         </div>
-                        <div class="col-4">
-                            <span>User </span><span class="nav-control__separator"></span><span>Peter Bogdanov</span>
+                        <div class="col-4 text-end">
+                            <span>User </span><span class="nav-control__separator"></span><span th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">User Name</span>
                             <a class="nav-control__logout" href="#" th:href="@{/logout}" ><img th:src="@{img/logout-icon.svg}" ></a>
                         </div>
                 </th:block>

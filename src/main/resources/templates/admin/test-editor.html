@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <div th:replace ="header"></div>
 
 <main>
@@ -10,8 +7,8 @@
                 <div class="col-3 theme-sidebar">
                     <div class="d-flex sidebar-add-theme">
                         <span class="sidebar-add-theme__text">Themes</span>
-                        <button class="sidebar-add-theme__button" id="activateAddThemeButton"><img class="button"
-                                src="../../static/img/add-icon.svg" alt="" th:src="@{img/add-icon.svg}"></button>
+                        <button class="sidebar-add-theme__button" id="activateAddThemeButton">
+                            <img class="icon-btn" src="../../static/img/add-icon.svg" alt="" th:src="@{img/add-icon.svg}"></button>
                     </div>
                     <form class="d-flex py-3 add-theme-form" id="addThemeForm" action="/addTopic" method="post">
                         <input class="col-auto add-theme-form__input" type="text" required>
@@ -27,11 +24,11 @@
                                  data-th-data-id="${topic.topicId}">
                                 <input class="col theme-item__input" th:value="${topic.topicName}" readonly>
                                 <span class="col-auto theme-item__control">
-                      <button class="theme-item__submit"><img src="../../static/img/submit-icon.svg"
+                      <button class="theme-item__submit icon-btn"><img src="../../static/img/submit-icon.svg"
                                                               th:src="@{img/submit-icon.svg}" alt=""></button>
-                      <button class="theme-item__edit"><img src="../../static/img/edit-icon.svg"
+                      <button class="theme-item__edit icon-btn"><img src="../../static/img/edit-icon.svg"
                                                             th:src="@{img/edit-icon.svg}" alt=""></button>
-                      <button class="theme-item__delete">
+                      <button class="theme-item__delete icon-btn">
                           <img src="../../static/img/delete-icon.svg" th:src="@{img/delete-icon.svg}" alt=""></button>
                     </span>
                             </div>

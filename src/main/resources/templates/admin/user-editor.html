@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-
 <div th:replace="header"></div>
 
 <main>
     <div class="users container">
       <div class="row align-items-center users__top">
         <h2 class="col-auto users__title">Users list</h2>
-        <button class="col-auto users__add-button add-button button" data-bs-toggle="modal" data-bs-target="#createUserModal" id="openCreateModalButton">
+        <button class="col-auto users__add-button add-button" data-bs-toggle="modal" data-bs-target="#createUserModal" id="openCreateModalButton">
           <img th:src ="@{img/add-icon.svg}" alt="add user icon">
           <span>Add new user</span>
         </button>
@@ -17,10 +14,10 @@
             <span class="col-3 user-info__name" th:text="${user.firstName} + ' ' + ${user.lastName}">Maria Zapalina</span>
             <a href="#" class="col user-info__email" th:text="${user.login}">zapalina@gmail.com</a>
             <div class="col-auto user-info__control">
-              <button class="user-info__button user-info__button_edit  button">
+              <button class="icon-btn user-info__button_edit">
                 <img th:src="@{img/edit-icon.svg}" alt="edit user">
               </button>
-              <button class="user-info__button user-info__button_delete button" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
+              <button class="icon-btn user-info__button_delete" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
                 <img th:src ="@{img/delete-icon.svg}" alt="delete user">
               </button>
             </div>

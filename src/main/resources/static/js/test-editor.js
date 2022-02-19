@@ -79,10 +79,10 @@ function getQuestionHtml({ name, description, testId, questions }) {
       ${
         questions.reduce( (accum, { questionId, description }, index) => {
             return accum += (`
-            <div class="row align-items-center question__item" data-id=${questionId}>
-              <span class="col-auto">${index + 1}</span>
-              <textarea class="col form-input" type="text" readonly="">${description}</textarea>
-              <div class="col-auto question-control">
+            <div class="row align-items-center question__item mb-2" data-id=${questionId}>
+              <span class="col-1">${index + 1}</span>
+              <textarea class="col-9 form-input" type="text" readonly="">${description}</textarea>
+              <div class="question-control col-2">
                 <button class='question__edit-button' data-bs-toggle="modal" data-bs-target="#questionModal"><img src="./img/edit-icon.svg" alt="Edit test question"></button>
                 <button class='question__delete-button'><img src="./img/delete-icon.svg" alt="Delete test question"></button>
               </div>
