@@ -3,6 +3,7 @@
 body {
     font-family: Roboto, sans-serif;
     min-height: 100vh;
+    font-size: 18px;
 }
 
 header {
@@ -176,7 +177,7 @@ button {
     border: 1px solid #C4C4C4;
     border-radius: 10px;
     line-height: 18px;
-    color: #777777;
+    color: #ddd;
 }
 
 .min-width-780{
@@ -287,7 +288,7 @@ button {
     display: none;
     width: 165px;
     background: #FFFFFF;
-    border: 1px solid #777777;
+    border: 1px solid #ddd;
     box-sizing: border-box;
     border-radius: 10px;
 }
@@ -496,10 +497,6 @@ button {
     gap: 10px 0;
 }
 
-.answer:not(:first-child) {
-    margin-top: 20px;
-}
-
 .answer__title {
     font-size: 20px;
     line-height: 36px;
@@ -515,6 +512,12 @@ button {
 
 .modal-dialog {
     max-width: 700px;
+    margin: 10% auto;
+}
+
+.modal-dialog-wide {
+    max-width: 1110px;
+    margin-top: 50px;
 }
 
 .modal-content {
@@ -535,7 +538,6 @@ button {
 }
 
 .form-button {
-    margin-top: 33px;
     padding: 9px;
     background: #008F02;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
@@ -548,6 +550,14 @@ button {
 
 .hidden{
     visibility: hidden;
+}
+
+.question__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    color: #008F02;
+    margin-bottom: 18px;
 }
 
 .sort-button {
@@ -573,10 +583,6 @@ button {
 button {
     background: none;
     border: none;
-}
-
-.result {
-    margin-top: 77px;
 }
 
 .result__container {
@@ -656,7 +662,7 @@ button {
     border: 1px solid #C4C4C4;
     border-radius: 10px;
     line-height: 18px;
-    color: #777777;
+    color: #ddd;
 }
 
 .data-container {
@@ -714,9 +720,6 @@ h1 {
     background-color: #17ac19;
 }
 
-main img {
-    max-width: 100%;
-}
 main .title {
     border-bottom: 2px solid #008f02;
     padding-top: 40px;
@@ -737,91 +740,23 @@ main .title h3 {
     font-weight: 400;
     color: #000;
 }
-main .title p {
-    flex: 1 0;
-    text-align: right;
-    font-size: 20px;
-    color: #008f02;
-    font-weight: 700;
-}
-main .question {
+
+.question {
     padding-top: 17px;
     padding-bottom: 30px;
 }
-main pre {
-    margin: 0;
-}
-main pre span {
-    font-size: 14px;
-    font-weight: 400;
-}
-main .answer {
-    display: flex;
-    align-items: flex-start;
-    padding: 39px 0 12px 0;
-    border-top: 1px solid #c9c9c9;
-}
-main .answer img {
-    max-width: 50%;
-}
-main .answer:last-of-type {
+
+.answer {
+    padding: 20px 0;
     border-bottom: 1px solid #c9c9c9;
 }
-main input[type=checkbox]:checked,
-main input[type=checkbox]:not(:checked) {
-    position: absolute;
-    left: -9999px;
+.answer img {
+    max-width: 50%;
 }
-main input[type=checkbox] + label:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #777777;
-    background-color: #ffffff;
-}
-main input[type=checkbox]:checked + label:before {
-    border: 1px solid #008f02;
-}
-main input[type=checkbox]:checked + label,
-main input[type=checkbox]:not(:checked) + label {
-    display: inline-block;
-    position: relative;
-    padding-left: 28px;
-    line-height: 20px;
-    cursor: pointer;
-}
-main input[type=checkbox]:checked + label:before,
-main input[type=checkbox]:not(:checked) + label:before {
-    border-radius: 2px;
-}
-main input[type=checkbox]:checked + label:after,
-main input[type=checkbox]:not(:checked) + label::after {
-    content: "";
-    position: absolute;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-main input[type=checkbox]:checked + label:after,
-main input[type=checkbox]:not(:checked) + label:after {
-    left: 3px;
-    bottom: 7px;
-    width: 10px;
-    height: 6px;
-    border-radius: 1px;
-    border-left: 3px solid #008f02;
-    border-bottom: 3px solid #008f02;
-    transform: rotate(-45deg);
-}
-main input[type=checkbox]:not(:checked) + label:after {
-    opacity: 0;
-}
-main input[type=checkbox]:checked + label:after {
-    opacity: 1;
+
+.add-answer-button {
+    border: 1px solid gray;
+    border-radius: 10px;
 }
 
 footer h3 {
@@ -927,7 +862,7 @@ button {
 
 .add-button {
     padding: 12px 14px 11px 14px;
-    border: 1px solid #777777;
+    border: 1px solid #ddd;
     display: flex;
     gap: 0 17px;
     border-radius: 10px;
@@ -985,10 +920,6 @@ button {
 
 .createUserModal__body {
     margin-top: 40px;
-}
-
-.createUserModal .modal-dialog {
-    max-width: 700px;
 }
 
 .createUserModal__label:not(:first-child) {
@@ -1060,18 +991,8 @@ button {
 .form-input {
     padding: 7px 14px;
     background: #FFFFFF;
-    border: 1px solid #777777;
+    border: 1px solid #ddd;
     box-sizing: border-box;
-    border-radius: 10px;
-}
-
-.form-button {
-    font-size: 24px;
-    line-height: 36px;
-    text-align: center;
-    color: #FAFAFA;
-    background: #008F02;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
 }
 
@@ -1102,10 +1023,6 @@ button {
 button {
     background: none;
     border: none;
-}
-
-.result {
-    margin-top: 77px;
 }
 
 .result__container {
@@ -1197,7 +1114,7 @@ button {
     border: 1px solid #C4C4C4;
     border-radius: 10px;
     line-height: 18px;
-    color: #777777;
+    color: #ddd;
 }
 
 .page__header {
@@ -1261,16 +1178,6 @@ button {
 
 .password-control.open {
     background: url('../img/eye-open-icon.svg') no-repeat center;
-}
-
-.form-button {
-    margin-top: 60px;
-    font-size: 24px;
-    line-height: 150%;
-    background: #008F02;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    color: #FAFAFA;
 }
 
 .btn-close {
@@ -1408,10 +1315,6 @@ main .title p {
 main .question {
     padding-bottom: 30px;
 }
-main .answer {
-    padding: 35px 0 15px 0;
-    border-top: 1px solid #c9c9c9;
-}
 main .answer img {
     max-width: 50%;
 }
@@ -1475,11 +1378,6 @@ main .form-select:focus {
     box-shadow: 0 0 0 0.25rem rgba(1, 36, 56, 0.25);
 }
 
-.answer:last-of-type {
-    border-bottom: 1px solid #c9c9c9;
-    margin-bottom: 70px;
-}
-
 select option {
     font-size: 18px;
     font-weight: 400;
@@ -1487,7 +1385,6 @@ select option {
 
 .result {
     text-align: center;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     padding: 0 0 30px 0;
     margin: 20px 0 0 0;

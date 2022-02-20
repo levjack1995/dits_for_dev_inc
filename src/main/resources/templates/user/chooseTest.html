@@ -7,7 +7,7 @@
         </div>
         <form th:action="@{/goTest}" class="row gy-2" method="get">
             <div class="col-12 col-lg-4">
-                <p class="select-label">Select theme</p>
+                <p class="select-label mb-2">Select theme</p>
                 <select class="form-select select-input" id="testThemeSelect" name="theme" aria-label="Default select example">
                     <option selected disabled>Open this select menu</option>
                     <option th:each="topic : ${@topicServiceImpl.findAll()}" th:text="${topic.getName}">One</option>

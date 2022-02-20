@@ -472,18 +472,17 @@ function openQuestionCreateForm() {
 
 function getNewAnswerField(data) {
     const nextAnswerNumber = questionFormAnswerField.childNodes.length;
-    const answer = document.createElement('label');
-    answer.className = 'answer';
+    const answer = document.createElement('div');
+    answer.className = 'answer w-100';
     const description = data ? data.description : '';
     const correct = data ? data.correct : false;
     answer.innerHTML = `
-    <div class="row align-items-center">
-      <div class="col-auto answer__title">Answer ${nextAnswerNumber + 1}</div>
-      <input class="col-auto" name="correct" type="checkbox" ${correct ? 'checked' : ''}>
+    <div class="row">
+      <label class="col-12 answer__title">Answer ${nextAnswerNumber + 1} <input class="answer__correct" name="correct" type="checkbox" ${correct ? 'checked' : ''}></label>
     </div>
-    <div class="row align-items-center">
-      <input class="col form-input" name="answer" type="text" value="${description}" placeholder="write answer"  required>
-      <button class="col-auto answer__delete-button" type="button"><img src="./img/delete-icon.svg"></button>
+    <div class="row">
+        <input class="col-11 form-input" name="answer" type="text" value="${description}" placeholder="write answer"  required>
+        <button class="col-1 answer__delete-button" type="button"><img src="./img/delete-icon.svg"></button>
     </div>
   `;
     return answer;
