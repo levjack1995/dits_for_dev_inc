@@ -392,6 +392,7 @@ const createNewTestButton = document.getElementById('createNewTestButton');
 
 const questionModalCloseButton = document.getElementById('questionModalCloseButton');
 
+
 async function addNewQuestion() {
     let data = null;
     let url = null;
@@ -403,6 +404,15 @@ async function addNewQuestion() {
             answer: answer.querySelector('[name=answer]').value,
         }
     });
+    if (answersData.filter((el) => el.correct === true).length < 1)
+    {
+        alert('You should choose Correct Answer')
+        return;
+    }
+    else if (answersData.length < 2){
+        alert('answer is less than 2')
+        return;
+    }
 
     if (isNewQuestion) {
         url = '/addQuestion'
@@ -422,6 +432,7 @@ async function addNewQuestion() {
         }
     }
     isNewQuestion = false;
+
     const response = await fetch(url, {
         method: 'POST',
         headers: {
