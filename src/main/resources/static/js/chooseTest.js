@@ -1,76 +1,24 @@
-// $().ready(function () {
-//     $("#themes").change(function (event) {
-//         $.ajax({
-//             url:"/chooseTheme",
-//             type: "GET",
-//             dataType: "json",
-//             data: {topic: $(event.target).val()},
-//         })
-//             .done(function (data){
-//                 setTests(data)
-//             })
-//             .fail(function (xhr, status, error){
-//                 alert(xhr.responseText + '|\n' + status + '|\n' + error);
-//             });
-//     });
-//     $("#tests").change(function (event) {
-//         $.ajax({
-//             url:"/getDescription",
-//             type: "GET",
-//             dataType: "json",
-//             data: {test: $(event.target).val()},
-//         })
-//             .done(function (dataDescription){
-//                 setDescription(dataDescription)
-//             })
-//             .fail(function (xhr, status, error){
-//                 alert(xhr.responseText + '|\n' + status + '|\n' + error);
-//             });
-//     });
-// });
-//
-// let setTests = function(data) {
-//     $('#tests').find('option').remove();
-//     $('#tests').append(new Option("Выберите тест"))
-//     $.each(data, function (index, value){
-//         $('#tests').append(new Option(value, value));
-//     }
-//     );
-//     $('#description').find('div').remove();
-// };
-// let setDescription = function(dataDescription) {
-//     $('#description').find('div').remove();
-//     $.each(dataDescription, function (index, value){
-//         let div = document.createElement('div');
-//         div.innerHTML = value;
-//         $('#description').append(div);
-//     });
-// };
-// const sort = document.querySelector('.sort');
-//
-// sort.addEventListener('click', () => sort.classList.toggle('down'));
-
-
 const testThemeSelect = document.getElementById('testThemeSelect');
 const testSelect = document.getElementById('testSelect');
 const testDescription = document.getElementById('testDescription');
 const startTestButton = document.getElementById('startTestButton');
 let testsData = null;
+const baseUrl = 'http://localhost:8080';
 
 testThemeSelect.addEventListener('change', ({ target }) => {
     const value = target.querySelector('option:checked').textContent;
     updateCurrentThemeData(value);
 })
 
+// testThemeSelect.addEventListener()
+
 async function updateCurrentThemeData(themeName) {
     const formData = new FormData();
     formData.append('theme :', themeName);
-    let url = new URL("http://localhost:8080/chooseTheme");
+    let url = new URL(baseUrl + "/chooseTheme");
     let params = {theme : themeName};
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url);
-
-
     const result = await response.json();
     updateTestsData(result);
 }
@@ -92,7 +40,7 @@ testSelect.addEventListener('change', updateDescription)
 function updateDescription() {
     const testOptionIndex = testSelect.querySelector('option:checked').dataset.index;
     testDescription.innerHTML = testsData[Number(testOptionIndex)].description;
-    testDescription.closest('div').classList.remove('hidden');
+    // testDescription.closest('div').classList.remove('hidden');
 }
 
 //
