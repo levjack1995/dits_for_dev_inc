@@ -5,12 +5,20 @@ const startTestButton = document.getElementById('startTestButton');
 let testsData = null;
 const baseUrl = 'http://localhost:8080';
 
-testThemeSelect.addEventListener('change', ({ target }) => {
+const changeListener = ({ target }) => {
     const value = target.querySelector('option:checked').textContent;
+    console.log(value);
     updateCurrentThemeData(value);
-})
+};
 
-// testThemeSelect.addEventListener()
+const loadListener = ({}) => {
+    const value = testThemeSelect.querySelector('option:checked').textContent;
+    console.log(value);
+    updateCurrentThemeData(value);
+};
+
+document.addEventListener('DOMContentLoaded', loadListener);
+testThemeSelect.addEventListener('change', changeListener);
 
 async function updateCurrentThemeData(themeName) {
     const formData = new FormData();
