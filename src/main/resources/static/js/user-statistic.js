@@ -23,6 +23,7 @@ const resultTableBody = document.getElementById('resultTableBody');
 const dataContainer = document.getElementById('dataContainer');
 const sortTestsButton = document.getElementById('sortTestsButton');
 let isReverseTest = false;
+const baseUrl = "http:localhost:8080";
 
 function updateResult(data) {
   if (!data) { 
@@ -53,7 +54,7 @@ themeSelect.addEventListener('change', async ({ target }) => {
   dataContainer.classList.remove('active');
   try {
     const userId = target.value;
-    const url = new URL("http:localhost:8080/getUserTestsStatistic");
+    const url = new URL(baseUrl + "/getUserTestsStatistic");
     const params = {id: userId};
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url);
