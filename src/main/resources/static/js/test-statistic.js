@@ -39,28 +39,26 @@ function updateResult(data) {
         <div class="row" data-bs-toggle="collapse" href='#test${index}'>
           <div class="col-9 text-start">${testName}</div>
           <div class="col-3 text-center d-flex justify-content-between">
-              <div class="text-center justify-content-center grid__item">${count}</div>
-              <div class="text-center justify-content-center grid__item">${avgProc}%</div>
+              <div style="width: 50px;">${count}</div>
+              <div style="width: 100px;">${avgProc}%</div>
           </div> 
         </div>
         <div class="collapse" id='test${index}'>
           <div class="question">
-            <div class="mt-3 ps-3 question__head-row">
-              <span class="question__head-text">Question name</span>
-              <span></span>
-              <div class="text-center question__head-text">
+            <div class="row">
+              <span class="col-9 text-start question__head-text">Questions</span>
+              <div class="col-2 offset-1 text-end question__head-text">
                 <span>Correct</span>
                 <button class="sort-button"><img src="./img/sort-icon.svg"></button>
               </div>
             </div>
-            <div class="question__list container">
+            <div class="question__list">
               ${questionStatistics.map(({questionDescription, avgProc}, index) => {
             return `
                   <div class="mt-3 question__item row">
-                    <span class="col-1">${index + 1}.</span>
-                    <textarea class="col-9 question__name" rows="1" readonly>
+                    <textarea class="col-11 question__name textrea_autoheight" readonly>
                     ${questionDescription}</textarea>
-                    <span class="text-center col-2">${avgProc}%</span>
+                    <span class="text-center col-1">${avgProc}%</span>
                   </div>
                 `
         }).join('')}
@@ -124,4 +122,5 @@ dataContainer.addEventListener('click', (event) => {
         questionClickHandler(target)
     }
 })
+
   

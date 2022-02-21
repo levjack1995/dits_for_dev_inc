@@ -36,12 +36,12 @@ function updateResult(data) {
   resultTableBody.innerHTML = `
     ${reversedData.map( ({testName, count, avgProc, questionStatistics}, index) => {
       return `
-      <div class="py-3 col-12 test" data-id="${index}">
-        <div class="grid" data-bs-toggle="collapse" href='#test${index}'>
-          <div class="grid__item">${index + 1}</div>
-          <div class="grid__item">${testName}</div>
-          <div class="text-center justify-content-center grid__item">${count}</div>
-          <div class="text-center justify-content-center grid__item">${avgProc}%</div>
+      <div class="py-3 container test" data-id="${index}">
+        <div class="row" data-bs-toggle="collapse" href='#test${index}'>
+          <div class="col-1 text-start">${index + 1}</div>
+          <div class="col-7 text-start">${testName}</div>
+          <div class="col-2">${count}</div>
+          <div class="col-2">${avgProc}%</div>
         </div>
       </div>
       `
