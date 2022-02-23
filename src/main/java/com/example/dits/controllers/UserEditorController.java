@@ -39,7 +39,13 @@ public class UserEditorController {
                            @RequestParam String password, @RequestParam int id){
 
         User user = userService.getUserByUserId(id);
-        Role role = roleService.getRoleByRoleName(roleName);
+        Role role;
+        if (roleName.equals("user")){
+            role = roleService.getRoleByRoleName("ROLE_USER");
+        }else {
+            role = roleService.getRoleByRoleName("ROLE_ADMIN");
+        }
+
 
         if (!password.isEmpty()) {
             userService.updateUserWithPassword(user,id,firstName,lastName,role

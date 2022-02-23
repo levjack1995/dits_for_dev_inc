@@ -1,4 +1,4 @@
-<div th:replace="header"></div>
+<div th:replace="/fragments/header"></div>
 
 <main>
     <section class="result">
@@ -9,13 +9,14 @@
             <div class="result__body row">
                 <div class="data-container active" id="dataContainer">
                     <div class="container my-4">
-                        <div class="row" >
-                            <div class="col-1 text-start" >#</div>
-                            <div class="col-7 text-start" >Name of the test</div>
-                            <div class="col-2" >Pass</div>
+                        <div class="row">
+                            <div class="col-1 text-start">#</div>
+                            <div class="col-7 text-start">Name of the test</div>
+                            <div class="col-2">Pass</div>
                             <div class="col-2">
                                 <span>Average</span>
-                                <button class="sort-button" id="sortTestsButton"><img src="../../static/img/sort-icon.svg" th:src="@{/img/sort-icon.svg}"></button>
+                                <button class="sort-button" id="sortTestsButton"><img
+                                        src="../../static/img/sort-icon.svg" th:src="@{/img/sort-icon.svg}"></button>
                             </div>
                         </div>
                     </div>
@@ -35,8 +36,8 @@
     </section>
 </main>
 
-<div th:replace="footer"></div>
-<div th:replace="modals"></div>
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/modals"></div>
 
 <script src="../../static/js/script.js" th:src="@{/js/script.js}"></script>
 </body>

@@ -1,9 +1,10 @@
-<div th:replace="header"></div>
+<div th:replace="/fragments/header"></div>
 
 <main>
     <div class="container">
         <div class="title">
-            <h1 class="start" th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Ivanov Andrey</h1>
+            <h1 class="start" th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Ivanov
+                Andrey</h1>
         </div>
 
         <h3 class="py-3">You haven't finished any test yet</h3>
@@ -17,8 +18,8 @@
     </div>
 </main>
 
-<div th:replace="footer"></div>
-<div th:replace="modals"></div>
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/modals"></div>
 
 </body>
 </html>

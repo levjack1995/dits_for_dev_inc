@@ -18,9 +18,9 @@
         <div class="row align-items-center justify-content-center justify-content-sm-between g-3">
             <div class="col-2" th:if="${session.user != null}" th:switch="${session.user.getRole().getRoleName()}">
                 <a th:case="'ROLE_USER'" href="/" th:href="@{/user/chooseTest}"> <img th:src="@{/img/logo.svg}"
-                                                                                 alt="devincubator logo"> </a>
+                                                                                      alt="devincubator logo"> </a>
                 <a th:case="'ROLE_ADMIN'" href="/" th:href="@{/admin/user-editor}"> <img th:src="@{/img/logo.svg}"
-                                                                                   alt="devincubator logo"> </a>
+                                                                                         alt="devincubator logo"> </a>
             </div>
 
             <div class="col-2" th:if="${session.user == null}">
@@ -37,7 +37,8 @@
                            href="#" th:href="@{/admin/user-editor}">Users</a>
                         <a th:class="${title == 'test editor'} ? 'nav-link active' : 'nav-link'" href="#"
                            th:href="@{/admin/testBuilder}">Tests</a>
-                        <a th:class="${title == 'Statistic' || title == 'User statistic'} ? 'nav-link active' : 'nav-link'" href="#"
+                        <a th:class="${title == 'Statistic' || title == 'User statistic'} ? 'nav-link active' : 'nav-link'"
+                           href="#"
                            th:href="@{/admin/adminStatistic}">Statistic</a>
                     </div>
                     <div class="col-4 text-end">
@@ -49,8 +50,10 @@
                 </th:block>
                 <th:block th:case="'ROLE_USER'">
                     <div class="col-5 offset-1">
-                        <a th:class="${title == 'Testing' } ? 'nav-link active' : 'nav-link'" th:href="@{/user/chooseTest}">Assessment</a>
-                        <a th:class="${title == 'Statistic' || title == 'Result'} ? 'nav-link active' : 'nav-link'" href="#"
+                        <a th:class="${title == 'Testing' } ? 'nav-link active' : 'nav-link'"
+                           th:href="@{/user/chooseTest}">Assessment</a>
+                        <a th:class="${title == 'Statistic' || title == 'Result'} ? 'nav-link active' : 'nav-link'"
+                           href="#"
                            th:href="@{/user/personalStatistic}">Statistics</a>
                     </div>
                     <div class="col-4 text-end">
