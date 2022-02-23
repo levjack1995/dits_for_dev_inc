@@ -23,7 +23,7 @@
               th:if="${session.questionSize != session.questionNumber}"
             >
               Next
-              <img src ="../../static/img/arrow.png" th:src="@{img/arrow.png}" alt="Next">
+              <img src ="../../static/img/arrow.png" th:src="@{/img/arrow.png}" alt="Next">
             </button>
               <button
                       type="submit"
@@ -31,7 +31,7 @@
                       th:if="${session.questionSize == session.questionNumber}"
               >
                 Finish
-                <img src ="../../static/img/arrow.png" th:src="@{img/arrow.png}" alt="Next">
+                <img src ="../../static/img/arrow.png" th:src="@{/img/arrow.png}" alt="Next">
               </button>
           </form>
           </div>

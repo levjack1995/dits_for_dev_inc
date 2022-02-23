@@ -46,12 +46,12 @@ function setUserDataInForm({ userId, firstName, lastName, login, role: { rolesLi
     }, '');
     modalUserLogin.value = login;
     modalUserPasswordInput.removeAttribute('required');
-    createUserModal.setAttribute('action', '/updateUser');
+    createUserModal.setAttribute('action', '/admin/updateUser');
     openCreateModalButton.click();
 }
 
 async function getEditUserData(userId) {
-    let url = new URL("http://localhost:8080/editUser");
+    let url = new URL("http://localhost:8080/admin/editUser");
     let params = {id : userId};
     url.search = new URLSearchParams(params).toString();
     response = await fetch(url);
@@ -82,7 +82,7 @@ function refreshUserModal() {
     modalUserLogin.value = '';
     hiddenInput.remove();
     modalUserPasswordInput.setAttribute('required', '');
-    createUserModal.setAttribute('action', '/addUser');
+    createUserModal.setAttribute('action', '/admin/addUser');
     editMode = false;
 }
 

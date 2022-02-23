@@ -5,7 +5,7 @@
         <div class="title">
             <h1 class="start">To start testing choose theme and test</h1>
         </div>
-        <form th:action="@{/goTest}" class="row gy-2" method="get">
+        <form th:action="@{/user/goTest}" class="row gy-2" method="get">
             <div class="col-12 col-lg-4">
                 <p class="select-label mb-2">Select theme</p>
                 <select class="form-select select-input" id="testThemeSelect" name="theme" aria-label="Default select example">
@@ -41,7 +41,7 @@
 <div th:replace="footer"></div>
 <div th:replace="modals"></div>
 
-<script th:src="@{js/chooseTest.js}"></script>
+<script th:src="@{/js/chooseTest.js}"></script>
 
 </body>
 </html>

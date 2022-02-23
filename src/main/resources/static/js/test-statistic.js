@@ -49,7 +49,7 @@ function updateResult(data) {
               <span class="col-9 text-start question__head-text">Questions</span>
               <div class="col-2 offset-1 text-end question__head-text">
                 <span>Correct</span>
-                <button class="sort-button"><img src="./img/sort-icon.svg"></button>
+                <button class="sort-button"><img src="/img/sort-icon.svg"></button>
               </div>
             </div>
             <div class="question__list">
@@ -75,7 +75,7 @@ themeSelect.addEventListener('change', async ({target}) => {
     dataContainer.classList.remove('active');
     try {
         const themeId = target.value;
-        const url = new URL("http://localhost:8080/getTestsStatistic");
+        const url = new URL("http://localhost:8080/admin/getTestsStatistic");
         const params = {id: themeId};
         url.search = new URLSearchParams(params).toString();
         const response = await fetch(url);

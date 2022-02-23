@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 public class AdminTestController {
     private final ModelMapper modelMapper;
     private final TopicService topicService;

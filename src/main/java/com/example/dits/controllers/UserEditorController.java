@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 public class UserEditorController {
 
     private final PasswordEncoder passwordEncoder;
@@ -43,12 +44,12 @@ public class UserEditorController {
         if (!password.isEmpty()) {
             userService.updateUserWithPassword(user,id,firstName,lastName,role
             ,login,password);
-            return "redirect:/user-editor";
+            return "redirect:/admin/user-editor";
         }
 
         userService.updateUser(user, id,firstName, lastName, role, login);
 
-        return "redirect:/user-editor";
+        return "redirect:/admin/user-editor";
 
     }
 
@@ -68,23 +69,23 @@ public class UserEditorController {
         User user = new User(firstName, lastName, login, role);
         userService.saveUserWithEncodedPassword(user,password);
 
-        return "redirect:/user-editor";
+        return "redirect:/admin/user-editor";
     }
 
     @PostMapping(value = "/removeUser",params = "action=delete")
     public String removeUser(@RequestParam int id){
         userService.deleteUserByUserId(id);
-        return "redirect:/user-editor";
+        return "redirect:/admin/user-editor";
     }
 
     @PostMapping(value = "/removeUser",params = "action=cancel")
     public String cancelUser(@RequestParam int id){
-        return "redirect:/user-editor";
+        return "redirect:/admin/user-editor";
     }
 
     @GetMapping("/cancel")
     public String cancel(){
-        return "redirect:/user-editor";
+        return "redirect:/admin/user-editor";
     }
 
 }

@@ -16,7 +16,7 @@
                     <option th:each ="topic : ${topicList}" th:value="${topic.topicId}" th:text="${topic.topicName}">Java 2 Fundamentals</option>
                   </select>
                 </label>
-                <a th:href="@{/getUserStatistic}" href="#" class="col-auto d-flex align-items-center align-self-end result__link">User statistics</a>
+                <a th:href="@{/admin/getUserStatistic}" href="#" class="col-auto d-flex align-items-center align-self-end result__link">User statistics</a>
               </div>
             </div>
             <div class="col-12 data-container container mt-5" id="dataContainer">
@@ -27,7 +27,7 @@
                   <div class="text-center grid__head-item">
                     <span>Average</span>
                     <button class="sort-button" id="sortTestsButton"><img src="../../static/img/sort-icon.svg"
-                                                                          th:src="@{img/sort-icon.svg}"></button>
+                                                                          th:src="@{/img/sort-icon.svg}"></button>
                   </div>
                 </div>
               </div>
@@ -42,6 +42,6 @@
 
 <div th:replace="footer"></div>
 <div th:replace="modals"></div>
-<script src="../../static/js/test-statistic.js" th:src="@{js/test-statistic.js}"></script>
+<script src="../../static/js/test-statistic.js" th:src="@{/js/test-statistic.js}"></script>
 </body>
 </html>

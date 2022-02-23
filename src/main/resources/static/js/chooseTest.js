@@ -23,7 +23,7 @@ testThemeSelect.addEventListener('change', changeListener);
 async function updateCurrentThemeData(themeName) {
     const formData = new FormData();
     formData.append('theme :', themeName);
-    let url = new URL(baseUrl + "/chooseTheme");
+    let url = new URL(baseUrl + "/user/chooseTheme");
     let params = {theme : themeName};
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url);

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class ChooseTestController {
 
     private final TestService testService;

@@ -12,6 +12,7 @@ import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class TestPageController {
 
     private final TestService testService;
@@ -41,7 +42,7 @@ public class TestPageController {
 
         model.addAttribute("question", questionDescription);
         model.addAttribute("answers", answers);
-        model.addAttribute("title","Test");
+        model.addAttribute("title","Testing");
         return "user/testPage";
     }
 
@@ -68,7 +69,7 @@ public class TestPageController {
         session.setAttribute("questionNumber" , ++questionNumber);
         model.addAttribute("question",questionDescription);
         model.addAttribute("answers", answers);
-        model.addAttribute("title","Test page");
+        model.addAttribute("title","Testing");
         return "user/testPage";
     }
 

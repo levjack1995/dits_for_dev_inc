@@ -7,7 +7,7 @@
                     <h5 class="col modal-title offset-1">Create new user</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form th:action="@{/addUser}" class="createUserModal__body" method="post">
+                <form th:action="@{/admin/addUser}" class="createUserModal__body" method="post">
                     <label class="row createUserModal__label">
                         <span class="createUserModal__label-text col-2 offset-1">Name</span>
                         <input class="form-input col-8" type="text" id="modalUserName" name="firstName" required>
@@ -61,7 +61,7 @@
                 <p class="row deleteUserModal__text deleteUserModal__text_small">This action will delete all related
                     items</p>
                 <div class="d-flex justify-content-between deleteUserModal__button-group">
-                    <form th:action="@{/removeUser}" id="userDeleteForm" method="post">
+                    <form th:action="@{/admin/removeUser}" id="userDeleteForm" method="post">
                         <button name="action" value="cancel" type="text" class="deleteUserModal__button form-button form-button_cancel"
                                 data-bs-dismiss="modal">Cancel
                         </button>
@@ -83,7 +83,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
             </div>
-            <form class="d-flex flex-column" action="/addTest" id="newTestForm" method="post">
+            <form class="d-flex flex-column" action="/admin/addTest" id="newTestForm" method="post">
                 <label>
                     <div>Name</div>
                     <input class="col-12 form-input" name="testName" type="text" required>
@@ -118,7 +118,7 @@
 
                 <div class="row mt-5">
                     <button type="button" class="col-3 add-answer-button">
-                        <img src="../../static/img/add-icon.svg" th:src="@{img/add-icon.svg}" alt="">
+                        <img src="../../static/img/add-icon.svg" th:src="@{/img/add-icon.svg}" alt="">
                         <span> Add new question</span>
                     </button>
                     <button class="col-8 offset-1 form-button" type="submit">Submit</button>
@@ -130,4 +130,4 @@
 
 
 
-<script th:src="@{js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>

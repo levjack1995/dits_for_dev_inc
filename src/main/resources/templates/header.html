@@ -17,9 +17,9 @@
     <div class="container">
         <div class="row align-items-center justify-content-center justify-content-sm-between g-3">
             <div class="col-2" th:if="${session.user != null}" th:switch="${session.user.getRole().getRoleName()}">
-                <a th:case="'ROLE_USER'" href="/" th:href="@{/chooseTest}"> <img th:src="@{/img/logo.svg}"
+                <a th:case="'ROLE_USER'" href="/" th:href="@{/user/chooseTest}"> <img th:src="@{/img/logo.svg}"
                                                                                  alt="devincubator logo"> </a>
-                <a th:case="'ROLE_ADMIN'" href="/" th:href="@{/user-editor}"> <img th:src="@{/img/logo.svg}"
+                <a th:case="'ROLE_ADMIN'" href="/" th:href="@{/admin/user-editor}"> <img th:src="@{/img/logo.svg}"
                                                                                    alt="devincubator logo"> </a>
             </div>
 
@@ -34,30 +34,30 @@
                 <th:block th:case="'ROLE_ADMIN'">
                     <div class="col-5 offset-1">
                         <a th:class="${title == 'User editor'} ? 'nav-link active' : 'nav-link'" aria-current="page"
-                           href="#" th:href="@{/user-editor}">Users</a>
+                           href="#" th:href="@{/admin/user-editor}">Users</a>
                         <a th:class="${title == 'test editor'} ? 'nav-link active' : 'nav-link'" href="#"
-                           th:href="@{/testBuilder}">Tests</a>
-                        <a th:class="${title == 'Statistic' } ? 'nav-link active' : 'nav-link'" href="#"
-                           th:href="@{/adminStatistic}">Statistic</a>
+                           th:href="@{/admin/testBuilder}">Tests</a>
+                        <a th:class="${title == 'Statistic' || title == 'User statistic'} ? 'nav-link active' : 'nav-link'" href="#"
+                           th:href="@{/admin/adminStatistic}">Statistic</a>
                     </div>
                     <div class="col-4 text-end">
                         <span>Admin </span><span class="nav-control__separator"></span><span
                             th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">Admin Name</span>
                         <a class="nav-control__logout" href="#" th:href="@{/logout}"><img
-                                th:src="@{img/logout-icon.svg}"></a>
+                                th:src="@{/img/logout-icon.svg}"></a>
                     </div>
                 </th:block>
                 <th:block th:case="'ROLE_USER'">
                     <div class="col-5 offset-1">
-                        <a th:class="${title == 'Testing' } ? 'nav-link active' : 'nav-link'" th:href="@{/chooseTest}">Assessment</a>
-                        <a th:class="${title == 'Statistic' } ? 'nav-link active' : 'nav-link'" href="#"
-                           th:href="@{/personalStatistic}">Statistics</a>
+                        <a th:class="${title == 'Testing' } ? 'nav-link active' : 'nav-link'" th:href="@{/user/chooseTest}">Assessment</a>
+                        <a th:class="${title == 'Statistic' || title == 'Result'} ? 'nav-link active' : 'nav-link'" href="#"
+                           th:href="@{/user/personalStatistic}">Statistics</a>
                     </div>
                     <div class="col-4 text-end">
                         <span>User </span><span class="nav-control__separator"></span><span
                             th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">User Name</span>
                         <a class="nav-control__logout" href="#" th:href="@{/logout}"><img
-                                th:src="@{img/logout-icon.svg}"></a>
+                                th:src="@{/img/logout-icon.svg}"></a>
                     </div>
                 </th:block>
             </th:block>
@@ -66,7 +66,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">
-                    <img th:src="@{img/burger-icon.png}">
+                    <img th:src="@{/img/burger-icon.png}">
                 </button>
             </div>
 

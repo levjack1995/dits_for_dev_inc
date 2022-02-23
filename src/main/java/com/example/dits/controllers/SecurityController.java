@@ -22,8 +22,7 @@ public class SecurityController {
 
     private final UserService userService;
 
-
-    @GetMapping("/user-editor")
+    @GetMapping("/admin/user-editor")
     public String adminPage(HttpSession session,ModelMap model){
         session.setAttribute("user",userService.getUserByLogin(getPrincipal()));
         session.setAttribute("users", userService.findAll());
@@ -32,7 +31,7 @@ public class SecurityController {
     }
 
 
-    @GetMapping("/chooseTest")
+    @GetMapping("/user/chooseTest")
     public String userPage(HttpSession session,ModelMap model) {
         User user = userService.getUserByLogin(getPrincipal());
         session.setAttribute("user", user);

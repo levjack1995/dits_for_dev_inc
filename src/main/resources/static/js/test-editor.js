@@ -69,10 +69,10 @@ function getQuestionHtml({ name, description, testId, questions }) {
       <a class="col test__text" data-bs-toggle="collapse" href='#test${testId}' role="button" aria-expanded="false" aria-controls="collapseExample">
         ${name}
       </a>
-      <button class="col-auto test__add-button" data-bs-toggle="modal" data-bs-target="#questionModal"><img src="./img/add-icon.svg" alt="Edit test question"></button>
+      <button class="col-auto test__add-button" data-bs-toggle="modal" data-bs-target="#questionModal"><img src="/img/add-icon.svg" alt="Edit test question"></button>
       <div class="col-auto test__control">
-        <button class="test__edit-button"><img src="./img/edit-icon.svg" alt="Edit test"></button>
-        <button class="test__delete-button"><img src="./img/delete-icon.svg" alt="Delete test"></button>
+        <button class="test__edit-button"><img src="/img/edit-icon.svg" alt="Edit test"></button>
+        <button class="test__delete-button"><img src="/img/delete-icon.svg" alt="Delete test"></button>
       </div>
     </div>
     <div class="collapse question__list" id=test${testId} data-test-id=${testId}>
@@ -83,8 +83,8 @@ function getQuestionHtml({ name, description, testId, questions }) {
               <span class="col-1">${index + 1}</span>
               <textarea class="col-9 form-input" type="text" readonly="">${description}</textarea>
               <div class="question-control col-2">
-                <button class='question__edit-button' data-bs-toggle="modal" data-bs-target="#questionModal"><img src="./img/edit-icon.svg" alt="Edit test question"></button>
-                <button class='question__delete-button'><img src="./img/delete-icon.svg" alt="Delete test question"></button>
+                <button class='question__edit-button' data-bs-toggle="modal" data-bs-target="#questionModal"><img src="/img/edit-icon.svg" alt="Edit test question"></button>
+                <button class='question__delete-button'><img src="/img/delete-icon.svg" alt="Delete test question"></button>
               </div>
             </div>
           `)
@@ -128,7 +128,7 @@ addThemeForm.addEventListener('submit', async (event) => {
     console.log(newThemeValue);
     deactivateAddThemeForm();
     if (newThemeValue.length) {
-        const url = new URL("http://localhost:8080/addTopic");
+        const url = new URL("http://localhost:8080/admin/addTopic");
         console.log(newThemeValue);
         const params = {name: newThemeValue};
         url.search = new URLSearchParams(params).toString();
@@ -145,7 +145,7 @@ addThemeForm.addEventListener('submit', async (event) => {
 let result = null;
 
 async function getTestsData(themeId) {
-    const url = new URL("http://localhost:8080/getTests");
+    const url = new URL("http://localhost:8080/admin/getTests");
     const params = {id : themeId};
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url);
@@ -175,7 +175,7 @@ async function submitNewTheme(target) {
     const themeItem = target.closest('.theme__item');
     const themeId = themeItem.dataset.id;
     const { value: name} = themeItem.querySelector('.theme-item__input');
-    const url = new URL("http://localhost:8080/editTopic");
+    const url = new URL("http://localhost:8080/admin/editTopic");
     let params = {name, id: themeId};
     url.search = new URLSearchParams(params).toString();
     console.log(token);
@@ -193,7 +193,7 @@ async function submitNewTheme(target) {
 async function deleteTheme(target) {
     const themeItem = target.closest('.theme__item');
     const themeId = themeItem.dataset.id;
-    const url = new URL("http://localhost:8080/removeTopic");
+    const url = new URL("http://localhost:8080/admin/removeTopic");
     let params = {topicId: themeId};
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url, {
@@ -243,7 +243,7 @@ const newTestFormCloseButton = document.getElementById('newTestFormCloseButton')
 
 async function addNewTest(name, description) {
      newTestFormCloseButton.click();
-     const url = new URL("http://localhost:8080/addTest");
+     const url = new URL("http://localhost:8080/admin/addTest");
      let params = {name, description, topicId: currentThemeId};
      url.search = new URLSearchParams(params).toString();
      const response = await fetch(url, {
@@ -273,7 +273,7 @@ async function addNewTest(name, description) {
 
 async function editTest(name, description) {
      newTestFormCloseButton.click();
-     const url = new URL("http://localhost:8080/editTest");
+     const url = new URL("http://localhost:8080/admin/editTest");
      let params = {name, description, topicId: currentThemeId, testId: currentTestId};
      url.search = new URLSearchParams(params).toString();
      const response = await fetch(url, {
@@ -288,7 +288,7 @@ async function editTest(name, description) {
 }
 
 async function deleteTest() {
-    const url = new URL("http://localhost:8080/removeTest");
+    const url = new URL("http://localhost:8080/admin/removeTest");
     let params = {topicId: currentThemeId, testId: currentTestId};
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url, {
@@ -415,7 +415,7 @@ async function addNewQuestion() {
     }
 
     if (isNewQuestion) {
-        url = '/addQuestion'
+        url = '/admin/addQuestion'
         data = {
             questionName,
             topicId: currentThemeId,
@@ -423,7 +423,7 @@ async function addNewQuestion() {
             answersData,
         }
     } else {
-        url = '/editQuestionAnswers'
+        url = '/admin/editQuestionAnswers'
         data = {
             questionName,
             topicId: currentThemeId,
@@ -454,9 +454,9 @@ function updateThemesList(data) {
         <div class="row theme__item theme-item" data-id=${topicId} >
         <input class="col theme-item__input" value="${topicName}" readonly="">
         <span class="col-auto theme-item__control">
-          <button class="theme-item__submit"><img src="./img/submit-icon.svg" alt=""></button>
-          <button class="theme-item__edit"><img src="./img/edit-icon.svg" alt=""></button>
-          <button class="theme-item__delete"><img src="./img/delete-icon.svg" alt=""></button>
+          <button class="theme-item__submit"><img src="/img/submit-icon.svg" alt=""></button>
+          <button class="theme-item__edit"><img src="/img/edit-icon.svg" alt=""></button>
+          <button class="theme-item__delete"><img src="/img/delete-icon.svg" alt=""></button>
         </span>
       </div>
       `
@@ -493,7 +493,7 @@ function getNewAnswerField(data) {
     </div>
     <div class="row">
         <input class="col-11 form-input" name="answer" type="text" value="${description}" placeholder="write answer"  required>
-        <button class="col-1 answer__delete-button" type="button"><img src="./img/delete-icon.svg"></button>
+        <button class="col-1 answer__delete-button" type="button"><img src="/img/delete-icon.svg"></button>
     </div>
   `;
     return answer;
@@ -510,7 +510,7 @@ function openQuestionEditForm( { questionId, description, answerDTOList }) {
 }
 
 async function getAnswers(questionId) {
-    const url = new URL("http://localhost:8080/getAnswers");
+    const url = new URL("http://localhost:8080/admin/getAnswers");
     const params = {id:questionId};
     url.search = new URLSearchParams(params).toString();
     response = await fetch(url);
@@ -582,7 +582,7 @@ function clickTestHandler(target) {
 }
 
 async function deleteQuestion() {
-    const url = new URL("http://localhost:8080/removeQuestion");
+    const url = new URL("http://localhost:8080/admin/removeQuestion");
     const params = {questionId : currentQuestionId, topicId : currentThemeId};
     url.search = new URLSearchParams(params).toString();
     let response = await fetch(url,  {
