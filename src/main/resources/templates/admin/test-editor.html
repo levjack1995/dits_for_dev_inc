@@ -22,9 +22,10 @@
                     </form>
                     <div class="theme" id="testThemes">
                         <div class="theme__section">
-                            <div class="row theme__item theme-item" th:each="topic : ${topicLists}"
+                            <div class="row theme__item theme-item" th:each="topic,iter : ${topicLists}"
                                  data-th-data-id="${topic.topicId}">
-                                <input class="col theme-item__input" th:value="${topic.topicName}" readonly>
+                                <input class="col theme-item__input" th:id="'themeItemIndex' + ${iter.index}"
+                                       th:value="${topic.topicName}" readonly>
                                 <span class="col-auto theme-item__control">
                       <button class="theme-item__submit icon-btn"><img src="../../static/img/submit-icon.svg"
                                                                        th:src="@{/img/submit-icon.svg}" alt=""></button>
@@ -58,10 +59,10 @@
         </div>
     </section>
 </main>
-
 <div th:replace="/fragments/footer"></div>
 <div th:replace="/fragments/modals"></div>
 
 <script th:src="@{/js/test-editor.js}"></script>
+<script>document.getElementById('themeItemIndex0').click();</script>
 </body>
 </html>
