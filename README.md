@@ -7,8 +7,8 @@ Getting Started
 ##### 2. start your application from your Idea
 ##### 3. open http://localhost:8080/
 
-credentials for user : user - user
-credentials for admin : admin - admin
+* Credentials for user : user - user.
+* Credentials for admin : admin - admin
 
 Using technologies
 =====================
