@@ -1,5 +1,8 @@
 # dits_for_dev_inc
-#h1 Dev it is a dev incbator testing system.
+DITS is a dev incbator testing system. It is a system for testing student , in this application we habe 2 roles: user and admin.
+User can pass tests and see its statistics.
+Admin can CRUD users, tests and see statistics by topics, tests, questions , answers and users.
+For authorizing and authentication it uses Spring Security. 
 
 Getting Started
 =====================
