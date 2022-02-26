@@ -22,3 +22,12 @@ Using technologies
 ##### 5. Hibernate
 ##### 6. H2-database for testing
 ##### 7. Bootstrap
+
+Files path
+=====================
+This path - templates - uses by default in Spring boot application (It is classpath for spring boot)
+1. src/main/resources/static - you can find static resources such as : images , css , js 
+2. src/main/resources/templates - you can find html pages 
+3. src/main/resources - you can find application configurations
+4. src/main/java - it is a path for main logic of your application
+5. src/main/test - it is a path, where maven will start unit testing
