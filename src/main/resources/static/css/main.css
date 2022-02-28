@@ -151,6 +151,10 @@ body {
     padding: 35px 0;
 }
 
+.result__body {
+    padding-bottom: 40px;
+}
+
 .result__title {
     padding: 20px;
     font-size: 24px;
@@ -164,14 +168,11 @@ body {
     border-radius: 10px;
     background: #FFFFFF;
     overflow: hidden;
+    margin-top: 60px;
 }
 
 .result__head {
     background: #F2F2F2;
-}
-
-.result__body {
-    padding: 0 30px 38px 30px;
 }
 
 .result__link {
@@ -219,12 +220,17 @@ body {
     background-color: #f78f0f;
 }
 
+.no-tests {
+    font-size: 24px;
+}
+
 .sort {
     transition: 0.2s;
 }
 
 .sort-button {
     transition: transform 0.4s;
+    padding: 0;
 }
 
 .sort-button.reverse {
@@ -246,9 +252,25 @@ body {
     color: #000000;
 }
 
+.grid__head {
+    border-bottom: 1px solid #dcdcdc;
+    padding: 12px;
+    font-weight: bold;
+}
+
 .grid__head-item {
     font-weight: bold;
     color: #141414;
+    padding-left: 0;
+}
+
+.test .result-row {
+    cursor: pointer;
+}
+
+.result-row {
+    padding: 12px 0;
+    color: #000;
 }
 
 .theme-select {
@@ -256,7 +278,7 @@ body {
     font-size: 18px;
     line-height: 25px;
     background: transparent;
-    border: 1px solid #141414;
+    border: 1px solid #777;
     box-sizing: border-box;
     border-radius: 10px;
 }
@@ -376,6 +398,7 @@ body {
     line-height: 18px;
     font-size: 14px;
     color: #777;
+    overflow: hidden;
 }
 
 .question__list {
@@ -391,6 +414,11 @@ body {
 .question__name:focus-visible {
     border: 1px solid #ccc;
     outline: none;
+}
+
+.question__proc {
+    font-size: 14px;
+    color: #000;
 }
 
 .min-width-780 {
@@ -523,10 +551,8 @@ body {
 }
 
 .test {
-    padding: 14px 24px 14px 30px;
     background: #FFFFFF;
-    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
+    border-bottom: 1px solid #dcdcdc;
 }
 
 .test__title {
@@ -542,9 +568,9 @@ body {
 }
 
 .test-description {
-    margin-top: 38px;
-    padding: 23px 30px;
-    border: 1px solid #141414;
+    margin-top: 40px;
+    padding: 25px 30px 40px;
+    border: 1px solid #777;
     box-sizing: border-box;
     border-radius: 10px;
 }
@@ -605,20 +631,9 @@ body {
     color: #000000;
 }
 
-footer h3 {
-    text-align: center;
-    padding: 24px 0;
-    font-weight: 500;
-}
 
 .modal-dialog {
-    max-width: 700px;
-    margin: 10% auto;
-}
-
-.modal-dialog-wide {
-    max-width: 1110px;
-    margin-top: 50px;
+    margin-top: 10%;
 }
 
 .modal-content {
@@ -664,6 +679,7 @@ footer h3 {
     color: #fff;
     font-size: 24px;
     font-weight: 500;
+    border-radius: 10px;
 }
 
 .btn:hover {
@@ -710,7 +726,7 @@ footer h3 {
 }
 
 .add-button {
-    padding: 12px 14px 11px 14px;
+    padding: 11px 14px 10px 14px;
     border: 1px solid #ddd;
     display: flex;
     gap: 0 17px;
@@ -783,6 +799,10 @@ footer h3 {
     margin-top: 40px;
 }
 
+.createUserModal__label {
+    align-items: center;
+}
+
 .createUserModal__label:not(:first-child) {
     margin-top: 30px;
 }
@@ -796,10 +816,6 @@ footer h3 {
 .createUserModal__button {
     margin-top: 46px;
     padding: 7px;
-}
-
-.deleteUserModal .modal-dialog {
-    max-width: 400px;
 }
 
 .deleteUserModal__content {
@@ -841,7 +857,6 @@ footer h3 {
 
 .deleteUserModal__button {
     padding: 7px;
-    width: 170px;
 }
 
 .form {
@@ -857,14 +872,7 @@ footer h3 {
 }
 
 .form-button {
-    padding: 9px;
-    background: #008F02;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    font-size: 24px;
-    line-height: 36px;
-    text-align: center;
-    color: #FAFAFA;
 }
 
 .form-input {
@@ -882,6 +890,15 @@ footer h3 {
 
 .form-button_cancel {
     background: #F78F0F;
+}
+
+.form-button_cancel:hover {
+    background: #be6b00;
+}
+
+
+.form-button_cancel:active {
+    background: #ffb15b;
 }
 
 .form-label {
@@ -964,8 +981,8 @@ footer h3 {
 }
 
 .select-input {
-    padding: 13px 30px 16px 19px;
-    border: 1px solid #141414;
+    padding: 10px 30px 13px 19px;
+    border: 1px solid #777;
     box-sizing: border-box;
     border-radius: 10px;
     font-size: 18px;
@@ -978,23 +995,12 @@ select option {
     font-weight: 400;
 }
 
-.submit-button {
-    padding: 10px    8px;
-    color: #fff;
-    font-size: 24px;
-    font-weight: 500;
-    background: #008F02;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
-    border: none;
-    border-radius: 10px;
-}
-
 .submit-button:hover {
     background-color: #007802;
     color: #fff;
 }
 
-.submit-button:focus {
+.submit-button:active {
     background-color: #17ac19;
 }
 
@@ -1003,8 +1009,9 @@ main {
 }
 
 main .title {
+    font-weight: 600;
     border-bottom: 2px solid #008f02;
-    padding: 25px 0;
+    padding: 40px 0 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -1037,7 +1044,8 @@ main img {
 
 main .title .start {
     font-size: 30px;
-    font-weight: 500;
+    line-height: 40px;
+    font-weight: 600;
     color: #000;
 }
 

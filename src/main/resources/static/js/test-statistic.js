@@ -36,11 +36,11 @@ function updateResult(data) {
     ${reversedData.map(({testName, count, avgProc, questionStatistics}, index) => {
         return `
       <div class="container test" data-id="${index}">
-        <div class="row" data-bs-toggle="collapse" href='#test${index}'>
+        <div class="row result-row" data-bs-toggle="collapse" href='#test${index}'>
           <div class="col-9 text-start">${testName}</div>
           <div class="col-3 text-center d-flex justify-content-between">
-              <div style="width: 50px;">${count}</div>
-              <div style="width: 100px;">${avgProc}%</div>
+              <div style="width: 30px;">${count}</div>
+              <div style="width: 120px;">${avgProc}%</div>
           </div> 
         </div>
         <div class="collapse" id='test${index}'>
@@ -57,7 +57,7 @@ function updateResult(data) {
             return `
                   <div class="mt-3 question__item row">
                     <textarea class="col-11 question__name textrea_autoheight" readonly>${questionDescription}</textarea>
-                    <span class="text-center col-1">${avgProc}%</span>
+                    <span class="text-center col-1 question__proc">${avgProc}%</span>
                   </div>
                 `
         }).join('')}

@@ -5,7 +5,7 @@
         <div class="title">
             <h1 class="start">To start testing choose theme and test</h1>
         </div>
-        <form th:action="@{/user/goTest}" class="row gy-2" method="get">
+        <form th:action="@{/user/goTest}" class="row mt-4" method="get">
             <div class="col-12 col-lg-4">
                 <p class="select-label mb-2">Select theme</p>
                 <select class="form-select select-input" id="testThemeSelect" name="theme"
@@ -27,7 +27,7 @@
             <div class="col-12 col-lg-4 d-flex flex-column justify-content-end hidden">
                 <button
                         type="submit"
-                        class="mt-4 mt-lg-0 submit-button"
+                        class="mt-4 mt-lg-0 btn"
                         id="startTestButton"
                 >
                     Start
