@@ -1,94 +1,110 @@
-// (function main() {
-//     document.addEventListener('DOMContentLoaded', DOMContentLoaded);
-//
-//     function DOMContentLoaded() {
-//         let buttonNode = document.querySelector('.js-show-form');
-//         buttonNode.addEventListener('click', showForm);
-//     }
-//
-//
-//     function showForm() {
-//         let node = document.querySelector('.js-form');
-//         node.classList.remove('hidden');
-//     }
-// })();
-
-const usersList = document.querySelector('.users__list');
-const openCreateModalButton = document.getElementById('openCreateModalButton');
-const createUserModal = document.querySelector('.createUserModal__body');
-const modalUserName = document.getElementById('modalUserName');
-const modalUserSurname = document.getElementById('modalUserSurname');
-const modalUserRole = document.getElementById('modalUserRole');
-const modalUserRoleOptions = modalUserRole.innerHTML;
-const modalUserLogin = document.getElementById('modalUserLogin');
-const modalUserPasswordLabel = document.getElementById('modalUserPasswordLabel');
-const modalTitle = document.querySelector('.createUserModal__title');
-const modalUserPasswordInput = document.getElementById('modalUserPassword');
-let editMode = false;
-let hiddenInput = null;
-const userDeleteForm = document.getElementById('userDeleteForm');
-let deletedUserId = null;
-
-function getHiddenInput(id) {
-    const label = document.createElement('label');
-    label.innerHTML = `<input type="hidden" name ="id"  value=${id} id="hiddenInput" name="id"/>`;
-    hiddenInput = label;
-    return label;
-}
-
-function setUserDataInForm({ userId, firstName, lastName, login, role: { rolesList, currentRole} }) {
-    editMode = true;
-    createUserModal.appendChild(getHiddenInput(userId));
-    modalUserName.value = firstName;
-    modalUserSurname.value = lastName;
-    modalUserRole.innerHTML = rolesList.reduce( (accum, role) => {
-        return accum += `<option ${role === currentRole ? 'selected' : ''}>${role}</option>`
-    }, '');
-    modalUserLogin.value = login;
-    modalUserPasswordInput.removeAttribute('required');
-    createUserModal.setAttribute('action', '/admin/updateUser');
-    openCreateModalButton.click();
-}
-
-async function getEditUserData(userId) {
-    let url = new URL("http://localhost:8080/admin/editUser");
-    let params = {id : userId};
-    url.search = new URLSearchParams(params).toString();
-    response = await fetch(url);
-    const result = await response.json();
-    console.log(result);
-    setUserDataInForm(result)
-}
-
-usersList.addEventListener('click', ( { target }) => {
-    if (target.closest('.user-info__button_edit')) {
-        const userId = target.closest('.user-info').dataset.id;
-        getEditUserData(userId);
+class UserForm {
+    constructor(formHTMLElement, rolesArray) {
+        this.inputUserPassword = formHTMLElement.querySelector(".user-password");
+        this.inputUserSurname = formHTMLElement.querySelector(".user-surname");
+        this.inputUserLogin = formHTMLElement.querySelector(".user-login");
+        this.inputUserRoles = formHTMLElement.querySelector(".user-roles");
+        this.inputUserName = formHTMLElement.querySelector(".user-name");
+        this.inputUserId = formHTMLElement.querySelector(".user-id");
+        
+        this.HTMLEntity = formHTMLElement;
+        this.rolesArray = rolesArray;
     }
-    if (target.closest('.user-info__button_delete')) {
-        deletedUserId =  target.closest('.user-info').dataset.id;
+
+    clearForm() {
+        this.HTMLEntity.querySelectorAll("input").forEach(e => e.value = "");
+        this.inputUserId.value = -1;
     }
-})
 
-userDeleteForm.addEventListener('submit', () => {
-    userDeleteForm.prepend(getHiddenInput(deletedUserId))
-})
+    setUserDataFromUserObj (user) {
+        this.inputUserLogin.value = user.login;
+        this.inputUserName.value = user.name;
+        this.inputUserSurname.value = user.surname;
+        
+        this.inputUserRoles.innerHTML = user.rolesList.reduce( (result, role) => {
+            return result += `<option ${role === user.role ? "selected" : ""}>${role}</option>`
+        }, "");
+    }
 
-function refreshUserModal() {
-    editMode = false;
-    modalUserName.value = '';
-    modalUserSurname.value = '';
-    modalUserRole.innerHTML = modalUserRoleOptions;
-    modalUserLogin.value = '';
-    hiddenInput.remove();
-    modalUserPasswordInput.setAttribute('required', '');
-    createUserModal.setAttribute('action', '/admin/addUser');
-    editMode = false;
+    setUserId(userId) {
+        this.inputUserId.value = userId;
+    }
 }
 
-openCreateModalButton.addEventListener('click', ( { isTrusted} ) => {
-    modalTitle.textContent = !isTrusted ? 'Edit user data' : 'Create new user';
-    if (isTrusted && editMode) {
-        refreshUserModal();
+class UserModal {
+    constructor(modalHTMLElement) {
+        this.HTMLEntity = modalHTMLElement;
+        this.title = modalHTMLElement.querySelector(".modal-title");
+        this.form = new UserForm(
+            modalHTMLElement.querySelector(".modal-form"),
+            [ "Admin", "User" ] //loadUsersRolesList() // TODO: rewrite
+        );
     }
-})
+
+    reset() {
+        this.form.clearForm();
+    }
+}
+
+class User {
+    constructor({ userId, firstName, lastName, login, role: { rolesList, currentRole} }) {
+        this.userId = userId;
+        this.name = firstName;
+        this.surname = lastName;
+        this.login = login;
+        this.role = currentRole;
+        this.rolesList = rolesList;
+    }
+}
+
+
+
+const modalCreateUser = new UserModal( document.querySelector("#modal-create-user") );
+const modalEditUser = new UserModal( document.querySelector("#modal-edit-user") );
+const usersList = document.querySelector(".users__list");
+
+const modalDeleteUser = document.querySelector("#modal-delete-user");
+const formDeleteUser = modalDeleteUser.querySelector("#form-delete-user");
+
+usersList
+    .querySelectorAll(".user-info__button_delete")
+    .forEach(btn => btn.addEventListener("click", async e => {
+        formDeleteUser
+            .querySelector(".user-id")
+            .value = e.target
+                .closest(".user-info")
+                .dataset
+                .id;
+    }));
+
+usersList
+    .querySelectorAll(".user-info__button_edit")
+    .forEach(btn => btn.addEventListener("click", async e => {
+        const userId = e.target.closest(".user-info").dataset.id;
+        const result = await loadUserById(userId);
+
+        modalEditUser.form.setUserId(userId);
+        modalEditUser.form.setUserDataFromUserObj(result);
+    }));
+
+
+
+async function loadUserById(userId) {
+    const url = new URL("http://localhost:8080/admin/editUser");
+    url.search = new URLSearchParams({ "id" : userId }).toString();
+
+    const response = await fetch(url);
+
+    if (response.ok) {
+        return new User(await response.json());
+    }
+}
+
+// ATTENTION
+// This method is just placeholder until new controller method appear.
+// New controller method at the back-end have to return list of user roles in JSON format.
+// TODO: Update this one as soon as possible
+async function loadUsersRolesList() {
+    return Array.from(modalEditUser.form.inputUserRoles.querySelectorAll("option"))
+        .map(opt => opt.value);
+}

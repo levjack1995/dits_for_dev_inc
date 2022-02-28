@@ -1,5 +1,7 @@
+
 <!-- Create User Modal -->
-<div class="modal fade createUserModal" id="createUserModal" tabindex="-1">
+
+<div class="modal fade modal-create-user" id="modal-create-user" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content createUserModal__content">
             <div class="container">
@@ -7,18 +9,19 @@
                     <h5 class="col modal-title offset-1">Create new user</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form th:action="@{/admin/addUser}" class="createUserModal__body" method="post">
+                <form th:action="@{/admin/addUser}" class="modal-form form-create-user__body" method="post">
+                    <label><input class="user-id input-hidden" name="id" value="-1" type="hidden"></label>
                     <label class="row createUserModal__label">
                         <span class="createUserModal__label-text col-2 offset-1">Name</span>
-                        <input class="form-input col-8" type="text" id="modalUserName" name="firstName" required>
+                        <input class="form-input col-8 user-name" type="text" name="firstName" required>
                     </label>
                     <label class="row createUserModal__label">
                         <span class="createUserModal__label-text col-2 offset-1">Surname</span>
-                        <input class="form-input col-8" type="text" id="modalUserSurname" name="lastName" required>
+                        <input class="form-input col-8 user-surname" type="text" name="lastName" required>
                     </label>
                     <label class="row createUserModal__label">
                         <span class="createUserModal__label-text col-2 offset-1">Role</span>
-                        <select class="form-input col-8" type="text" id="modalUserRole" name="roleName" required>
+                        <select class="form-input col-8 user-roles" type="text" name="roleName" required>
                             <option disabled>User/Admin</option>
                             <option value="ROLE_USER">User</option>
                             <option value="ROLE_ADMIN">Admin</option>
@@ -26,11 +29,58 @@
                     </label>
                     <label class="row createUserModal__label">
                         <span class="createUserModal__label-text col-2 offset-1">Login</span>
-                        <input class="form-input col-8" type="text" id="modalUserLogin" name="login" required>
+                        <input class="form-input col-8 user-login" type="text" name="login" required>
                     </label>
                     <label class="row createUserModal__label">
                         <span class="createUserModal__label-text col-2 offset-1">Password</span>
-                        <input class="form-input col-8" type="text" id="modalUserPassword" name="password" required>
+                        <input class="form-input col-8 user-password" type="text" name="password" required>
+                    </label>
+                    <label class="row createUserModal__label">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button type="submit" class="createUserModal__button form-button col-10 offset-1">Submit
+                        </button>
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit User Modal -->
+
+<div class="modal fade modal-edit-user" id="modal-edit-user" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content createUserModal__content">
+            <div class="container">
+                <div class="row createUserModal__header">
+                    <h5 class="col modal-title offset-1">Edit user</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/admin/updateUser}" class="modal-form form-edit-user__body" method="post">
+                    <label><input class="user-id input-hidden" name="id" value="-1" type="hidden"></label>
+                    <label class="row createUserModal__label">
+                        <span class="createUserModal__label-text col-2 offset-1">Name</span>
+                        <input class="form-input col-8 user-name" type="text" name="firstName" required>
+                    </label>
+                    <label class="row createUserModal__label">
+                        <span class="createUserModal__label-text col-2 offset-1">Surname</span>
+                        <input class="form-input col-8 user-surname" type="text" name="lastName" required>
+                    </label>
+                    <label class="row createUserModal__label">
+                        <span class="createUserModal__label-text col-2 offset-1">Role</span>
+                        <select class="form-input col-8 user-roles" type="text" name="roleName" required>
+                            <option disabled>User/Admin</option>
+                            <option value="ROLE_USER">User</option>
+                            <option value="ROLE_ADMIN">Admin</option>
+                        </select>
+                    </label>
+                    <label class="row createUserModal__label">
+                        <span class="createUserModal__label-text col-2 offset-1">Login</span>
+                        <input class="form-input col-8 user-login" type="text" name="login" required>
+                    </label>
+                    <label class="row createUserModal__label">
+                        <span class="createUserModal__label-text col-2 offset-1">Password</span>
+                        <input class="form-input col-8 user-password" type="text" name="password">
                     </label>
                     <label class="row createUserModal__label">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -46,7 +96,7 @@
 
 <!-- Delete User Modal -->
 
-<div class="modal fade deleteUserModal" id="deleteUserModal" tabindex="-1">
+<div class="modal fade modal-delete-user" id="modal-delete-user" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content deleteUserModal__content">
             <div class="container">
@@ -61,7 +111,8 @@
                 <p class="row deleteUserModal__text deleteUserModal__text_small">This action will delete all related
                     items</p>
                 <div class="d-flex justify-content-between deleteUserModal__button-group">
-                    <form th:action="@{/admin/removeUser}" id="userDeleteForm" method="post">
+                    <form th:action="@{/admin/removeUser}" id="form-delete-user" method="post">
+                        <label><input class="user-id input-hidden" name="id" value="-1" type="hidden"></label>
                         <button name="action" value="cancel" type="text"
                                 class="deleteUserModal__button form-button form-button_cancel"
                                 data-bs-dismiss="modal">Cancel
