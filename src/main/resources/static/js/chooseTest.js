@@ -1,54 +1,66 @@
-const testThemeSelect = document.getElementById('testThemeSelect');
-const testSelect = document.getElementById('testSelect');
-const testDescription = document.getElementById('testDescription');
-const startTestButton = document.getElementById('startTestButton');
+const testThemeSelect = document.getElementById("testThemeSelect");
+const testDescription = document.getElementById("testDescription");
+const startTestButton = document.getElementById("startTestButton");
+const testSelect = document.getElementById("testSelect");
+
+const baseUrl = "http://localhost:8080";
+
 let testsData = null;
-const baseUrl = 'http://localhost:8080';
 
-const changeListener = ({ target }) => {
-    const value = target.querySelector('option:checked').textContent;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const selectedOption = testThemeSelect.querySelector("option:checked");
+    const value = selectedOption.textContent;
     console.log(value);
     updateCurrentThemeData(value);
-};
+});
 
-const loadListener = ({}) => {
-    const value = testThemeSelect.querySelector('option:checked').textContent;
+testThemeSelect.addEventListener("change", e => {
+    const selectedOption = e.target.querySelector("option:checked");
+    const value = selectedOption.textContent;
     console.log(value);
     updateCurrentThemeData(value);
-};
-
-document.addEventListener('DOMContentLoaded', loadListener);
-testThemeSelect.addEventListener('change', changeListener);
+});
 
 async function updateCurrentThemeData(themeName) {
-    const formData = new FormData();
-    formData.append('theme :', themeName);
     let url = new URL(baseUrl + "/user/chooseTheme");
-    let params = {theme : themeName};
-    url.search = new URLSearchParams(params).toString();
+    url.search = new URLSearchParams({ theme : themeName }).toString();
+
     const response = await fetch(url);
     const result = await response.json();
-    updateTestsData(result);
+
+    testsData = result;
+    updateTestsData();
 }
 
-function updateTestsData(data) {
-    testsData = data;
-    const selectInner = data.reduce((accum, { name, testId }, index) => {
-        return accum + `<option value='${testId}' data-index=${index}>${name}</option>`;
-    }, '');
+function updateTestsData() {
+    testSelect.querySelectorAll("option")
+        .forEach(e => e.remove());
+    testsData.forEach((e, i) => {
+        const option = document.createElement("option");
+        option.setAttribute("value", e.testId);
+        option.dataset.index = i;
+        option.value = e.testId;
+        option.innerText = e.name;
+        
+        testSelect.append(option);
+    });
 
-    testSelect.innerHTML = selectInner;
-    testSelect.closest('div').classList.remove('hidden');
-    startTestButton.closest('div').classList.remove('hidden');
+    testSelect.closest("div").classList.remove("hidden");
+    startTestButton.closest("div").classList.remove("hidden");
+
     updateDescription();
 }
 
-testSelect.addEventListener('change', updateDescription)
+testSelect.addEventListener("change", updateDescription)
 
 function updateDescription() {
-    const testOptionIndex = testSelect.querySelector('option:checked').dataset.index;
-    testDescription.innerHTML = testsData[Number(testOptionIndex)].description;
-    // testDescription.closest('div').classList.remove('hidden');
-}
+    const selectedOption = Array.from(testSelect.querySelectorAll("option")).filter(o => o.selected === true)[0];
 
-//
+    if (selectedOption != null && selectedOption != undefined) {
+        const testOptionIndex = selectedOption.dataset.index;
+        testDescription.innerText = testsData[Number(testOptionIndex)].description;
+    } else {
+        testDescription.innerText = "";
+    }
+}
