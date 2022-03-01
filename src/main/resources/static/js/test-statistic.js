@@ -39,8 +39,8 @@ function updateResult(data) {
         <div class="row result-row" data-bs-toggle="collapse" href='#test${index}'>
           <div class="col-9 text-start">${testName}</div>
           <div class="col-3 text-center d-flex justify-content-between">
-              <div style="width: 30px;">${count}</div>
-              <div style="width: 120px;">${avgProc}%</div>
+              <div style="width: 40px;">${count}</div>
+              <div style="width: 100px;">${avgProc}%</div>
           </div> 
         </div>
         <div class="collapse" id='test${index}'>
@@ -56,8 +56,8 @@ function updateResult(data) {
               ${questionStatistics.map(({questionDescription, avgProc}, index) => {
             return `
                   <div class="mt-3 question__item row">
-                    <textarea class="col-11 question__name textrea_autoheight" readonly>${questionDescription}</textarea>
-                    <span class="text-center col-1 question__proc">${avgProc}%</span>
+                    <textarea class="col-9 question__name textrea_autoheight" readonly>${questionDescription}</textarea>
+                    <span class="text-end col-3 question__proc">${avgProc}%</span>
                   </div>
                 `
         }).join('')}

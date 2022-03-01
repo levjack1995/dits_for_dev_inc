@@ -1,22 +1,22 @@
 let data = [
-  {
-    "testName": "Second test",
-    "count":19,
-    "avgProc":80,
-    "questionStatistics": [
-      {"count":3,"avgProc":100},
-      {"count":10,"avgProc":90},
-      {"count":10,"avgProc":60},
-      {"count":10,"avgProc":70},
-      {"count":19,"avgProc":84}
-    ]
-  },
-  {
-    "testName":"TherdNameTest",
-    "count":0,
-    "avgProc":0,
-    "questionStatistics":[]
-  }]
+    {
+        "testName": "Second test",
+        "count": 19,
+        "avgProc": 80,
+        "questionStatistics": [
+            {"count": 3, "avgProc": 100},
+            {"count": 10, "avgProc": 90},
+            {"count": 10, "avgProc": 60},
+            {"count": 10, "avgProc": 70},
+            {"count": 19, "avgProc": 84}
+        ]
+    },
+    {
+        "testName": "TherdNameTest",
+        "count": 0,
+        "avgProc": 0,
+        "questionStatistics": []
+    }]
 
 const themeSelect = document.getElementById('themeSelect');
 const resultTableBody = document.getElementById('resultTableBody');
@@ -26,23 +26,25 @@ let isReverseTest = false;
 const baseUrl = "http:localhost:8080";
 
 function updateResult(data) {
-  if (!data) { 
-    return
-  }
+    if (!data) {
+        return
+    }
 
-  console.log(isReverseTest)
+    console.log(isReverseTest)
 
-  const reversedData = isReverseTest ? [...data].reverse() : [...data];
-  dataContainer.classList.add('active');
-  resultTableBody.innerHTML = `
-    ${reversedData.map( ({testName, count, avgProc, questionStatistics}, index) => {
-      return `
-      <div class="py-3 container test" data-id="${index}">
-        <div class="row" data-bs-toggle="collapse" href='#test${index}'>
+    const reversedData = isReverseTest ? [...data].reverse() : [...data];
+    dataContainer.classList.add('active');
+    resultTableBody.innerHTML = `
+    ${reversedData.map(({testName, count, avgProc, questionStatistics}, index) => {
+        return `
+      <div class="container test" data-id="${index}">
+        <div class="row result-row" data-bs-toggle="collapse" href='#test${index}'>
           <div class="col-1 text-start">${index + 1}</div>
-          <div class="col-7 text-start">${testName}</div>
-          <div class="col-2">${count}</div>
-          <div class="col-2">${avgProc}%</div>
+          <div class="col-8 text-start">${testName}</div>
+          <div class="col-3 text-center d-flex justify-content-between">
+              <div style="width: 40px;">${count}</div>
+              <div style="width: 100px;">${avgProc}%</div>
+          </div> 
         </div>
       </div>
       `
@@ -50,36 +52,36 @@ function updateResult(data) {
   `
 }
 
-themeSelect.addEventListener('change', async ({ target }) => {
-  dataContainer.classList.remove('active');
-  try {
-    const userId = target.value;
-    const url = new URL(baseUrl + "/admin/getUserTestsStatistic");
-    const params = {id: userId};
-    url.search = new URLSearchParams(params).toString();
-    const response = await fetch(url);
-    const result = await response.json();
-    updateResult(result);
-  } catch (err) {
-    console.error(err)
-  }
+themeSelect.addEventListener('change', async ({target}) => {
+    dataContainer.classList.remove('active');
+    try {
+        const userId = target.value;
+        const url = new URL(baseUrl + "/admin/getUserTestsStatistic");
+        const params = {id: userId};
+        url.search = new URLSearchParams(params).toString();
+        const response = await fetch(url);
+        const result = await response.json();
+        updateResult(result);
+    } catch (err) {
+        console.error(err)
+    }
 });
 
 function reverseTests(target) {
-  target.closest('#sortTestsButton').classList.toggle('reverse');
-  const reversedTests = Array.from(resultTableBody.querySelectorAll('.test')).reverse();
-  resultTableBody.innerHTML = '';
-  reversedTests.forEach( test => {
-    resultTableBody.append(test);
-  })
+    target.closest('#sortTestsButton').classList.toggle('reverse');
+    const reversedTests = Array.from(resultTableBody.querySelectorAll('.test')).reverse();
+    resultTableBody.innerHTML = '';
+    reversedTests.forEach(test => {
+        resultTableBody.append(test);
+    })
 }
 
 
 dataContainer.addEventListener('click', (event) => {
-  const { target } = event;
-  if(target.closest('#sortTestsButton')) {
-    isReverseTest = !isReverseTest;
-    reverseTests(target);
-  } 
+    const {target} = event;
+    if (target.closest('#sortTestsButton')) {
+        isReverseTest = !isReverseTest;
+        reverseTests(target);
+    }
 })
   

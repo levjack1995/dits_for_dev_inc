@@ -246,22 +246,22 @@ body {
 }
 
 .grid__item {
-    align-items: center;
-    font-size: 18px;
-    line-height: 25px;
-    color: #000000;
+    padding: 12px 0;
 }
 
 .grid__head {
     border-bottom: 1px solid #dcdcdc;
-    padding: 12px;
+    padding: 12px 0;
     font-weight: bold;
 }
 
 .grid__head-item {
     font-weight: bold;
     color: #141414;
-    padding-left: 0;
+}
+
+.question__item {
+    margin-left: 0;
 }
 
 .test .result-row {
@@ -389,6 +389,7 @@ body {
     font-size: 14px;
     line-height: 18px;
     color: #000000;
+    padding-right: 25px;
 }
 
 .question__name {
@@ -403,6 +404,7 @@ body {
 
 .question__list {
     margin-top: 14px;
+    border-top: 2px solid #008F02;
 }
 
 .question-modal__list {
@@ -419,6 +421,7 @@ body {
 .question__proc {
     font-size: 14px;
     color: #000;
+    padding-right: 55px;
 }
 
 .min-width-780 {
@@ -530,6 +533,14 @@ body {
     font-size: 24px;
     line-height: 24px;
     color: #000000;
+}
+
+.detail__list .test {
+    margin-top: 30px;
+    padding: 14px 24px 14px 30px;
+    background: #fff;
+    box-shadow: 6px 6px 20px rgb(0 0 0 / 15%);
+    border-radius: 10px;
 }
 
 .detail-card {
