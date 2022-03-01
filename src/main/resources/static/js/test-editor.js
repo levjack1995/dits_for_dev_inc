@@ -1,65 +1,3 @@
-//let dataByTopicId = null;
-// const dataByTopicId =
-//     [
-//         {
-//             "name": "Second test",
-//             "description": "DescTest2",
-//             "testId": 2,
-//             "questions": [
-//                 {
-//                     "questionId": 22,
-//                     "description": "1st quest for test2"
-//                 },
-//                 {
-//                     "questionId": 23,
-//                     "description": "2st quest for test2"
-//                 },
-//                 {
-//                     "questionId": 24,
-//                     "description": "3d quest for test2"
-//                 },
-//                 {
-//                     "questionId": 25,
-//                     "description": "4d qyest for test2"
-//                 },
-//                 {
-//                     "questionId": 26,
-//                     "description": "5d quest for test2"
-//                 }
-//             ]
-//         },
-//         {
-//             "name": "TherdNameTest",
-//             "description": "DescT3",
-//             "testId": 19,
-//             "questions": [
-//
-//             ]
-//         }
-//     ];
-//
-// const questionData = {
-//     "questionId": 2,
-//     "description": "1st quest for test2",
-//     "answerDTOList": [
-//         {
-//             "answerId": 1,
-//             "description": "1AnswFor2",
-//             "correct": false
-//         },
-//         {
-//             "answerId": 2,
-//             "description": "2AnswFor2",
-//             "correct": true
-//         },
-//         {
-//             "answerId": 3,
-//             "description": "3AnsFor2",
-//             "correct": false
-//         }
-//     ]
-// };
-
 function getQuestionHtml({ name, description, testId, questions }) {
     const question = document.createElement('div');
     question.className = 'test';
@@ -95,17 +33,17 @@ function getQuestionHtml({ name, description, testId, questions }) {
     return question
 }
 
+const token = document.head.querySelector('meta[name="_csrf"]').getAttribute('content');
 const detail = document.getElementById('detail');
 const detailList = document.getElementById('detailList');
 const addThemeForm = document.getElementById('addThemeForm');
+const themeSection = document.querySelector('.theme__section');
 const addThemeFormInput = document.querySelector('.add-theme-form__input');
-const token = document.head.querySelector('meta[name="_csrf"]').getAttribute('content');
 // const token = "${_csrf.token}";
-
 let prevEditedTheme = null;
 let prevEditedThemeValue = null;
 let currentThemeId = null;
-const themeSection = document.querySelector('.theme__section');
+let dataByTopicId = null;
 
 function changeActiveAddThemeFormStatus() {
     addThemeForm.classList.toggle('active');
@@ -150,7 +88,7 @@ async function getTestsData(themeId) {
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url);
     result = await response.json();
-    // dataByTopicId = result;
+    dataByTopicId = result;
     return result;
 }
 
@@ -255,21 +193,7 @@ async function addNewTest(name, description) {
      });
      const result = await response.json();
      setNewThemeTests(result);
-     // newTestFormCloseButton.click();
 }
-
-// createNewTestForm.addEventListener('submit', (event) => {
-//     event.preventDefault();
-//     const formData = new FormData(createNewTestForm);
-//     const testName = formData.get('testName');
-//     const testDescription = formData.get('testDescription');
-//     if (isNewTest) {
-//         addNewTest(testName, testDescription);
-//     } else {
-//         editTest(testName, testDescription);
-//     }
-//     createNewTestForm.reset();
-// });
 
 async function editTest(name, description) {
      newTestFormCloseButton.click();
@@ -317,11 +241,13 @@ createNewTestForm.addEventListener('submit', (event) => {
 });
 
 function setCreateTestFormStartData() {
-    const { name, description } = dataByTopicId.find(({ testId }) => {
-        return testId == currentTestId
-    });
-    createNewTestForm.querySelector('[name=testName]').value = name;
-    createNewTestForm.querySelector('[name=testDescription]').value = description;
+    if (dataByTopicId != null && dataByTopicId.length !== 0) {
+        const { name, description } = dataByTopicId.find(({ testId }) => {
+            return testId == currentTestId
+        });
+        createNewTestForm.querySelector('[name=testName]').value = name;
+        createNewTestForm.querySelector('[name=testDescription]').value = description;
+    }
 }
 
 function createTestClickHandler(event) {
@@ -601,7 +527,4 @@ detailList.addEventListener('click', ({ target }) => {
     }
 })
 
-
-
-
-
+document.getElementById('themeItemIndex0').click();
