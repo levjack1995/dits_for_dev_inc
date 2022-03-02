@@ -56,7 +56,7 @@ function updateResult(data) {
               ${questionStatistics.map(({questionDescription, avgProc}, index) => {
             return `
                   <div class="mt-3 question__item row">
-                    <textarea class="col-9 question__name textrea_autoheight" readonly>${questionDescription}</textarea>
+                    <div class="col-9 question__name textrea_autoheight" readonly>${questionDescription}</div>
                     <span class="text-end col-3 question__proc">${avgProc}%</span>
                   </div>
                 `

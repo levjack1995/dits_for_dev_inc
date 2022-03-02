@@ -2,17 +2,19 @@
 
 <main>
     <div class="users container">
-        <div class="row align-items-center users__top">
-            <h2 class="col-auto users__title">Users list</h2>
-            <button class="col-auto users__add-button add-button" data-bs-toggle="modal"
-                    data-bs-target="#modal-create-user" id="openCreateModalButton">
-                <img th:src="@{/img/add-icon.svg}" alt="add user icon">
-                <span>Add new user</span>
-            </button>
+        <div class="row d-flex">
+            <h2 class="col-md-4 users__title">Users list</h2>
+            <div class="col-md-4">
+                <button class="users__add-button add-button" data-bs-toggle="modal"
+                        data-bs-target="#modal-create-user" id="openCreateModalButton">
+                    <img th:src="@{/img/add-icon.svg}" alt="add user icon">
+                    <span>Add new user</span>
+                </button>
+            </div>
         </div>
         <ul class="container users__list">
             <li class="row users__item user-info" th:each="user : ${session.users}" data-th-data-id="${user.userId}">
-                <span class="col-3 user-info__name"
+                <span class="col-md-3 user-info__name"
                       th:text="${user.firstName} + ' ' + ${user.lastName}">Maria Zapalina</span>
                 <a href="#" class="col user-info__email" th:text="${user.login}">zapalina@gmail.com</a>
                 <div class="col-auto user-info__control">

@@ -115,7 +115,7 @@ body {
     margin-left: 11px;
     vertical-align: middle;
     display: inline-block;
-    height: 52px;
+    height: 40px;
 }
 
 .nav__list {
@@ -260,8 +260,22 @@ body {
     color: #141414;
 }
 
+.index-num {
+    position: absolute;
+    left: -35px;
+    top: 8px;
+    font-size: 14px;
+    width: 40px;
+}
+
 .question__item {
     margin-left: 0;
+    position: relative;
+}
+
+.question__item .form-input {
+    color: #777;
+    font-size: 14px;
 }
 
 .test .result-row {
@@ -326,6 +340,7 @@ body {
     color: #0B0B0B;
     border: none;
     transition: color .3s;
+    width: calc( 100% - 80px);
 }
 
 .theme-item__input:focus-visible {
@@ -400,6 +415,7 @@ body {
     font-size: 14px;
     color: #777;
     overflow: hidden;
+    text-align: left;
 }
 
 .question__list {
@@ -422,10 +438,6 @@ body {
     font-size: 14px;
     color: #000;
     padding-right: 55px;
-}
-
-.min-width-780 {
-    min-width: 780px;
 }
 
 .bar {
@@ -471,6 +483,7 @@ body {
     font-size: 24px;
     line-height: 24px;
     color: #7A7A7A;
+    padding-right: 10px;
 }
 
 .add-theme-form {
@@ -501,7 +514,6 @@ body {
 }
 
 .detail {
-    padding-left: 52px;
     display: none;
 }
 
@@ -530,6 +542,7 @@ body {
 
 .detail__list-title {
     margin-top: 42px;
+    margin-left: 20px;
     font-size: 24px;
     line-height: 24px;
     color: #000000;
@@ -561,9 +574,17 @@ body {
     margin-top: 45px;
 }
 
+.theme-item__control {
+    width: 80px;
+}
+
 .test {
     background: #FFFFFF;
     border-bottom: 1px solid #dcdcdc;
+}
+
+.test:last-of-type {
+    border:none;
 }
 
 .test__title {
@@ -575,7 +596,15 @@ body {
 .test__text {
     font-size: 18px;
     line-height: 25px;
-    color: #000000
+    color: #000
+}
+
+.test__text:hover {
+    color: #008F02
+}
+
+.test.open .test__text {
+    color: #17AC19
 }
 
 .test-description {
@@ -584,10 +613,6 @@ body {
     border: 1px solid #777;
     box-sizing: border-box;
     border-radius: 10px;
-}
-
-.test:hover {
-    color: #007802;
 }
 
 .test:hover .test__text {
@@ -620,7 +645,7 @@ body {
 }
 
 .answer {
-    padding: 20px 0;
+    padding: 15px 0 0;
     border-bottom: 1px solid #c9c9c9;
 }
 
@@ -628,10 +653,19 @@ body {
     max-width: 50%;
 }
 
+#questionFormAnswerField .answer {
+    position: relative;
+}
+
 .answer__title {
     font-size: 20px;
     line-height: 36px;
-    color: #008F02
+    color: #008F02;
+    cursor: pointer;
+}
+
+.answer_variant {
+    padding: 0;
 }
 
 .footer__copyright {
@@ -673,10 +707,6 @@ body {
     visibility: hidden;
 }
 
-.hide{
-    display: inline-block;
-}
-
 .data-container {
     display: none;
 }
@@ -700,6 +730,25 @@ body {
 
 .btn:focus {
     background-color: #17ac19;
+}
+
+.btn-gray {
+    background-color: #f2f2f2;
+    color: #008F02;
+    font-size: 24px;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+    transition: all .3s;
+}
+
+.btn-gray:hover {
+    color: #007802;
+    box-shadow: -3px -3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-gray:focus {
+    color: #17ac19;
 }
 
 .btn-close {
@@ -752,9 +801,15 @@ body {
     background-color: #17AC1910;
 }
 
+.add-answer-button:active,
+.add-answer-button:focus {
+    border: 1px solid #008F02;
+}
+
 .add-answer-button {
-    border: 1px solid gray;
+    border: 1px solid #dbdbdb;
     border-radius: 10px;
+    height: 50px;
 }
 
 .user__logout {
@@ -884,6 +939,11 @@ body {
 
 .form-button {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.answer-input {
+    padding: 7px 14px;
+    border: none;
 }
 
 .form-input {
@@ -1072,6 +1132,11 @@ main .question {
     padding-bottom: 30px;
 }
 
+pre.question {
+    border-bottom: 1px solid #c9c9c9;
+    margin-bottom: 0;
+}
+
 main .answer img {
     max-width: 50%;
 }
@@ -1087,7 +1152,7 @@ main .answer input[type=checkbox]:not(:checked)+label:before {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 25px;
     width: 18px;
     height: 18px;
     border: 1px solid gray;
@@ -1098,7 +1163,7 @@ main .answer input[type=checkbox]:checked+label,
 main .answer input[type=checkbox]:not(:checked)+label {
     display: inline-block;
     position: relative;
-    padding-left: 28px;
+    padding-left: 40px;
     line-height: 20px;
     cursor: pointer;
 }
@@ -1121,7 +1186,7 @@ main .answer input[type=checkbox]:not(:checked)+label::after {
 main .answer input[type=checkbox]:checked+label:after,
 main .answer input[type=checkbox]:not(:checked)+label:after {
     left: 3px;
-    bottom: 7px;
+    top: 30px;
     width: 10px;
     height: 6px;
     border-radius: 1px;
@@ -1172,32 +1237,25 @@ main .form-select:focus {
     transform: rotate(0.5turn);
 }
 
-@media (max-width: 576px) {
+@media (min-width: 992px) {
 
-    main .title {
-        padding: 25px 10px;
+    .detail {
+        padding-left: 52px;
     }
 
-    main .title p,
-    main .title h3 {
-        margin: 0;
+}
+@media (max-width: 991px) {
+
+    main section {
+        padding: 40px 0;
+    }
+    .modal-content {
+        padding: 30px;
     }
 
-    .result {
-        flex-shrink: 1;
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-
-    .result .count-answers {
-        max-width: 65%;
-    }
 }
 
-@media (max-width: 768px) {
-    .student> :nth-child(-n+2) {
-        display: none;
-    }
+@media (max-width: 767px) {
     .signin-img {
         position: absolute;
         right: 18%;
@@ -1208,20 +1266,40 @@ main .form-select:focus {
     .signin {
         position: relative;
     }
+    .container {
+        max-width: initial;
+    }
+    .answer__delete-button {
+        position: absolute;
+        top: 23px;
+        right: -15px;
+        width: 50px;
+        z-index: 2;
+        padding: 0;
+    }
+    .question__item .form-input {
+        min-height: 80px;
+    }
+    .question__delete-button {
+        margin-top: 20px;
+    }
+    .theme-select {
+        width: 100%;
+    }
 }
 
-@media (max-width: 992px) {
-    .hide{
+@media (max-width: 575px) {
+    .index-num {
         display: none;
     }
-
-    .nav-control__logout{
-        margin-left: 0;
+    .detail__list .test {
+        padding: 10px;
     }
-}
-
-@media (max-width: 1200px) {
-    .bar {
-        grid-template-columns: 2fr 1fr 1fr 1fr 3fr;
+    .question__edit-button {
+        min-width: 40px;
     }
+    .question__delete-button {
+        min-width: 40px;
+    }
+
 }

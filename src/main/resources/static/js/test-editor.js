@@ -4,23 +4,23 @@ function getQuestionHtml({ name, description, testId, questions }) {
     question.dataset.id = testId;
     question.innerHTML = `
     <div class="row">
-      <a class="col test__text" data-bs-toggle="collapse" href='#test${testId}' role="button" aria-expanded="false" aria-controls="collapseExample">
+      <a class="col-md-6 test__text" data-bs-toggle="collapse" href='#test${testId}' role="button" aria-expanded="false" aria-controls="collapseExample">
         ${name}
       </a>
-      <button class="col-auto test__add-button" data-bs-toggle="modal" data-bs-target="#questionModal"><img src="/img/add-icon.svg" alt="Edit test question"></button>
-      <div class="col-auto test__control">
+      <button class="col-md-6 test__add-button text-end" data-bs-toggle="modal" data-bs-target="#questionModal">new question <img class="pl-1" src="/img/add-icon.svg" alt="Add new question"></button>
+      <div class="col-md-6 test__control text-end">
         <button class="test__edit-button"><img src="/img/edit-icon.svg" alt="Edit test"></button>
         <button class="test__delete-button"><img src="/img/delete-icon.svg" alt="Delete test"></button>
       </div>
     </div>
-    <div class="collapse question__list" id=test${testId} data-test-id=${testId}>
+    <div class="collapse question__list mt-3" id=test${testId} data-test-id=${testId}>
       ${
         questions.reduce( (accum, { questionId, description }, index) => {
             return accum += (`
-            <div class="row align-items-center question__item mb-2" data-id=${questionId}>
-              <span class="col-1">${index + 1}</span>
-              <textarea class="col-9 form-input" type="text" readonly="">${description}</textarea>
-              <div class="question-control col-2">
+            <div class="row question__item mb-2 mt-3" data-id=${questionId}>
+              <span class="index-num">${index + 1}.</span>
+              <div class="col-10 form-input" type="text">${description}</div>
+              <div class="question-control col-2 text-end">
                 <button class='question__edit-button' data-bs-toggle="modal" data-bs-target="#questionModal"><img src="/img/edit-icon.svg" alt="Edit test question"></button>
                 <button class='question__delete-button'><img src="/img/delete-icon.svg" alt="Delete test question"></button>
               </div>
@@ -377,9 +377,9 @@ function updateThemesList(data) {
     themeSection.innerHTML = `
     ${data.map( ({ topicName, topicId }) => {
         return `
-        <div class="row theme__item theme-item" data-id=${topicId} >
-        <input class="col theme-item__input" value="${topicName}" readonly="">
-        <span class="col-auto theme-item__control">
+        <div class="theme__item theme-item d-flex" data-id=${topicId} >
+        <input class="theme-item__input" value="${topicName}" readonly="">
+        <span class="theme-item__control">
           <button class="theme-item__submit"><img src="/img/submit-icon.svg" alt=""></button>
           <button class="theme-item__edit"><img src="/img/edit-icon.svg" alt=""></button>
           <button class="theme-item__delete"><img src="/img/delete-icon.svg" alt=""></button>
@@ -418,7 +418,7 @@ function getNewAnswerField(data) {
       <label class="col-12 answer__title">Answer ${nextAnswerNumber + 1} <input class="answer__correct" name="correct" type="checkbox" ${correct ? 'checked' : ''}></label>
     </div>
     <div class="row">
-        <input class="col-11 form-input" name="answer" type="text" value="${description}" placeholder="write answer"  required>
+        <input class="col-11 answer-input" name="answer" type="text" value="${description}" placeholder="write answer"  required>
         <button class="col-1 answer__delete-button" type="button"><img src="/img/delete-icon.svg"></button>
     </div>
   `;

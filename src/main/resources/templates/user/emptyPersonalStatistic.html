@@ -2,19 +2,19 @@
 
 <main>
     <div class="container">
-        <div class="title">
-            <h1 class="start" th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Ivanov
-                Andrey</h1>
-        </div>
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="title">
+                    <h1 class="start" th:text="${session.user.getFirstName} + ' '+ ${session.user.getLastName}">Ivanov
+                        Andrey</h1>
+                </div>
 
-        <h3 class="py-3 no-tests">You haven't finished any test yet</h3>
-        <button
-                onclick="location.href='/user/chooseTest'"
-                type="submit"
-                class="btn mt-3 col-lg-4"
-        >
-            Start now
-        </button>
+                <h3 class="py-3 no-tests">You haven't finished any test yet</h3>
+                <button onclick="location.href='/user/chooseTest'" type="submit" class="btn mt-3 col-lg-4">
+                    Start now
+                </button>
+            </div>
+        </div>
     </div>
 </main>
 
