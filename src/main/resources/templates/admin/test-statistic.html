@@ -6,23 +6,27 @@
             <div class="row justify-content-center result__head">
                 <div class=" col result__title"><h3>Test statistics</h3></div>
             </div>
-            <div class="result__body">
+            <div class="row result__body">
                 <div class="result__control">
-                    <div class="row w-100 gy-2 justify-content-between">
+                    <div class="result__control">
                         <div class="text-start mb-2">Select theme</div>
-                        <select class="col-md-5 theme-select" name="theme" id="themeSelect">
-                            <option value="" selected disabled>Choose theme</option>
-                            <option th:each="topic : ${topicList}" th:value="${topic.topicId}"
-                                    th:text="${topic.topicName}">Java 2 Fundamentals
-                            </option>
-                        </select>
-                        <a th:href="@{/admin/getUserStatistic}" class="col-md-auto btn-gray">User statistics</a>
+                        <div class="d-flex gy-2 justify-content-between flex-wrap">
+                            <select class="col-md-5 col-12 theme-select" name="theme" id="themeSelect">
+                                <option value="" selected disabled>Choose theme</option>
+                                <option th:each="topic : ${topicList}" th:value="${topic.topicId}"
+                                        th:text="${topic.topicName}">Java 2 Fundamentals
+                                </option>
+                            </select>
+                            <a th:href="@{/admin/getUserStatistic}" href="#"
+                               class="col-md-auto col-12 d-flex align-items-center align-self-end result__link">User
+                                statistics</a>
+                        </div>
                     </div>
                 </div>
                 <div class="data-container container mt-5" id="dataContainer">
                     <div class="row grid__head">
-                        <div class="col-9 text-start mb-2 grid__head-item">Test name</div>
-                        <div class="col-3 text-center d-flex justify-content-between">
+                        <div class="col-md-9 col-sm-7 text-start mb-2 grid__head-item">Test name</div>
+                        <div class="col-md-3 col-sm-5 text-center d-flex justify-content-between">
                             <div class="text-center grid__head-item">Pass</div>
                             <div class="text-center grid__head-item">
                                 <span>Average</span>

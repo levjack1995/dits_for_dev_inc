@@ -4,13 +4,13 @@ function getQuestionHtml({ name, description, testId, questions }) {
     question.dataset.id = testId;
     question.innerHTML = `
     <div class="row">
-      <a class="col-md-6 test__text" data-bs-toggle="collapse" href='#test${testId}' role="button" aria-expanded="false" aria-controls="collapseExample">
+      <a class="col-md-9 test__text" data-bs-toggle="collapse" href='#test${testId}' role="button" aria-expanded="false" aria-controls="collapseExample">
         ${name}
       </a>
-      <button class="col-md-6 test__add-button text-end" data-bs-toggle="modal" data-bs-target="#questionModal">new question <img class="pl-1" src="/img/add-icon.svg" alt="Add new question"></button>
-      <div class="col-md-6 test__control text-end">
-        <button class="test__edit-button"><img src="/img/edit-icon.svg" alt="Edit test"></button>
-        <button class="test__delete-button"><img src="/img/delete-icon.svg" alt="Delete test"></button>
+      <button class="col-md-3 test__add-button text-md-end text-start" data-bs-toggle="modal" data-bs-target="#questionModal">new question <img class="pl-1 icon-btn" src="/img/add-icon.svg" alt="Add new question"></button>
+      <div class="col-md-3 test__control text-md-end">
+        <button class="test__edit-button"><img src="/img/edit-icon.svg" alt="Edit test" class="icon-btn"></button>
+        <button class="test__delete-button"><img src="/img/delete-icon.svg" alt="Delete test" class="icon-btn"></button>
       </div>
     </div>
     <div class="collapse question__list mt-3" id=test${testId} data-test-id=${testId}>
@@ -21,8 +21,8 @@ function getQuestionHtml({ name, description, testId, questions }) {
               <span class="index-num">${index + 1}.</span>
               <div class="col-10 form-input" type="text">${description}</div>
               <div class="question-control col-2 text-end">
-                <button class='question__edit-button' data-bs-toggle="modal" data-bs-target="#questionModal"><img src="/img/edit-icon.svg" alt="Edit test question"></button>
-                <button class='question__delete-button'><img src="/img/delete-icon.svg" alt="Delete test question"></button>
+                <button class='question__edit-button' data-bs-toggle="modal" data-bs-target="#questionModal"><img src="/img/edit-icon.svg" alt="Edit test question" class="icon-btn"></button>
+                <button class='question__delete-button'><img src="/img/delete-icon.svg" alt="Delete test question" class="icon-btn"></button>
               </div>
             </div>
           `)
@@ -47,6 +47,7 @@ let dataByTopicId = null;
 
 function changeActiveAddThemeFormStatus() {
     addThemeForm.classList.toggle('active');
+    addThemeForm.previousElementSibling.classList.toggle('active');
 }
 
 function addThemeClickHandler(target) {

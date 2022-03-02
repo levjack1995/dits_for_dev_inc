@@ -37,8 +37,8 @@ function updateResult(data) {
         return `
       <div class="container test" data-id="${index}">
         <div class="row result-row" data-bs-toggle="collapse" href='#test${index}'>
-          <div class="col-9 text-start">${testName}</div>
-          <div class="col-3 text-center d-flex justify-content-between">
+          <div class="col-md-9 col-sm-7 text-start">${testName}</div>
+          <div class="col-md-3 col-sm-5 text-center d-flex justify-content-between">
               <div style="width: 40px;">${count}</div>
               <div style="width: 100px;">${avgProc}%</div>
           </div> 
@@ -46,8 +46,8 @@ function updateResult(data) {
         <div class="collapse" id='test${index}'>
           <div class="question">
             <div class="row">
-              <span class="col-9 text-start question__head-text">Questions</span>
-              <div class="col-2 offset-1 text-end question__head-text">
+              <span class="col-sm-9 text-start question__head-text">Questions</span>
+              <div class="col-sm-2 offset-sm-1 text-sm-end text-start question__head-text">
                 <span>Correct</span>
                 <button class="sort-button"><img src="/img/sort-icon.svg"></button>
               </div>
@@ -56,8 +56,8 @@ function updateResult(data) {
               ${questionStatistics.map(({questionDescription, avgProc}, index) => {
             return `
                   <div class="mt-3 question__item row">
-                    <div class="col-9 question__name textrea_autoheight" readonly>${questionDescription}</div>
-                    <span class="text-end col-3 question__proc">${avgProc}%</span>
+                    <div class="col-sm-9 question__name textrea_autoheight" readonly>${questionDescription}</div>
+                    <span class="text-sm-end text-start col-sm-3 question__proc">${avgProc}%</span>
                   </div>
                 `
         }).join('')}

@@ -6,31 +6,31 @@
             <div class="row justify-content-center result__head">
                 <div class=" col result__title"><h3>User statistics</h3></div>
             </div>
-            <div class="result__body">
+            <div class="row result__body">
                 <div class="result__control">
-                    <div class="row w-100 gy-2 justify-content-between">
-                        <label class="col-12">
-                            <div class="text-start mb-2">Select a student</div>
-                            <select class="w-100 theme-select" name="theme" id="themeSelect">
-                                <option value="" selected disabled>Student name</option>
-                                <option th:each="user : ${userListStat}" th:value="${user.userId}"
-                                        th:text="${user.firstName}+ ' ' + ${user.lastName}">Sashko
-                                </option>
-                            </select>
-                        </label>
+                    <div class="text-start mb-2">Select a student</div>
+                    <div class="d-flex gy-2 justify-content-between flex-wrap">
+                        <select class="col-md-5 col-12 theme-select" name="theme" id="themeSelect">
+                            <option value="" selected disabled>Student name</option>
+                            <option th:each="user : ${userListStat}" th:value="${user.userId}"
+                                    th:text="${user.firstName}+ ' ' + ${user.lastName}">Sashko
+                            </option>
+                        </select>
                         <a th:href="@{/admin/adminStatistic}" href="#"
-                           class="col-auto d-flex align-items-center align-self-end result__link">Test statistics</a>
+                           class="col-md-auto col-12 d-flex align-items-center align-self-end result__link">Test
+                            statistics</a>
                     </div>
                 </div>
                 <div class="data-container container mt-5" id="dataContainer">
                     <div class="row grid__head">
-                        <div class="col-1 text-start">#</div>
-                        <div class="col-8 text-start mb-2 grid__head-item">Name of the test</div>
-                        <div class="col-3 text-center d-flex justify-content-between">
+                        <div class="col-1 text-start d-none d-md-block">#</div>
+                        <div class="col-md-8 col-sm-7 text-start mb-2 grid__head-item">Name of the test</div>
+                        <div class="col-md-3 col-sm-5 text-center d-flex justify-content-between">
                             <div class="text-center grid__head-item">Pass</div>
                             <div class="text-center grid__head-item">
                                 <span>Average</span>
-                                <button class="sort-button" id="sortTestsButton"><img th:src="@{/img/sort-icon.svg}"></button>
+                                <button class="sort-button" id="sortTestsButton"><img th:src="@{/img/sort-icon.svg}">
+                                </button>
                             </div>
                         </div>
                     </div>

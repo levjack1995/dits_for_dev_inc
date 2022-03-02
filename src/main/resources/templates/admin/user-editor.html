@@ -3,11 +3,11 @@
 <main>
     <div class="users container">
         <div class="row d-flex">
-            <h2 class="col-md-4 users__title">Users list</h2>
+            <h2 class="col-md-4 col-lg-3 users__title">Users list</h2>
             <div class="col-md-4">
                 <button class="users__add-button add-button" data-bs-toggle="modal"
                         data-bs-target="#modal-create-user" id="openCreateModalButton">
-                    <img th:src="@{/img/add-icon.svg}" alt="add user icon">
+                    <img th:src="@{/img/add-icon.svg}" alt="add user icon" class="icon-btn">
                     <span>Add new user</span>
                 </button>
             </div>
@@ -18,13 +18,13 @@
                       th:text="${user.firstName} + ' ' + ${user.lastName}">Maria Zapalina</span>
                 <a href="#" class="col user-info__email" th:text="${user.login}">zapalina@gmail.com</a>
                 <div class="col-auto user-info__control">
-                    <button class="icon-btn user-info__button_edit" data-bs-toggle="modal"
+                    <button class="user-info__button_edit" data-bs-toggle="modal"
                             data-bs-target="#modal-edit-user">
-                        <img th:src="@{/img/edit-icon.svg}" alt="edit user">
+                        <img th:src="@{/img/edit-icon.svg}" alt="edit user" class="icon-btn">
                     </button>
-                    <button class="icon-btn user-info__button_delete" data-bs-toggle="modal"
+                    <button class="user-info__button_delete" data-bs-toggle="modal"
                             data-bs-target="#modal-delete-user">
-                        <img th:src="@{/img/delete-icon.svg}" alt="delete user">
+                        <img th:src="@{/img/delete-icon.svg}" alt="delete user" class="icon-btn">
                     </button>
                 </div>
             </li>

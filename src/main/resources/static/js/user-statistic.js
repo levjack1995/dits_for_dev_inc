@@ -39,9 +39,9 @@ function updateResult(data) {
         return `
       <div class="container test" data-id="${index}">
         <div class="row result-row" data-bs-toggle="collapse" href='#test${index}'>
-          <div class="col-1 text-start">${index + 1}</div>
-          <div class="col-8 text-start">${testName}</div>
-          <div class="col-3 text-center d-flex justify-content-between">
+          <div class="col-1 text-start d-none d-md-block">${index + 1}</div>
+          <div class="col-md-8 col-sm-7 text-start">${testName}</div>
+          <div class="col-md-3 col-sm-5 text-center d-flex justify-content-between">
               <div style="width: 40px;">${count}</div>
               <div style="width: 100px;">${avgProc}%</div>
           </div> 

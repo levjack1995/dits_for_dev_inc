@@ -530,10 +530,15 @@ body {
 
 .detail__create {
     margin-top: 45px;
-    padding: 14px 24px 14px 30px;
+    padding: 14px 20px 14px 20px;
     background: #FFFFFF;
     box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+    transition: all .3s;
+}
+
+.detail__create:hover {
+    box-shadow: -3px 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .detail__list {
@@ -568,6 +573,7 @@ body {
     font-size: 18px;
     line-height: 25px;
     color: #0B0B0B;
+    padding-left: 10px;
 }
 
 .detail__list .question:not(:first-child) {
@@ -740,6 +746,7 @@ body {
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
     transition: all .3s;
+    line-height: 50px;
 }
 
 .btn-gray:hover {
@@ -755,6 +762,11 @@ body {
     position: absolute;
     right: 30px;
     top: 30px;
+    transition: transform .3s;
+}
+
+.btn-close:hover {
+    transform: rotate(90deg);
 }
 
 .users {
@@ -986,6 +998,10 @@ body {
 }
 
 .icon-btn:hover {
+    transform: scale(1.1);
+}
+
+button:hover > .icon-btn {
     transform: scale(1.1);
 }
 
@@ -1233,8 +1249,12 @@ main .form-select:focus {
     cursor: pointer;
 }
 
-.down {
-    transform: rotate(0.5turn);
+.active .sidebar-add-theme__button {
+    transform: rotate(135deg);
+}
+
+.sidebar-add-theme__button {
+    transition: all .3s;
 }
 
 @media (min-width: 992px) {
@@ -1251,6 +1271,19 @@ main .form-select:focus {
     }
     .modal-content {
         padding: 30px;
+    }
+    .createUserModal__label-text {
+        font-size: 14px;
+        padding-left: 15px;
+        margin-bottom: 3px;
+    }
+    .answer__delete-button {
+        position: absolute;
+        top: 23px;
+        right: -15px;
+        width: 50px;
+        z-index: 2;
+        padding: 0;
     }
 
 }
@@ -1269,14 +1302,6 @@ main .form-select:focus {
     .container {
         max-width: initial;
     }
-    .answer__delete-button {
-        position: absolute;
-        top: 23px;
-        right: -15px;
-        width: 50px;
-        z-index: 2;
-        padding: 0;
-    }
     .question__item .form-input {
         min-height: 80px;
     }
@@ -1285,6 +1310,16 @@ main .form-select:focus {
     }
     .theme-select {
         width: 100%;
+    }
+    .modal-lg {
+        max-width: 740px;
+    }
+    main .title {
+        padding: 10px;
+    }
+    .result__link {
+        padding-left: 25px;
+        margin-top: 20px;
     }
 }
 
@@ -1295,11 +1330,17 @@ main .form-select:focus {
     .detail__list .test {
         padding: 10px;
     }
-    .question__edit-button {
-        min-width: 40px;
-    }
+    .question__edit-button,
     .question__delete-button {
         min-width: 40px;
     }
 
+}
+
+@media (max-width: 370px) {
+    .question__edit-button,
+    .question__delete-button {
+        position: relative;
+        right: 12px;
+    }
 }
