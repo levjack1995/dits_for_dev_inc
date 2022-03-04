@@ -11,7 +11,7 @@
                 <select class="form-select select-input" id="testThemeSelect" name="theme"
                         aria-label="Default select example">
                     <!--                    <option disabled>Open this select menu</option>-->
-                    <option th:each="topic : ${@topicServiceImpl.findAll()}" th:text="${topic.getName}">One</option>
+                    <option th:each="topic : ${topicWithQuestions}" th:text="${topic.getName}">One</option>
                 </select>
             </div>
             <div class="col-12 col-lg-4 hidden">

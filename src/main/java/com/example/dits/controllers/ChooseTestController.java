@@ -29,9 +29,15 @@ public class ChooseTestController {
         session.setAttribute("tests", tests);
         if(tests.isEmpty()){
             return new ArrayList<>();
-        }
-        else {
-            return tests.stream().map(this::convertToDTO).collect(Collectors.toList());
+        } else {
+            List<TestInfoDTO> list = new ArrayList<>();
+            for (Test test : tests) {
+                if (test.getQuestions().size() != 0) {
+                    TestInfoDTO testInfoDTO = convertToDTO(test);
+                    list.add(testInfoDTO);
+                }
+            }
+            return list;
         }
     }
 
