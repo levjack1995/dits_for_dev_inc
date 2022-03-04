@@ -71,7 +71,7 @@ body {
 }
 
 .navbar-light .navbar-toggler {
-    border-color: transparent ;
+    border-color: transparent;
 }
 
 .navbar-toggler {
@@ -340,7 +340,7 @@ body {
     color: #0B0B0B;
     border: none;
     transition: color .3s;
-    width: calc( 100% - 80px);
+    width: calc(100% - 80px);
 }
 
 .theme-item__input:focus-visible {
@@ -418,9 +418,15 @@ body {
     text-align: left;
 }
 
+.green_line {
+    background-color: #008F02;
+    height: 2px;
+    opacity: 1;
+    margin-bottom: 0;
+}
+
 .question__list {
     margin-top: 14px;
-    border-top: 2px solid #008F02;
 }
 
 .question-modal__list {
@@ -590,7 +596,7 @@ body {
 }
 
 .test:last-of-type {
-    border:none;
+    border: none;
 }
 
 .test__title {
@@ -898,6 +904,7 @@ body {
 
 .deleteUserModal__header {
     margin: 0;
+    padding-top: 20px;
 }
 
 .deleteUserModal__title {
@@ -949,7 +956,7 @@ body {
 }
 
 .answer-input {
-    padding: 7px 14px;
+    padding: 7px 14px 7px 30px;
     border: none;
 }
 
@@ -1006,7 +1013,7 @@ button:hover > .icon-btn {
     display: flex;
     align-items: center;
     min-height: calc(100vh - 200px);
-    padding: 1rem!important;
+    padding: 1rem !important;
 }
 
 .focus {
@@ -1152,14 +1159,14 @@ main .answer img {
     max-width: 50%;
 }
 
-main .answer input[type=checkbox]:checked,
-main .answer input[type=checkbox]:not(:checked) {
+.answer input[type=checkbox]:checked,
+.answer input[type=checkbox]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
 
-main .answer input[type=checkbox]:checked+label:before,
-main .answer input[type=checkbox]:not(:checked)+label:before {
+.answer input[type=checkbox]:checked + label:before,
+.answer input[type=checkbox]:not(:checked) + label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -1170,48 +1177,53 @@ main .answer input[type=checkbox]:not(:checked)+label:before {
     background-color: #ffffff;
 }
 
-main .answer input[type=checkbox]:checked+label,
-main .answer input[type=checkbox]:not(:checked)+label {
+.answer input[type=checkbox]:checked + label,
+.answer input[type=checkbox]:not(:checked) + label {
     display: inline-block;
     position: relative;
-    padding-left: 40px;
+    padding-left: 30px;
     line-height: 20px;
     cursor: pointer;
 }
 
-main .answer input[type=checkbox]:checked+label:before,
-main .answer input[type=checkbox]:not(:checked)+label:before {
+.answer input[type=checkbox]:checked + label:before,
+.answer input[type=checkbox]:not(:checked) + label:before {
     border-radius: 2px;
 }
 
-main .answer input[type=checkbox]:checked+label:after,
-main .answer input[type=checkbox]:not(:checked)+label::after {
+.answer input[type=checkbox]:checked + label:after,
+.answer input[type=checkbox]:not(:checked) + label::after {
     content: "";
     position: absolute;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
 
-main .answer input[type=checkbox]:checked+label:after,
-main .answer input[type=checkbox]:not(:checked)+label:after {
-    left: 3px;
-    top: 30px;
-    width: 10px;
-    height: 6px;
+.answer input[type=checkbox]:checked + label:after,
+.answer input[type=checkbox]:not(:checked) + label:after {
+    left: 2px;
+    top: 28px;
+    width: 14px;
+    height: 8px;
     border-radius: 1px;
     border-left: 3px solid #008f02;
     border-bottom: 3px solid #008f02;
-    transform: rotate(-45deg);
 }
 
-main .answer input[type=checkbox]:not(:checked)+label:after {
+.answer input[type=checkbox].answer__correct + label:after {
+    top: 13px;
+}
+.answer input[type=checkbox].answer__correct + label:before {
+    top: 10px;
+}
+
+.answer input[type=checkbox]:not(:checked) + label:after {
     opacity: 0;
+    transform: rotate(-30deg) scale(0);
 }
 
-main .answer input[type=checkbox]:checked+label:after {
+.answer input[type=checkbox]:checked + label:after {
     opacity: 1;
+    transform: rotate(-45deg) scale(1);
 }
 
 main .form-select:focus {
@@ -1232,11 +1244,11 @@ main .form-select:focus {
     border-bottom: #007802;
 }
 
-.statistic tr>td:nth-of-type(1) {
+.statistic tr > td:nth-of-type(1) {
     text-align: start;
 }
 
-.statistic tr>th:nth-of-type(2) {
+.statistic tr > th:nth-of-type(2) {
     text-align: start;
 }
 
@@ -1252,6 +1264,15 @@ main .form-select:focus {
     transition: all .3s;
 }
 
+.answer__delete-button {
+    position: absolute;
+    top: 40px;
+    right: -15px;
+    width: 50px;
+    z-index: 2;
+    padding: 0;
+}
+
 @media (min-width: 992px) {
 
     .detail {
@@ -1259,26 +1280,21 @@ main .form-select:focus {
     }
 
 }
+
 @media (max-width: 991px) {
 
     main section {
         padding: 40px 0;
     }
+
     .modal-content {
         padding: 30px;
     }
+
     .createUserModal__label-text {
         font-size: 14px;
         padding-left: 15px;
         margin-bottom: 3px;
-    }
-    .answer__delete-button {
-        position: absolute;
-        top: 23px;
-        right: -15px;
-        width: 50px;
-        z-index: 2;
-        padding: 0;
     }
 
 }
@@ -1286,34 +1302,47 @@ main .form-select:focus {
 @media (max-width: 767px) {
     .signin-img {
         position: absolute;
-        right: 18%;
-        top: 20%;
+        right: 40px;
+        top: 20px;
         width: 100px;
         height: 100px;
     }
-    .signin {
+
+    .signin .row {
         position: relative;
     }
+
     .container {
         max-width: initial;
     }
+
     .question__item .form-input {
         min-height: 80px;
+        overflow-wrap: break-word;
     }
+
     .question__delete-button {
         margin-top: 20px;
     }
+
     .theme-select {
         width: 100%;
     }
+
     .modal-lg {
         max-width: 740px;
     }
+
     main .title {
         padding: 10px;
     }
+
     .result__link {
         padding-left: 25px;
+        margin-top: 20px;
+    }
+
+    .result__container {
         margin-top: 20px;
     }
 }
@@ -1322,14 +1351,19 @@ main .form-select:focus {
     .index-num {
         display: none;
     }
+
     .detail__list .test {
         padding: 10px;
     }
+
     .question__edit-button,
     .question__delete-button {
         min-width: 40px;
     }
 
+    .question__name {
+        width: calc(100% - 12px);
+    }
 }
 
 @media (max-width: 370px) {
@@ -1338,10 +1372,12 @@ main .form-select:focus {
         position: relative;
         right: 12px;
     }
+
     .modal-content {
-        padding: 10px;
+        padding: 20px;
     }
+
     .deleteUserModal__content {
-        padding: 30px 10px;
+        padding: 30px 12px;
     }
 }

@@ -1,4 +1,4 @@
-function getQuestionHtml({ name, description, testId, questions }) {
+function getQuestionHtml({name, description, testId, questions}) {
     const question = document.createElement('div');
     question.className = 'test';
     question.dataset.id = testId;
@@ -15,7 +15,7 @@ function getQuestionHtml({ name, description, testId, questions }) {
     </div>
     <div class="collapse question__list mt-3" id=test${testId} data-test-id=${testId}>
       ${
-        questions.reduce( (accum, { questionId, description }, index) => {
+        questions.reduce((accum, {questionId, description}, index) => {
             return accum += (`
             <div class="row question__item mb-2 mt-3" data-id=${questionId}>
               <span class="index-num">${index + 1}.</span>
@@ -63,7 +63,7 @@ function deactivateAddThemeForm() {
 
 addThemeForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const newThemeValue =  addThemeFormInput.value;
+    const newThemeValue = addThemeFormInput.value;
     console.log(newThemeValue);
     deactivateAddThemeForm();
     if (newThemeValue.length) {
@@ -72,7 +72,7 @@ addThemeForm.addEventListener('submit', async (event) => {
         const params = {name: newThemeValue};
         url.search = new URLSearchParams(params).toString();
         const response = await fetch(url, {
-            method: 'POST',headers: {
+            method: 'POST', headers: {
                 "X-CSRF-TOKEN": token
             }
         });
@@ -85,7 +85,7 @@ let result = null;
 
 async function getTestsData(themeId) {
     const url = new URL("http://localhost:8080/admin/getTests");
-    const params = {id : themeId};
+    const params = {id: themeId};
     url.search = new URLSearchParams(params).toString();
     const response = await fetch(url);
     result = await response.json();
@@ -105,7 +105,7 @@ async function setNewThemeTests(data) {
     detail.classList.add('active');
     detailList.innerHTML = '';
     console.log(testsData);
-    testsData.forEach( testData => {
+    testsData.forEach(testData => {
         detailList.appendChild(getQuestionHtml(testData))
     })
 }
@@ -113,7 +113,7 @@ async function setNewThemeTests(data) {
 async function submitNewTheme(target) {
     const themeItem = target.closest('.theme__item');
     const themeId = themeItem.dataset.id;
-    const { value: name} = themeItem.querySelector('.theme-item__input');
+    const {value: name} = themeItem.querySelector('.theme-item__input');
     const url = new URL("http://localhost:8080/admin/editTopic");
     let params = {name, id: themeId};
     url.search = new URLSearchParams(params).toString();
@@ -148,7 +148,7 @@ async function deleteTheme(target) {
 
 function testThemeClichHandler(event) {
     event.preventDefault();
-    const { target } = event;
+    const {target} = event;
     const themeItem = target.closest('.theme-item');
     if (themeItem) {
         const themeId = themeItem.dataset.id;
@@ -164,8 +164,7 @@ function testThemeClichHandler(event) {
             setThemeEditMode(themeItem);
         } else if (target.closest('.theme-item__submit')) {
             submitNewTheme(target);
-        }
-        else if (target.closest('.theme-item__delete')) {
+        } else if (target.closest('.theme-item__delete')) {
             deleteTheme(target);
         }
     }
@@ -181,35 +180,35 @@ const createNewTestForm = document.getElementById('newTestForm');
 const newTestFormCloseButton = document.getElementById('newTestFormCloseButton');
 
 async function addNewTest(name, description) {
-     newTestFormCloseButton.click();
-     const url = new URL("http://localhost:8080/admin/addTest");
-     let params = {name, description, topicId: currentThemeId};
-     url.search = new URLSearchParams(params).toString();
-     const response = await fetch(url, {
-         method: 'POST',
-         headers: {
-             "Content-Type": "application/json",
-             "X-CSRF-TOKEN": token
-         }
-     });
-     const result = await response.json();
-     setNewThemeTests(result);
+    newTestFormCloseButton.click();
+    const url = new URL("http://localhost:8080/admin/addTest");
+    let params = {name, description, topicId: currentThemeId};
+    url.search = new URLSearchParams(params).toString();
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": token
+        }
+    });
+    const result = await response.json();
+    setNewThemeTests(result);
 }
 
 async function editTest(name, description) {
-     newTestFormCloseButton.click();
-     const url = new URL("http://localhost:8080/admin/editTest");
-     let params = {name, description, topicId: currentThemeId, testId: currentTestId};
-     url.search = new URLSearchParams(params).toString();
-     const response = await fetch(url, {
-         method: 'PUT',
-         headers: {
-             "Content-Type": "application/json",
-             "X-CSRF-TOKEN": token
-         }
-     });
-     const result = await response.json();
-     setNewThemeTests(result);
+    newTestFormCloseButton.click();
+    const url = new URL("http://localhost:8080/admin/editTest");
+    let params = {name, description, topicId: currentThemeId, testId: currentTestId};
+    url.search = new URLSearchParams(params).toString();
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": token
+        }
+    });
+    const result = await response.json();
+    setNewThemeTests(result);
 }
 
 async function deleteTest() {
@@ -243,7 +242,7 @@ createNewTestForm.addEventListener('submit', (event) => {
 
 function setCreateTestFormStartData() {
     if (dataByTopicId != null && dataByTopicId.length !== 0) {
-        const { name, description } = dataByTopicId.find(({ testId }) => {
+        const {name, description} = dataByTopicId.find(({testId}) => {
             return testId == currentTestId
         });
         createNewTestForm.querySelector('[name=testName]').value = name;
@@ -252,7 +251,7 @@ function setCreateTestFormStartData() {
 }
 
 function createTestClickHandler(event) {
-    const { target, isTrusted } = event;
+    const {target, isTrusted} = event;
     console.log(event)
     const openFormButton = target.closest('#createNewTestButton');
     if (openFormButton) {
@@ -267,7 +266,7 @@ function createTestClickHandler(event) {
 }
 
 document.addEventListener('click', (event) => {
-    const { target } = event;
+    const {target} = event;
     const targetClassList = target.classList;
     if (target.closest('#testThemes')) {
         testThemeClichHandler(event);
@@ -276,8 +275,7 @@ document.addEventListener('click', (event) => {
         addThemeClickHandler(target);
     } else if (target.closest('.detail__create')) {
         createTestClickHandler(event);
-    }
-    else if(target.closest('#detailList')) {
+    } else if (target.closest('#detailList')) {
         refreshThemesValues();
         detailClickHandler(target);
         deactivateAddThemeForm();
@@ -331,12 +329,10 @@ async function addNewQuestion() {
             answer: answer.querySelector('[name=answer]').value,
         }
     });
-    if (answersData.filter((el) => el.correct === true).length < 1)
-    {
+    if (answersData.filter((el) => el.correct === true).length < 1) {
         alert('You should choose Correct Answer')
         return;
-    }
-    else if (answersData.length < 2){
+    } else if (answersData.length < 2) {
         alert('answer is less than 2')
         return;
     }
@@ -376,7 +372,7 @@ function updateThemesList(data) {
     console.log(data)
     themeSection.innerHTML = '';
     themeSection.innerHTML = `
-    ${data.map( ({ topicName, topicId }) => {
+    ${data.map(({topicName, topicId}) => {
         return `
         <div class="theme__item theme-item d-flex" data-id=${topicId} >
         <input class="theme-item__input" value="${topicName}" readonly="">
@@ -415,30 +411,26 @@ function getNewAnswerField(data) {
     const description = data ? data.description : '';
     const correct = data ? data.correct : false;
     answer.innerHTML = `
-    <div class="row">
-      <label class="col-12 answer__title">Answer ${nextAnswerNumber + 1} <input class="answer__correct" name="correct" type="checkbox" ${correct ? 'checked' : ''}></label>
-    </div>
-    <div class="row">
+        <input class="answer__correct" name="correct" type="checkbox" ${correct ? 'checked' : ''} id="answer_${nextAnswerNumber}">
+        <label class="col-12 answer__title py-2"  for="answer_${nextAnswerNumber}">Answer ${nextAnswerNumber + 1}</label>
         <input class="col-11 answer-input" name="answer" type="text" value="${description}" placeholder="write answer"  required>
         <button class="col-1 answer__delete-button" type="button"><img src="/img/delete-icon.svg"></button>
-    </div>
   `;
     return answer;
 }
 
 
-
-function openQuestionEditForm( { questionId, description, answerDTOList }) {
+function openQuestionEditForm({questionId, description, answerDTOList}) {
     refreshQuestionForm();
     questionFormQuestion.textContent = description;
-    answerDTOList.forEach( itemData => {
+    answerDTOList.forEach(itemData => {
         questionFormAnswerField.append((getNewAnswerField(itemData)));
     })
 }
 
 async function getAnswers(questionId) {
     const url = new URL("http://localhost:8080/admin/getAnswers");
-    const params = {id:questionId};
+    const params = {id: questionId};
     url.search = new URLSearchParams(params).toString();
     response = await fetch(url);
     const result = await response.json();
@@ -447,17 +439,17 @@ async function getAnswers(questionId) {
 }
 
 async function editQuestion() {
-    const result  = await getAnswers(currentQuestionId);
+    const result = await getAnswers(currentQuestionId);
     openQuestionEditForm(result);
 }
 
 function setCurrentTestId(target) {
-    const testId  = target.closest('.test').dataset.id;
+    const testId = target.closest('.test').dataset.id;
     currentTestId = testId;
 }
 
 function setCurrentQuestionId(target) {
-    const questionId  = target.closest('.question__item').dataset.id;
+    const questionId = target.closest('.question__item').dataset.id;
     currentQuestionId = questionId;
     console.log('Set current questionId', currentQuestionId);
 }
@@ -483,7 +475,7 @@ function createNewQuestion() {
     questionFormAnswerField.append(getNewAnswerField());
 }
 
-createQuestionForm.addEventListener('click', ({ target }) => {
+createQuestionForm.addEventListener('click', ({target}) => {
     if (target.closest('.add-answer-button')) {
         createNewQuestion()
     } else if (target.closest('.answer__delete-button')) {
@@ -499,30 +491,30 @@ function clickTestHandler(target) {
     } else if (target.closest('.test__add-button')) {
         openQuestionCreateForm();
         createQuestionForm.reset();
-    }  else if (target.closest('.test__edit-button')) {
+    } else if (target.closest('.test__edit-button')) {
         isNewTest = false;
         createNewTestButton.click();
-    }
-    else if (target.closest('.test__delete-button')) {
+    } else if (target.closest('.test__delete-button')) {
         deleteTest();
     }
 }
 
 async function deleteQuestion() {
     const url = new URL("http://localhost:8080/admin/removeQuestion");
-    const params = {questionId : currentQuestionId, topicId : currentThemeId};
+    const params = {questionId: currentQuestionId, topicId: currentThemeId};
     url.search = new URLSearchParams(params).toString();
-    let response = await fetch(url,  {
+    let response = await fetch(url, {
         method: 'DELETE',
         headers: {
             "X-CSRF-TOKEN": token
-        }});
+        }
+    });
     let result = await response.json();
     await setNewThemeTests(result);
     console.log('delete question')
 }
 
-detailList.addEventListener('click', ({ target }) => {
+detailList.addEventListener('click', ({target}) => {
     if (target.closest('.test')) {
         clickTestHandler(target);
     }

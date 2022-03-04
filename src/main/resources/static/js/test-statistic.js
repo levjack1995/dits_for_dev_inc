@@ -45,13 +45,14 @@ function updateResult(data) {
         </div>
         <div class="collapse" id='test${index}'>
           <div class="question">
-            <div class="row">
-              <span class="col-sm-9 text-start question__head-text">Questions</span>
-              <div class="col-sm-2 offset-sm-1 text-sm-end text-start question__head-text">
+            <div class="row question__head">
+              <span class="col-sm-8 text-start question__head-text">Questions</span>
+              <div class="col-sm-3 offset-sm-1 text-sm-end text-start question__head-text">
                 <span>Correct</span>
                 <button class="sort-button"><img src="/img/sort-icon.svg"></button>
               </div>
             </div>
+            <hr class="green_line" size="2">
             <div class="question__list">
               ${questionStatistics.map(({questionDescription, avgProc}, index) => {
             return `
