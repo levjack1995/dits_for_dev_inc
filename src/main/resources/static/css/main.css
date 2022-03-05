@@ -28,6 +28,51 @@ button:focus {
     outline: none;
 }
 
+.burger {
+    top: 0;
+    right: 0;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transition: 0.5s;
+}
+
+.burger:before,
+.burger:after,
+.burger div {
+    background: #fff;
+    content: "";
+    display: block;
+    height: 5px;
+    border-radius: 3px;
+    margin: 6px 0;
+    transition: 0.5s;
+}
+.navbar-toggler[aria-expanded="true"] .burger:before {
+    transform: translateY(9px) rotate(135deg);
+}
+.navbar-toggler[aria-expanded="true"] .burger:after {
+    transform: translateY(-13px) rotate(-135deg);
+}
+.navbar-toggler[aria-expanded="true"] .burger div {
+    transform: scale(0);
+}
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    box-shadow: none;
+    border: transparent;
+}
+.navbar-toggler[aria-expanded="true"] .burger {
+    border: 3px solid #fff;
+}
+
+.navbar-toggler {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    border: transparent;
+}
+
 header {
     padding: 12px 0;
     font-size: 24px;
@@ -68,20 +113,6 @@ body {
 
 .navbar-light .navbar-nav .nav-link {
     color: #fff;
-}
-
-.navbar-light .navbar-toggler {
-    border-color: transparent;
-}
-
-.navbar-toggler {
-    padding: 0;
-}
-
-.navbar-toggler:focus {
-    text-decoration: none;
-    outline: 0;
-    box-shadow: none;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,

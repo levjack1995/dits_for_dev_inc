@@ -15,7 +15,7 @@
 <body class="page">
 <header class="p-3 page__header">
     <div class="container">
-        <nav class="row navbar navbar-expand-lg navbar-light"  style="background-color: #012438;">
+        <nav class="row navbar navbar-expand-lg"  style="background-color: #012438;">
             <div class="container-fluid">
                 <div th:if="${session.user == null}">
                     <a th:href="@{/login}"> <img th:src="@{/img/logo.svg}" alt="devincubator logo"> </a>
@@ -29,7 +29,9 @@
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <img th:src="@{/img/burger-icon.png}">
+                    <div class="burger">
+                        <div></div>
+                    </div>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                     <div class="text-end w-100" th:if="${session.user == null}">
