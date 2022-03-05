@@ -22,11 +22,11 @@
                     <div class="row grid__item" id="resultTableBody">
                         <div class="container test" th:each="stat,iter : ${statisticList}">
                             <div class="row result-row" data-bs-toggle="collapse" href="#test">
-                                <div class="col-1 text-start d-none d-md-block" th:text="${iter.index+1}">1</div>
-                                <div class="col-md-8 col-sm-7 text-start" th:text="${stat.testName}">Java 2 test</div>
+                                <div class="col-1 text-start d-none d-md-block" th:text="${iter.index+1}"></div>
+                                <div class="col-md-8 col-sm-7 text-start" th:text="${stat.testName}"></div>
                                 <div class="col-md-3 col-sm-5 text-center d-flex justify-content-between">
-                                    <div style="width: 40px;" th:text="${stat.getCount()}">3</div>
-                                    <div style="width: 100px;" th:text="${stat.getAvgProc()}">22%</div>
+                                    <div style="width: 40px;" th:text="${stat.getCount()}"></div>
+                                    <div style="width: 100px;" th:text="${stat.getAvgProc()+'%'}"></div>
                                 </div>
                             </div>
                         </div>

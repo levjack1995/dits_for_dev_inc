@@ -839,6 +839,7 @@ body {
     background: #FFFFFF;
     box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+    position: relative;
 }
 
 .user-info__name {
@@ -971,6 +972,11 @@ body {
 .form-input:focus-visible {
     border: 1px solid #ccc;
     outline: none;
+}
+
+select.form-input {
+    background: url('../img/select_arrow.svg') no-repeat calc(100% - 20px) 20px;
+    appearance: none;
 }
 
 .form-button_cancel {
@@ -1312,6 +1318,16 @@ main .form-select:focus {
         position: relative;
     }
 
+    .user-info__control {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        height: 70px;
+        justify-content: space-between;
+    }
+
     .container {
         max-width: initial;
     }
@@ -1379,5 +1395,13 @@ main .form-select:focus {
 
     .deleteUserModal__content {
         padding: 30px 12px;
+    }
+
+    .createUserModal__label:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    .createUserModal__button {
+        margin-top: 25px;
     }
 }

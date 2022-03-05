@@ -16,7 +16,7 @@
             <li class="row users__item user-info" th:each="user : ${session.users}" data-th-data-id="${user.userId}">
                 <span class="col-md-3 user-info__name"
                       th:text="${user.firstName} + ' ' + ${user.lastName}">Maria Zapalina</span>
-                <a href="#" class="col user-info__email" th:text="${user.login}">zapalina@gmail.com</a>
+                <div class="col user-info__email" th:text="${user.login}">zapalina@gmail.com</div>
                 <div class="col-auto user-info__control">
                     <button class="user-info__button_edit" data-bs-toggle="modal"
                             data-bs-target="#modal-edit-user">

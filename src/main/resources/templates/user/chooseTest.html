@@ -5,8 +5,8 @@
         <div class="title">
             <h1 class="start">To start testing choose theme and test</h1>
         </div>
-        <form th:action="@{/user/goTest}" class="row mt-4" method="get">
-            <div class="col-12 col-lg-4">
+        <form th:action="@{/user/goTest}" class="row" method="get">
+            <div class="col-12 col-lg-4 mt-4">
                 <p class="select-label mb-2">Select theme</p>
                 <select class="form-select select-input" id="testThemeSelect" name="theme"
                         aria-label="Default select example">
@@ -14,7 +14,7 @@
                     <option th:each="topic : ${topicWithQuestions}" th:text="${topic.getName}">One</option>
                 </select>
             </div>
-            <div class="col-12 col-lg-4 hidden">
+            <div class="col-12 col-lg-4 hidden mt-4">
                 <p class="select-label mb-2">Select test</p>
                 <select class="form-select select-input" id="testSelect" name="testId"
                         aria-label="Default select example">
@@ -24,7 +24,7 @@
                     <option value="3">Three</option>
                 </select>
             </div>
-            <div class="col-12 col-lg-4 d-flex flex-column justify-content-end hidden">
+            <div class="col-12 col-lg-4 mt-4 d-flex flex-column justify-content-end hidden">
                 <button
                         type="submit"
                         class="mt-4 mt-lg-0 btn"
