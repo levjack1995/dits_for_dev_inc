@@ -178,7 +178,7 @@ public class StatisticServiceImpl implements StatisticService {
         Map<String, TestStatistic> statisticByName = new HashMap<>();
         for (TestStatisticByDate st : testStatisticsByDate){
             if (!statisticByName.containsKey(st.getTestName())) {
-                TestStatistic testStatistic = new TestStatistic(st.getTestName(),initValue,st.getAvg());
+                TestStatistic testStatistic = new TestStatistic(st.getTestName(),initValue+1,st.getAvg());
                 statisticByName.put(st.getTestName(), testStatistic);
             }
             else{
