@@ -45,7 +45,7 @@
                                 <a th:class="${title == 'Statistic' || title == 'User statistic'} ? 'nav-link active' : 'nav-link'"
                                    href="#" th:href="@{/admin/adminStatistic}">Statistic</a>
                             </div>
-                            <div class="offset-lg-1 nav-info">
+                            <div class="offset-lg-1 align-items-center d-flex">
                                 <span>Admin</span>
                                 <span class="nav-control__separator"></span>
                                 <span th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">Admin Name</span>
@@ -60,7 +60,7 @@
                                    href="#"
                                    th:href="@{/user/personalStatistic}">Statistics</a>
                             </div>
-                            <div class="offset-lg-1">
+                            <div class="offset-lg-1 align-items-center d-flex">
                                 <span>User</span>
                                 <span class="nav-control__separator"></span>
                                 <span th:text="${session.user.firstName} + ' ' + ${session.user.lastName}">User Name</span>
