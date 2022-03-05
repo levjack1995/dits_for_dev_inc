@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row">
-            <form action="#"
+            <form id="form-test-item" action="#"
                   th:action="${session.questionSize == session.questionNumber} ? 'resultPage' : 'nextTestPage'"
                   th:method="get">
                 <pre class="question" th:text="${question}">
@@ -46,5 +46,6 @@
 <div th:replace="/fragments/footer"></div>
 <div th:replace="/fragments/modals"></div>
 
+<script th:src="@{/js/test-item.js}"></script>
 </body>
 </html>
