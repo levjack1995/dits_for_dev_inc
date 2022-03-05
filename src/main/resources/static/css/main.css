@@ -113,9 +113,8 @@ body {
 
 .nav-control__logout {
     margin-left: 11px;
-    vertical-align: middle;
-    display: inline-block;
-    height: 52px;
+    display: inline-flex;
+    height: 30px;
 }
 
 .nav__list {
