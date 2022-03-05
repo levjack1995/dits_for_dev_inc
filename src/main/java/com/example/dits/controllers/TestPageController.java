@@ -80,14 +80,14 @@ public class TestPageController {
 
 
         List<Question> questions = (List<Question>) session.getAttribute("questions");
-        int questionNumber = questions.size() - 1;
+        int questionNumber = questions.size();
         boolean isCorrect = answerService.isRightAnswer(answeredQuestion,questions,questionNumber);
         User user = (User) session.getAttribute("user");
         List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
 
         if (!isResultPage(questionNumber, statisticList)){
             statisticList.add(Statistic.builder()
-                    .question(questions.get(questionNumber))
+                    .question(questions.get(questionNumber-1))
                     .user(user)
                     .correct(isCorrect).build());
         }
