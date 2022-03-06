@@ -1,3 +1,9 @@
+// TODO:
+// Check if this file is necessary
+// We have no info on page that uses current script
+//
+// And also rename this file
+
 const togglePassword = document.querySelector('#togglePassword');
 const password = document.querySelector('#password-input');
 
