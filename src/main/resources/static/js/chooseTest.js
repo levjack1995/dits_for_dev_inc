@@ -1,3 +1,38 @@
+/**
+ * TODO:
+ * Change response JSON from server
+ * 
+ * DESCRIPTION:
+ * Current version of script send request for each
+ * topic and recieve next data in answer:
+ * [
+ *     { testName, testDescription, testId },
+ *     { next piece of data for another test for that topic },
+ *     ...
+ * ]
+ * Test topics are set on the page by Java when server renders the page
+ * (see templates fot html files)
+ * 
+ * 
+ * The best solution in this case is to receive
+ * next response from server like below:
+ * [
+ *     {
+ *         testTopic : [
+ *             { testName, testDescription, testId },
+ *             { next piece of data for another test for that topic },
+ *             ...
+ *         ]
+ *     },
+ *     { next test topic },
+ *     ....
+ * ]
+ * 
+ * The request for topics will be send only once, when page loads
+ * and after that all topics with appropriate test and description
+ * will be showed on the page
+ */
+
 const testThemeSelect = document.getElementById("testThemeSelect");
 const testDescription = document.getElementById("testDescription");
 const startTestButton = document.getElementById("startTestButton");
