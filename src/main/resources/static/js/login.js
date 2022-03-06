@@ -1,3 +1,10 @@
+/**
+ * TODO:
+ * - remove all global variables
+ * - left only one eventListener on 'password-control'
+ * - remove passwordControlClickHandler()
+ */
+
 const passwordInput = document.getElementById('password-input');
 const passwordControl = document.getElementById('password-control');
 
