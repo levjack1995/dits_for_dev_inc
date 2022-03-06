@@ -10,6 +10,9 @@ if (buttonSubmit !== null) {
         if (testAnswers.length > 0 && isAnyAnswerSelected(testAnswers)) {
             formTestItem.submit();
         }
+        else {
+            alert("Please, select the answer!")
+        }
     });
 }
 
