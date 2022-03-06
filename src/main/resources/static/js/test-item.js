@@ -1,3 +1,8 @@
+/**
+ * TODO:
+ * - rename this file
+ */
+
 const formTestItem = document.getElementById("form-test-item");
 
 const buttonSubmit = formTestItem.querySelector("button[type=\"submit\"]");
