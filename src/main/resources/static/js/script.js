@@ -1,3 +1,12 @@
+/**
+ * TODO:
+ * - Rename this file
+ * 
+ * - Put all logic into one method,
+ * that passed in eventListener
+ * 
+ */
+
 const dataContainer = document.getElementById('dataContainer');
 let isReverseTest = false;
 
