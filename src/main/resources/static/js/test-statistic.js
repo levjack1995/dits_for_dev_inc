@@ -1,3 +1,10 @@
+/**
+ * TODO:
+ * - Add classes
+ * - rename this file
+ * 
+ */
+
 let data = [
     {
         "testName": "Second test",
@@ -29,6 +36,11 @@ function updateResult(data) {
     if (!data) {
         return
     }
+
+    // TODO:
+    // if you want to parse string below as HTML
+    // it is a good idea to move it in separate function
+    // to split the idea from the implementation
 
     const reversedData = isReverseTest ? [...data].reverse() : data;
     dataContainer.classList.add('active');
@@ -71,6 +83,7 @@ function updateResult(data) {
   `
 }
 
+// Add separate finction to send GET requests
 themeSelect.addEventListener('change', async ({target}) => {
     dataContainer.classList.remove('active');
     try {
@@ -115,6 +128,7 @@ function questionClickHandler(target) {
 
 dataContainer.addEventListener('click', (event) => {
     const {target} = event;
+    // TODO: fix this class name
     if (target.closest('#sortTestsButton')) {
         isReverseTest = !isReverseTest;
         reverseTests(target);
