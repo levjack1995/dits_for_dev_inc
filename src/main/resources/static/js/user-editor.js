@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * - delete console.log for debugging
+ * 
+ */
+
 const testThemes = document.getElementById('testThemes');
 console.log(testThemes)
 
@@ -11,6 +17,7 @@ testThemes.addEventListener('click', ({ target }) => {
     
 })
 
+// TODO: change ID because the good practice is next style "activate-add-test-button"
 const activateAddTestButton = document.getElementById('activateAddTestButton');
 const addTestForm = document.getElementById('addTestForm');
 
