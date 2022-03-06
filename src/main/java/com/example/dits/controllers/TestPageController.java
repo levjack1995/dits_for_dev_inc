@@ -61,7 +61,7 @@ public class TestPageController {
 
         List<Statistic> statisticList = (List<Statistic>) session.getAttribute("statistics");
         statisticList.add(Statistic.builder()
-                .question(questionList.get(questionNumber))
+                .question(questionList.get(questionNumber-1))
                 .user(user)
                 .correct(isCorrect).build());
 

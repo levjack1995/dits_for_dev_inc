@@ -19,6 +19,9 @@ if (buttonSubmit !== null) {
                 alert("No answer selected!");
             }
         }
+        else {
+            alert("Please, select the answer!")
+        }
     });
 }
 
