@@ -1,3 +1,24 @@
+/**
+ * TODO:
+ * 
+ * - rewrite using classes
+ * - add function to send custom request and rewrite all functions
+ * that sending requests using new function. Here I mean next functions:
+ * -- addThemeForm.addEventListener
+ * -- getTestsData
+ * -- submitNewTheme
+ * -- deleteTheme
+ * -- addNewTest
+ * -- editTest
+ * -- deleteTest
+ * -- addNewQuestion
+ * 
+ * -- getAnswers
+ * -- deleteQuestion
+ * 
+ * 
+ */
+
 function getQuestionHtml({name, description, testId, questions}) {
     const question = document.createElement('div');
     question.className = 'test';
@@ -302,6 +323,9 @@ function refreshThemesValues() {
     prevEditedThemeValue = null;
 }
 
+// TODO:
+// put all variables declaration in the top of the script
+
 let prevQuestion = null;
 const questionFormQuestion = document.getElementById('questionFormQuestion');
 const activateAddTestButton = document.getElementById('activateAddTestButton');
@@ -367,6 +391,16 @@ async function addNewQuestion() {
     const result = await response.json();
     setNewThemeTests(result);
 }
+
+/**
+ * TODO:
+ * - If you want to use string as HTML code that will be parsed
+ * it is a good idea to move it in separate function with
+ * appropriate name
+ * 
+ * - Check all document on such mistake
+ * 
+ *  */
 
 function updateThemesList(data) {
     console.log(data)
@@ -520,4 +554,5 @@ detailList.addEventListener('click', ({target}) => {
     }
 })
 
+// TODO: change this id name. It is awfull :/
 document.getElementById('themeItemIndex0').click();
