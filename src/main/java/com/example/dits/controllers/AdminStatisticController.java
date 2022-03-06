@@ -11,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,6 +55,19 @@ public class AdminStatisticController {
         User user = userService.getUserByUserId(id);
         UserStatistics userStatistics = statisticService.getUserStatistics(user);
         return statisticMapper.convertToUserStatisticDTO(userStatistics);
+    }
+
+    @ResponseBody
+    @GetMapping("/adminStatistic/removeStatistic/byId")
+    public String removeStatisticByUserId(@RequestParam int id){
+        statisticService.removeStatisticByUserId(id);
+        return "success";
+    }
+
+    @GetMapping("/adminStatistic/removeStatistic/all")
+    public String removeAllStatistic(){
+        statisticService.deleteAll();
+        return "redirect:/admin/adminStatistic";
     }
 
     private TopicDTO convertToDTO(Topic topic){

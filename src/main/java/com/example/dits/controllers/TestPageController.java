@@ -95,7 +95,6 @@ public class TestPageController {
         int countOfRightAnswers = statisticService.calculateRightAnswers(statisticList);
         statisticService.saveStatisticsToDB(statisticList);
         int percentOfRightAnswers = (int) answerService.countPercentsOfRightAnswers(countOfRightAnswers,questions.size());
-
         model.addAttribute("rightAnswers",countOfRightAnswers);
         model.addAttribute("countOfQuestions", questions.size());
         model.addAttribute("percentageComplete", percentOfRightAnswers);

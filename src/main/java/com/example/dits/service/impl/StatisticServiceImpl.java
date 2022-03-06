@@ -86,6 +86,17 @@ public class StatisticServiceImpl implements StatisticService {
         List<TestStatistic> testStatisticList = getTestStatisticsByUser(user);
         return new UserStatistics(user.getFirstName(),user.getLastName(),user.getLogin(),testStatisticList);
     }
+    @Transactional
+    @Override
+    public void removeStatisticByUserId(int userId){
+        repository.removeStatisticByUser_UserId(userId);
+    }
+
+    @Transactional
+    @Override
+    public void deleteAll(){
+        repository.deleteAll();
+    }
 
     private List<TestStatistic> getTestStatisticsByUser(User user) {
         List<Statistic> statistics = getStatisticsByUser(user);

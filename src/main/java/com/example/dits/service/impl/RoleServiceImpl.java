@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,16 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     public List<Role> findAll() {
         return repo.findAll();
+    }
+
+    @Override
+    public List<String> getAllRoles() {
+        List<Role> rolesList = repo.findAll();
+        List<String> roles = new ArrayList<>();
+        for (Role role:rolesList){
+            roles.add(role.getRoleName().replaceAll("ROLE_",""));
+        }
+        return roles;
     }
 
     @Transactional

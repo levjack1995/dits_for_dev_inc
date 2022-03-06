@@ -1,16 +1,15 @@
 package com.example.dits.controllers;
 
 
-import com.example.dits.dto.QuestionEditModel;
-import com.example.dits.dto.QuestionWithAnswersDTO;
-import com.example.dits.dto.TestWithQuestionsDTO;
-import com.example.dits.dto.TopicDTO;
+import com.example.dits.dto.*;
 import com.example.dits.entity.Question;
+import com.example.dits.entity.Role;
 import com.example.dits.entity.Test;
 import com.example.dits.entity.Topic;
 import com.example.dits.mapper.QuestionMapper;
 import com.example.dits.mapper.TestMapper;
 import com.example.dits.service.QuestionService;
+import com.example.dits.service.RoleService;
 import com.example.dits.service.TestService;
 import com.example.dits.service.TopicService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +31,7 @@ public class AdminTestController {
     private final QuestionService questionService;
     private final TestMapper testMapper;
     private final QuestionMapper questionMapper;
+    private final RoleService roleService;
 
     @GetMapping("/testBuilder")
     public String getTopics(ModelMap model) {
@@ -137,6 +137,12 @@ public class AdminTestController {
     public List<TestWithQuestionsDTO> editQuestionAnswers(@RequestBody QuestionEditModel questionModel){
         questionService.editQuestion(questionModel);
         return getTestWithQuestionsDTOList(topicService.getTopicByTopicId(questionModel.getTopicId()));
+    }
+
+    @ResponseBody
+    @GetMapping("/getRoles")
+    public List<String> getRoles(){
+        return roleService.getAllRoles();
     }
 
     private List<TestWithQuestionsDTO> getTestWithQuestionsDTOList(Topic topic) {
