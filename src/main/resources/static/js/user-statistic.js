@@ -30,8 +30,12 @@ function updateResult(data) {
         return
     }
 
+    // TODO
+    // remove all debug output
     console.log(isReverseTest)
 
+    // TODO:
+    // move this string below to separate function
     const reversedData = isReverseTest ? [...data].reverse() : [...data];
     dataContainer.classList.add('active');
     resultTableBody.innerHTML = `
@@ -52,6 +56,7 @@ function updateResult(data) {
   `
 }
 
+// TODO: add separate function to send GET requests
 themeSelect.addEventListener('change', async ({target}) => {
     dataContainer.classList.remove('active');
     try {
