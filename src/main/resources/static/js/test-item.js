@@ -12,8 +12,12 @@ if (buttonSubmit !== null) {
     buttonSubmit.addEventListener("click", e => {
         e.preventDefault();
     
-        if (testAnswers.length > 0 && isAnyAnswerSelected(testAnswers)) {
-            formTestItem.submit();
+        if (testAnswers.length > 0) {
+            if (isAnyAnswerSelected(testAnswers)) {
+                formTestItem.submit();
+            } else {
+                alert("No answer selected!");
+            }
         }
     });
 }
