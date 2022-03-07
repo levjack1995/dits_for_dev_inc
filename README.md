@@ -8,6 +8,11 @@ Getting Started
 =====================
 ##### 1. git clone https://github.com/levjack1995/dits_for_dev_inc.git
 ##### 2. start your application from your Idea
+        ## Before start install Java https://www.java.com/
+        ## After indexing all your files accept all plugins, which IDE propose to install
+        ## Plugins needed: spring, maven, jenkins and thymeleaf
+        ## Add build config for DitsApplication
+        ## Restart your application to apply your changes in application
 ##### 3. open http://localhost:8080/
 
 * Credentials for user : user - user.
