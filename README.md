@@ -36,3 +36,10 @@ This path - templates - uses by default in Spring boot application (It is classp
 3. src/main/resources - you can find application configurations
 4. src/main/java - it is a path for main logic of your application
 5. src/main/test - it is a path, where maven will start unit testing
+
+
+TODO
+=====================
+1. Create a restriction for user to check out any page when any test is in progress;
+2. Create a button to abort current test;
+3. Create a timer that will abort test that is in progress if user goes out of the time.
