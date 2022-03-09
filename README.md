@@ -43,3 +43,6 @@ TODO
 1. Create a restriction for user to check out any page when any test is in progress;
 2. Create a button to abort current test;
 3. Create a timer that will abort test that is in progress if user goes out of the time.
+4. If connection is lost, show ajax alerts or warnings (frontend) without redirect.
+5. Creating user with existing name must throw an exception (frontend), also warning.
+6. Project size is over 100Mb, remove unused packages or libs.
